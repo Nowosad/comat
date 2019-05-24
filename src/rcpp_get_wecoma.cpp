@@ -33,11 +33,14 @@ IntegerMatrix rcpp_get_wecoma(const IntegerMatrix x,
 
     for (unsigned col = 0; col < ncols; col++) {
         for (unsigned row = 0; row < nrows; row++) {
-            const int tmp = x[col * nrows + row];
-            if (tmp == na)
+            const int focal_x = x[col * nrows + row];
+            // Rcout << "The value of tmp : " << tmp << "\n";
+            if (focal_x == na)
                 continue;
-            unsigned focal_class = class_index[tmp];
+            unsigned focal_class = class_index[focal_x];
             // Rcout << "The value of focal_class : " << focal_class << "\n";
+            const int focal_w = w[col * nrows + row];
+            // Rcout << "The value of focal_weight : " << focal_weight << "\n";
             for (int h = 0; h < neigh_len; h++) {
                 int neig_col = neig_coords[h][0] + col;
                 int neig_row = neig_coords[h][1] + row;
@@ -45,12 +48,15 @@ IntegerMatrix rcpp_get_wecoma(const IntegerMatrix x,
                         neig_row >= 0 &&
                         neig_col < ncols &&
                         neig_row < nrows) {
-                    const int tmp = x[neig_col * nrows + neig_row];
-                    if (tmp == na)
+                    const int neig_x = x[neig_col * nrows + neig_row];
+                    if (neig_x == na)
                         continue;
-                    unsigned neig_class = class_index[tmp];
+                    unsigned neig_class = class_index[neig_x];
+                    const int neig_w = w[neig_col * nrows + neig_row];
+                    
                     // Rcout << "The value of neig_class : " << neig_class << "\n";
-                    cooc_mat[focal_class][neig_class]++;
+                    cooc_mat[focal_class][neig_class] = cooc_mat[focal_class][neig_class] + ((focal_w + neig_w) / 2);
+                    // cooc_mat[focal_class][neig_class]++;
                     // Rcout << "The value of cooc_mat : " << cooc_mat << "\n";
                 }
             }

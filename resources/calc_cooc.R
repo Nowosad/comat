@@ -9,20 +9,20 @@ require(rstudioapi) #use to automatically set working directory
 tryCatch(setwd(getSrcDirectory()[1]), error=function(e) setwd(dirname(rstudioapi::getActiveDocumentContext()$path)))
 
 
-############## 
+##############
 #census_sp contain 4 "layers" for Cook County
 ###cat - there is categorical raster with 5 classess (representing race categories 1- asian, 2-black, 3-hisp, 4-other, 5-white), use to identify pairs of categories in cooc matrix
 ###weights - there is numerical raster with weights used to calculate modified cooc matrix
 ###cns_units, cns_id - block ids - there are not used in this script
 census_sp = readRDS("data/sp_weights_adj_2010.rds")
 
-#shapefile use to crop raster 
+#shapefile use to crop raster
 region =st_read("data/c29_r30_60_60.shp", stringsAsFactors=FALSE)
 
 #prefix for results file
 fname = "c29_r30_60_adj_2010"
 
-rcat = 1:5 # vector of categories assign to race  
+rcat = 1:5 # vector of categories assign to race
 
 #create raster stack based on census sp
 rast = stack(census_sp)
@@ -34,10 +34,10 @@ rm(census_sp)
 rst = crop(rast, region)
 rstm <- mask(rst, region)
 
-#r is a raster with categories 
+#r is a raster with categories
 r = rstm[["cat"]]
 
-#rw is raster with weights 
+#rw is raster with weights
 rw = rstm[["weights"]]
 
 clr = c("#f17160", "#6ebe44","#7e69af", "#c27515","#f8df1d") #colors for race categories
@@ -45,6 +45,10 @@ plot(r, col=clr)
 plot(rw)
 ##########################
 
+
+# r = x
+# rw = w
+# rcat = 1:3
 #Create unique combination of race categories
 
 #unique combination
@@ -59,7 +63,7 @@ un2 = unique(sort_un[,1:2])
 un2$gr = 1:nrow(un2)
 sort_un2 = merge(sort_un, un2, by=c("V1", "V2"))
 
-#This data frame contain category for focus cell, neighboor cell and group (gr). 
+#This data frame contain category for focus cell, neighboor cell and group (gr).
 uniq = merge(un, sort_un2[, c("ord", "gr")], by="ord")
 colnames(uniq) = c("ord", "focus_cell", "neigh_cell", "gr")
 uniq$ord <- NULL
@@ -83,23 +87,23 @@ for (i in 1:nrow(r)) {
     res = as.data.frame(cbind(focus_cell , neigh_cell, w_focus_cell, w_neigh_cell, i, j))
     #print(res)
     #calculate value based on weights. In this example there is a mean. FUN can be any user-defined function
-    res$fnc = apply(res[, c("w_focus_cell", "w_neigh_cell")], 1, FUN=mean) 
+    res$fnc = apply(res[, c("w_focus_cell", "w_neigh_cell")], 1, FUN=mean)
     #res$fnc = w_focus_cell
     result = rbind(result, res)
 }#end ncol loop
-}#end nrow loop 
+}#end nrow loop
 
 
 #merge data frame result and uniq (contain 3 cols category of focus cell, neig cell and gr)
 result_df = merge(result, uniq, by = c("focus_cell", "neigh_cell"))
-saveRDS(result_df, paste(fname, "_result_df.rds", sep=""))
+# saveRDS(result_df, paste(fname, "_result_df.rds", sep=""))
 
-#just for check 
+#just for check
 table(result_df$gr)
 
 head(result_df)
 
-#Summarize result df by group 
+#Summarize result df by group
 #symetric matrix
 
 by_gr = group_by(result_df, by=gr)
@@ -119,7 +123,7 @@ proc.time() - ptm
 
 
 
-#display coocurence matrix based on out_df 
+#display coocurence matrix based on out_df
 
 make_mat <- function(x) {
   x1=x[1:5]
@@ -140,3 +144,5 @@ mc
 mp = make_mat(out_df$suma)
 mp
 
+# rcpp_get_coocurrence_matrix(as.matrix(r), as.matrix(4))
+# rcpp_get_wecoma(as.matrix(r), as.matrix(rw), matrix(4))

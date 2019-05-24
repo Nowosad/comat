@@ -37,6 +37,7 @@ IntegerMatrix rcpp_get_wecoma(const IntegerMatrix x,
             if (tmp == na)
                 continue;
             unsigned focal_class = class_index[tmp];
+            // Rcout << "The value of focal_class : " << focal_class << "\n";
             for (int h = 0; h < neigh_len; h++) {
                 int neig_col = neig_coords[h][0] + col;
                 int neig_row = neig_coords[h][1] + row;
@@ -48,7 +49,9 @@ IntegerMatrix rcpp_get_wecoma(const IntegerMatrix x,
                     if (tmp == na)
                         continue;
                     unsigned neig_class = class_index[tmp];
+                    // Rcout << "The value of neig_class : " << neig_class << "\n";
                     cooc_mat[focal_class][neig_class]++;
+                    // Rcout << "The value of cooc_mat : " << cooc_mat << "\n";
                 }
             }
         }
@@ -68,17 +71,8 @@ IntegerMatrix rcpp_get_wecoma(const IntegerMatrix x,
 }
 
 /*** R
-
 library(raster)
-library(dplyr)
-test <- landscapemetrics::augusta_nlcd
-# test <- raster("~/Desktop/lc_2008_4bit_clip.tif") # produces a matrix filled with NA ????
-mat <- raster::as.matrix(test)
-four <- as.matrix(4)
-rcpp_get_coocurrence_matrix(mat, four)
-
-
-# lsm_p_contig(test)
-
-rcpp_get_unique_values(mat)
+x = as.matrix(raster("data-raw/x.tif"))
+w = as.matrix(raster("data-raw/w.tif"))
+rcpp_get_wecoma(x, w, matrix(4))
 */

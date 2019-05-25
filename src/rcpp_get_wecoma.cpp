@@ -19,7 +19,7 @@ NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
     // std::vector<std::vector<unsigned> > cooc_mat(n_classes, std::vector<unsigned>(n_classes));
     // NumericMatrix cooc_mat(n_classes, n_classes);
     NumericMatrix result(n_classes, n_classes);
-    
+
     // create neighbors coordinates
     IntegerMatrix tmp = rcpp_create_neighborhood(directions);
     int neigh_len = tmp.nrow();
@@ -40,7 +40,7 @@ NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
                 continue;
             unsigned focal_class = class_index[focal_x];
             double focal_w = w[col * nrows + row];
-            if (focal_w == na)
+            if (focal_w == NA_REAL)
                 focal_w = 0.0;
             for (int h = 0; h < neigh_len; h++) {
                 unsigned int neig_col = neig_coords[h][0] + col;
@@ -50,7 +50,7 @@ NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
                         neig_col < ncols &&
                         neig_row < nrows) {
                     const int neig_x = x[neig_col * nrows + neig_row];
-                    if (neig_x == na)
+                    if (neig_x == NA_REAL)
                         continue;
                     unsigned neig_class = class_index[neig_x];
                     double neig_w = w[neig_col * nrows + neig_row];
@@ -59,12 +59,13 @@ NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
                     double value = 0.0;
                     if (fun == "mean"){
                         value = ((focal_w + neig_w) / 2.0);
-                    } else if (fun == "gmean"){
+                    } else if (fun == "geometric_mean"){
                         value = sqrt(focal_w * neig_w);
+                    } else if (fun == "focal"){
+                        value = focal_w;
+                    } else {
+                        stop("`fun` must be one of: 'mean', 'geometric_mean', or 'focal'.");
                     }
-                    // } else if (){
-                    //     double value = ((focal_w + neig_w) / 2.0);  
-                    // }
                     // Rcout << "The value of value : " << value << "\n";
                     result(focal_class,neig_class) += value;
                     // cooc_mat[focal_class][neig_class]++;
@@ -91,5 +92,13 @@ library(raster)
 x = as.matrix(raster("data-raw/x.tif"))
 w = as.matrix(raster("data-raw/w.tif"))
 rcpp_get_wecoma(x, w, matrix(4))
-rcpp_get_wecoma(x, w, matrix(4), fun = "gmean")
+rcpp_get_wecoma(x, w, matrix(4), fun = "geometric_mean")
+rcpp_get_wecoma(x, w, matrix(4), fun = "focal")
+# rcpp_get_wecoma(x, w, matrix(4), fun = "lalal")
+
+x_na = as.matrix(raster("data-raw/x_na.tif"))
+w_na = as.matrix(raster("data-raw/w_na.tif"))
+rcpp_get_wecoma(x_na, w_na, matrix(4))
+rcpp_get_wecoma(x, w_na, matrix(4))
+rcpp_get_wecoma(x_na, w, matrix(4))
 */

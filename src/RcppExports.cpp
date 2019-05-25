@@ -103,15 +103,16 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_get_wecoma
-NumericMatrix rcpp_get_wecoma(const IntegerMatrix x, const NumericMatrix w, const arma::imat directions);
-RcppExport SEXP _wecoma_rcpp_get_wecoma(SEXP xSEXP, SEXP wSEXP, SEXP directionsSEXP) {
+NumericMatrix rcpp_get_wecoma(const IntegerMatrix x, const NumericMatrix w, const arma::imat directions, const std::string fun);
+RcppExport SEXP _wecoma_rcpp_get_wecoma(SEXP xSEXP, SEXP wSEXP, SEXP directionsSEXP, SEXP funSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const IntegerMatrix >::type x(xSEXP);
     Rcpp::traits::input_parameter< const NumericMatrix >::type w(wSEXP);
     Rcpp::traits::input_parameter< const arma::imat >::type directions(directionsSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_get_wecoma(x, w, directions));
+    Rcpp::traits::input_parameter< const std::string >::type fun(funSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_wecoma(x, w, directions, fun));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -125,7 +126,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_wecoma_triangular_index", (DL_FUNC) &_wecoma_triangular_index, 2},
     {"_wecoma_rcpp_get_coocurrence_vector", (DL_FUNC) &_wecoma_rcpp_get_coocurrence_vector, 3},
     {"_wecoma_rcpp_get_unique_values", (DL_FUNC) &_wecoma_rcpp_get_unique_values, 2},
-    {"_wecoma_rcpp_get_wecoma", (DL_FUNC) &_wecoma_rcpp_get_wecoma, 3},
+    {"_wecoma_rcpp_get_wecoma", (DL_FUNC) &_wecoma_rcpp_get_wecoma, 4},
     {NULL, NULL, 0}
 };
 

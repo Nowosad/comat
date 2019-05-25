@@ -1,2 +1,5 @@
 ^wecoma\.Rproj$
 ^\.Rproj\.user$
+^resources
+^data-raw$
+^LICENSE\.md$

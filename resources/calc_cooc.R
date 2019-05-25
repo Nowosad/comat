@@ -45,7 +45,7 @@ plot(r, col=clr)
 plot(rw)
 ##########################
 
-
+czas = Sys.time()
 # r = x
 # rw = w
 # rcat = 1:3
@@ -144,5 +144,21 @@ mc
 mp = make_mat(out_df$suma)
 mp
 
-# rcpp_get_coocurrence_matrix(as.matrix(r), as.matrix(4))
-# rcpp_get_wecoma(as.matrix(r), as.matrix(rw), matrix(4))
+Sys.time() - czas
+
+rcpp_get_coocurrence_matrix(as.matrix(r), as.matrix(4))
+
+bench::mark(rcpp_get_wecoma(as.matrix(r), as.matrix(rw), matrix(4)))
+
+a = matrix(sample(1:5, size = 14000 * 14000, replace = TRUE), ncol = 14000, nrow = 14000)
+b = matrix(runif(14000 * 14000), ncol = 14000, nrow = 14000)
+
+
+bench::mark(rcpp_get_wecoma(a, b, matrix(4)))
+
+
+
+cor(as.vector(mp),
+    as.vector(rcpp_get_wecoma(as.matrix(r), as.matrix(rw), matrix(4))))
+
+# mp/rcpp_get_wecoma(as.matrix(r), as.matrix(rw), matrix(4))

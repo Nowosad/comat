@@ -6,7 +6,8 @@
 // [[Rcpp::export]]
 NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
                               const NumericMatrix w,
-                              const arma::imat directions) {
+                              const arma::imat directions,
+                              const std::string fun = "mean") {
     const int na = NA_INTEGER;
     const unsigned ncols = x.ncol();
     const unsigned nrows = x.nrow();
@@ -55,7 +56,16 @@ NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
                     double neig_w = w[neig_col * nrows + neig_row];
                     if (neig_w == na)
                         neig_w = 0.0;
-                    double value = ((focal_w + neig_w) / 2.0);
+                    double value = 0.0;
+                    if (fun == "mean"){
+                        value = ((focal_w + neig_w) / 2.0);
+                    } else if (fun == "gmean"){
+                        value = sqrt(focal_w * neig_w);
+                    }
+                    // } else if (){
+                    //     double value = ((focal_w + neig_w) / 2.0);  
+                    // }
+                    // Rcout << "The value of value : " << value << "\n";
                     result(focal_class,neig_class) += value;
                     // cooc_mat[focal_class][neig_class]++;
                 }
@@ -81,4 +91,5 @@ library(raster)
 x = as.matrix(raster("data-raw/x.tif"))
 w = as.matrix(raster("data-raw/w.tif"))
 rcpp_get_wecoma(x, w, matrix(4))
+rcpp_get_wecoma(x, w, matrix(4), fun = "gmean")
 */

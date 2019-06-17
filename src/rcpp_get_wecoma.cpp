@@ -3,8 +3,9 @@
 #include "rcpp_get_unique_values.h"
 #include "get_class_index_map.h"
 
+// [[Rcpp::export]]
 NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
-                              const IntegerMatrix w,
+                              const NumericMatrix w,
                               const arma::imat directions,
                               const std::string fun = "mean") {
     const int na = NA_INTEGER;
@@ -28,6 +29,7 @@ NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
         std::vector<int> b(a.begin(), a.end());
         neig_coords.push_back(b);
     }
+    // Rcout << "The value of w : " << w << "\n";
 
     // NAs need an index, otherwise they are counted as neighbors of class[0]
     class_index.insert(std::make_pair(na, n_classes));
@@ -39,8 +41,9 @@ NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
                 continue;
             unsigned focal_class = class_index[focal_x];
             double focal_w = w[col * nrows + row];
-            if (focal_w == NA_REAL)
-                focal_w = 0.0;
+            if (!arma::is_finite(focal_w))
+                // focal_w = 0.0;
+                continue;
             for (int h = 0; h < neigh_len; h++) {
                 unsigned int neig_col = neig_coords[h][0] + col;
                 unsigned int neig_row = neig_coords[h][1] + row;
@@ -49,12 +52,19 @@ NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
                         neig_col < ncols &&
                         neig_row < nrows) {
                     const int neig_x = x[neig_col * nrows + neig_row];
-                    if (neig_x == NA_REAL)
+                    if (neig_x == na)
                         continue;
                     unsigned neig_class = class_index[neig_x];
                     double neig_w = w[neig_col * nrows + neig_row];
-                    if (neig_w == na)
-                        neig_w = 0.0;
+
+                    if (!arma::is_finite(neig_w)){
+                        // Rcout << "The value of w : " << neig_w << "\n";
+                        // Rcout << "The value of x : " << neig_x << "\n";
+                        // neig_w = 0.0;
+                        continue;
+                        // Rcout << "The value of w2 : " << neig_w << "\n";
+
+                    }
                     double value = 0.0;
                     if (fun == "mean"){
                         value = ((focal_w + neig_w) / 2.0);
@@ -67,18 +77,10 @@ NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
                     }
                     // Rcout << "The value of value : " << value << "\n";
                     result(focal_class,neig_class) += value;
-                    // cooc_mat[focal_class][neig_class]++;
                 }
             }
         }
     }
-
-    // NumericMatrix result(n_classes, n_classes);
-    // for (unsigned col = 0; col < cooc_mat.nrow(); col++) {
-    //     for (unsigned row = 0; row < cooc_mat.ncol(); row++) {
-    //         result(col, row) = cooc_mat(col, row);
-    //     }
-    // }
 
     // add names
     List u_names = List::create(classes, classes);
@@ -100,4 +102,27 @@ w_na = as.matrix(raster("data-raw/w_na.tif"))
 rcpp_get_wecoma(x_na, w_na, matrix(4))
 rcpp_get_wecoma(x, w_na, matrix(4))
 rcpp_get_wecoma(x_na, w, matrix(4))
+
+# a = rcpp_get_wecoma(matrix(sample.int(10, size = 40000, replace = TRUE), ncol = 200), matrix(sample(40000), ncol = 200), matrix(4))
+# a
+#
+#
+library(sd)
+library(raster)
+real_raster = create_realization(perc_raster)
+# plot(real_raster)
+b = create_weights(real_raster, perc_raster, size = 10)
+
+plot(real_raster)
+plot(b)
+
+x2 = as.matrix(real_raster)
+w2 = as.matrix(b)
+# mode(w2) = "integer"
+
+x2 = x2[290:300, 60:70]
+w2 = w2[290:300, 60:70]
+# mode(w2) = "integer"
+wec = rcpp_get_wecoma(x2, w2, as.matrix(4), "mean")
+wec
 */

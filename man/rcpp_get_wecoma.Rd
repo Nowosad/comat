@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{rcpp_get_wecoma}
 \alias{rcpp_get_wecoma}
-\title{Multiply a number by two}
+\title{Wecoma}
 \usage{
 rcpp_get_wecoma(x, w, directions, fun = "mean")
 }
@@ -16,5 +16,5 @@ rcpp_get_wecoma(x, w, directions, fun = "mean")
 \item{fun}{"mean", "geometric_mean", or "focal".}
 }
 \description{
-Multiply a number by two
+Wecoma
 }

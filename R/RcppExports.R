@@ -60,7 +60,7 @@ rcpp_get_unique_values <- function(x, na_omit = TRUE) {
     .Call(`_wecoma_rcpp_get_unique_values`, x, na_omit)
 }
 
-#' Multiply a number by two
+#' Wecoma
 #'
 #' @param x A matrix.
 #' @param w A matrix.

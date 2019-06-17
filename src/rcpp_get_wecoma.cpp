@@ -3,9 +3,8 @@
 #include "rcpp_get_unique_values.h"
 #include "get_class_index_map.h"
 
-// [[Rcpp::export]]
 NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
-                              const NumericMatrix w,
+                              const IntegerMatrix w,
                               const arma::imat directions,
                               const std::string fun = "mean") {
     const int na = NA_INTEGER;

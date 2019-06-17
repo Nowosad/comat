@@ -6,8 +6,17 @@ using namespace Rcpp;
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::plugins(cpp11)]]
 
-IntegerMatrix rcpp_get_wecoma(const IntegerMatrix x,
+//' Wecoma
+//'
+//' @param x A matrix.
+//' @param w A matrix.
+//' @param directions A matrix.
+//' @param fun "mean", "geometric_mean", or "focal".
+//' @export
+// [[Rcpp::export]]
+NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
                               const IntegerMatrix w,
-                              const arma::imat directions);
+                              const arma::imat directions,
+                              const std::string fun = "mean");
 
 #endif // RCPP_GET_WECOMA_H

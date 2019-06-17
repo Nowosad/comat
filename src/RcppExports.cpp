@@ -103,13 +103,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_get_wecoma
-NumericMatrix rcpp_get_wecoma(const IntegerMatrix x, const NumericMatrix w, const arma::imat directions, const std::string fun);
+NumericMatrix rcpp_get_wecoma(const IntegerMatrix x, const IntegerMatrix w, const arma::imat directions, const std::string fun);
 RcppExport SEXP _wecoma_rcpp_get_wecoma(SEXP xSEXP, SEXP wSEXP, SEXP directionsSEXP, SEXP funSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const IntegerMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< const NumericMatrix >::type w(wSEXP);
+    Rcpp::traits::input_parameter< const IntegerMatrix >::type w(wSEXP);
     Rcpp::traits::input_parameter< const arma::imat >::type directions(directionsSEXP);
     Rcpp::traits::input_parameter< const std::string >::type fun(funSEXP);
     rcpp_result_gen = Rcpp::wrap(rcpp_get_wecoma(x, w, directions, fun));

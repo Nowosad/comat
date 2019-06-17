@@ -120,8 +120,8 @@ x2 = as.matrix(real_raster)
 w2 = as.matrix(b)
 # mode(w2) = "integer"
 
-x2 = x2[290:300, 60:70]
-w2 = w2[290:300, 60:70]
+# x2 = x2[290:300, 60:70]
+# w2 = w2[290:300, 60:70]
 # mode(w2) = "integer"
 wec = rcpp_get_wecoma(x2, w2, as.matrix(4), "mean")
 wec

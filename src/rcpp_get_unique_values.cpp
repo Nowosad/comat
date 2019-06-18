@@ -1,6 +1,7 @@
 #include "rcpp_get_unique_values.h"
 using namespace Rcpp;
 
+// [[Rcpp::export]]
 std::vector<int> rcpp_get_unique_values(const Rcpp::IntegerVector &x, bool na_omit)
 {
     std::set<int> s;

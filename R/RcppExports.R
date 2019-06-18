@@ -56,7 +56,7 @@ rcpp_get_coocurrence_vector <- function(x, directions, ordered = TRUE) {
     .Call(`_wecoma_rcpp_get_coocurrence_vector`, x, directions, ordered)
 }
 
-rcpp_get_unique_values <- function(x, na_omit = TRUE) {
+rcpp_get_unique_values <- function(x, na_omit) {
     .Call(`_wecoma_rcpp_get_unique_values`, x, na_omit)
 }
 

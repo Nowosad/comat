@@ -1,8 +1,16 @@
-#include "rcpp_get_coocurrence_matrix.h"
-#include "rcpp_create_neighborhood.h"
-#include "rcpp_get_unique_values.h"
-#include "get_class_index_map.h"
+#include "rcpp_get_wecoma.h"
+// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::plugins(cpp11)]]
 
+//' Wecoma
+//'
+//' @param x A matrix.
+//' @param w A matrix.
+//' @param directions A matrix.
+//' @param fun "mean", "geometric_mean", or "focal".
+//' @param na_action "replace", "omit", "keep"
+//' @export
+// [[Rcpp::export]]
 NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
                               const NumericMatrix w,
                               const arma::imat directions,

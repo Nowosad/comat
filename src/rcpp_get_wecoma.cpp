@@ -3,11 +3,11 @@
 #include "rcpp_get_unique_values.h"
 #include "get_class_index_map.h"
 
-// [[Rcpp::export]]
 NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
                               const NumericMatrix w,
                               const arma::imat directions,
-                              const std::string fun = "mean") {
+                              const std::string fun = "mean",
+                              const std::string na_action = "replace") {
     const int na = NA_INTEGER;
     const unsigned ncols = x.ncol();
     const unsigned nrows = x.nrow();
@@ -41,9 +41,13 @@ NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
                 continue;
             unsigned focal_class = class_index[focal_x];
             double focal_w = w[col * nrows + row];
-            if (!arma::is_finite(focal_w))
-                // focal_w = 0.0;
-                continue;
+            if (na_action != "keep" && !arma::is_finite(focal_w)){
+                if (na_action == "replace"){
+                    focal_w = 0.0;
+                } else if (na_action == "omit"){
+                    continue;
+                }
+            }
             for (int h = 0; h < neigh_len; h++) {
                 unsigned int neig_col = neig_coords[h][0] + col;
                 unsigned int neig_row = neig_coords[h][1] + row;
@@ -57,13 +61,12 @@ NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
                     unsigned neig_class = class_index[neig_x];
                     double neig_w = w[neig_col * nrows + neig_row];
 
-                    if (!arma::is_finite(neig_w)){
-                        // Rcout << "The value of w : " << neig_w << "\n";
-                        // Rcout << "The value of x : " << neig_x << "\n";
-                        // neig_w = 0.0;
-                        continue;
-                        // Rcout << "The value of w2 : " << neig_w << "\n";
-
+                    if (na_action != "keep" && !arma::is_finite(neig_w)){
+                        if (na_action == "replace"){
+                            neig_w = 0.0;
+                        } else if (na_action == "omit"){
+                            continue;
+                        }
                     }
                     double value = 0.0;
                     if (fun == "mean"){

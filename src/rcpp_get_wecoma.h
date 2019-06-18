@@ -12,11 +12,13 @@ using namespace Rcpp;
 //' @param w A matrix.
 //' @param directions A matrix.
 //' @param fun "mean", "geometric_mean", or "focal".
+//' @param na_action "replace", "omit", "keep"
 //' @export
 // [[Rcpp::export]]
 NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
-                              const IntegerMatrix w,
+                              const NumericMatrix w,
                               const arma::imat directions,
-                              const std::string fun = "mean");
+                              const std::string fun = "mean",
+                              const std::string na_action = "replace") ;
 
 #endif // RCPP_GET_WECOMA_H

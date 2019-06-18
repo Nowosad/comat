@@ -4,7 +4,7 @@
 \alias{rcpp_get_wecoma}
 \title{Wecoma}
 \usage{
-rcpp_get_wecoma(x, w, directions, fun = "mean")
+rcpp_get_wecoma(x, w, directions, fun = "mean", na_action = "replace")
 }
 \arguments{
 \item{x}{A matrix.}
@@ -14,6 +14,8 @@ rcpp_get_wecoma(x, w, directions, fun = "mean")
 \item{directions}{A matrix.}
 
 \item{fun}{"mean", "geometric_mean", or "focal".}
+
+\item{na_action}{"replace", "omit", "keep"}
 }
 \description{
 Wecoma

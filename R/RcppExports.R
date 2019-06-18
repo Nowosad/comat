@@ -66,8 +66,9 @@ rcpp_get_unique_values <- function(x, na_omit = TRUE) {
 #' @param w A matrix.
 #' @param directions A matrix.
 #' @param fun "mean", "geometric_mean", or "focal".
+#' @param na_action "replace", "omit", "keep"
 #' @export
-rcpp_get_wecoma <- function(x, w, directions, fun = "mean") {
-    .Call(`_wecoma_rcpp_get_wecoma`, x, w, directions, fun)
+rcpp_get_wecoma <- function(x, w, directions, fun = "mean", na_action = "replace") {
+    .Call(`_wecoma_rcpp_get_wecoma`, x, w, directions, fun, na_action)
 }
 

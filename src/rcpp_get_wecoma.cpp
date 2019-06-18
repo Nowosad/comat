@@ -1,6 +1,7 @@
 #include "rcpp_get_wecoma.h"
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::plugins(cpp11)]]
+//[[Rcpp::interfaces(r, cpp)]]
 
 //' Wecoma
 //'
@@ -14,8 +15,8 @@
 NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
                               const NumericMatrix w,
                               const arma::imat directions,
-                              const std::string fun = "mean",
-                              const std::string na_action = "replace") {
+                              const std::string fun,
+                              const std::string na_action) {
     const int na = NA_INTEGER;
     const unsigned ncols = x.ncol();
     const unsigned nrows = x.nrow();

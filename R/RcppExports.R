@@ -68,7 +68,11 @@ rcpp_get_unique_values <- function(x, na_omit) {
 #' @param fun "mean", "geometric_mean", or "focal".
 #' @param na_action "replace", "omit", "keep"
 #' @export
-rcpp_get_wecoma <- function(x, w, directions, fun = "mean", na_action = "replace") {
+rcpp_get_wecoma <- function(x, w, directions, fun, na_action) {
     .Call(`_wecoma_rcpp_get_wecoma`, x, w, directions, fun, na_action)
 }
 
+# Register entry points for exported C++ functions
+methods::setLoadAction(function(ns) {
+    .Call('_wecoma_RcppExport_registerCCallable', PACKAGE = 'wecoma')
+})

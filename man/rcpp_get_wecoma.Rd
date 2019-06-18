@@ -4,7 +4,7 @@
 \alias{rcpp_get_wecoma}
 \title{Wecoma}
 \usage{
-rcpp_get_wecoma(x, w, directions, fun = "mean", na_action = "replace")
+rcpp_get_wecoma(x, w, directions, fun, na_action)
 }
 \arguments{
 \item{x}{A matrix.}

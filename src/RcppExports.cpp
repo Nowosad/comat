@@ -4,6 +4,8 @@
 #include "../inst/include/wecoma.h"
 #include <RcppArmadillo.h>
 #include <Rcpp.h>
+#include <string>
+#include <set>
 
 using namespace Rcpp;
 
@@ -105,10 +107,9 @@ END_RCPP
 }
 // rcpp_get_wecoma
 NumericMatrix rcpp_get_wecoma(const IntegerMatrix x, const NumericMatrix w, const arma::imat directions, const std::string fun, const std::string na_action);
-RcppExport SEXP _wecoma_rcpp_get_wecoma(SEXP xSEXP, SEXP wSEXP, SEXP directionsSEXP, SEXP funSEXP, SEXP na_actionSEXP) {
+static SEXP _wecoma_rcpp_get_wecoma_try(SEXP xSEXP, SEXP wSEXP, SEXP directionsSEXP, SEXP funSEXP, SEXP na_actionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const IntegerMatrix >::type x(xSEXP);
     Rcpp::traits::input_parameter< const NumericMatrix >::type w(wSEXP);
     Rcpp::traits::input_parameter< const arma::imat >::type directions(directionsSEXP);
@@ -116,7 +117,47 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const std::string >::type na_action(na_actionSEXP);
     rcpp_result_gen = Rcpp::wrap(rcpp_get_wecoma(x, w, directions, fun, na_action));
     return rcpp_result_gen;
-END_RCPP
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _wecoma_rcpp_get_wecoma(SEXP xSEXP, SEXP wSEXP, SEXP directionsSEXP, SEXP funSEXP, SEXP na_actionSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_wecoma_rcpp_get_wecoma_try(xSEXP, wSEXP, directionsSEXP, funSEXP, na_actionSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+
+// validate (ensure exported C++ functions exist before calling them)
+static int _wecoma_RcppExport_validate(const char* sig) { 
+    static std::set<std::string> signatures;
+    if (signatures.empty()) {
+        signatures.insert("NumericMatrix(*rcpp_get_wecoma)(const IntegerMatrix,const NumericMatrix,const arma::imat,const std::string,const std::string)");
+    }
+    return signatures.find(sig) != signatures.end();
+}
+
+// registerCCallable (register entry points for exported C++ functions)
+RcppExport SEXP _wecoma_RcppExport_registerCCallable() { 
+    R_RegisterCCallable("wecoma", "_wecoma_rcpp_get_wecoma", (DL_FUNC)_wecoma_rcpp_get_wecoma_try);
+    R_RegisterCCallable("wecoma", "_wecoma_RcppExport_validate", (DL_FUNC)_wecoma_RcppExport_validate);
+    return R_NilValue;
 }
 
 static const R_CallMethodDef CallEntries[] = {
@@ -129,6 +170,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_wecoma_rcpp_get_coocurrence_vector", (DL_FUNC) &_wecoma_rcpp_get_coocurrence_vector, 3},
     {"_wecoma_rcpp_get_unique_values", (DL_FUNC) &_wecoma_rcpp_get_unique_values, 2},
     {"_wecoma_rcpp_get_wecoma", (DL_FUNC) &_wecoma_rcpp_get_wecoma, 5},
+    {"_wecoma_RcppExport_registerCCallable", (DL_FUNC) &_wecoma_RcppExport_registerCCallable, 0},
     {NULL, NULL, 0}
 };
 

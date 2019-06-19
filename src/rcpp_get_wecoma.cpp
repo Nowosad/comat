@@ -1,7 +1,7 @@
 #include "rcpp_get_wecoma.h"
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::plugins(cpp11)]]
-//[[Rcpp::interfaces(r, cpp)]]
+// [[Rcpp::interfaces(r, cpp)]]
 
 //' Wecoma
 //'

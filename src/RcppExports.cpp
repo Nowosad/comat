@@ -9,6 +9,41 @@
 
 using namespace Rcpp;
 
+// rcpp_get_entropy
+double rcpp_get_entropy(NumericVector x, std::string base);
+static SEXP _wecoma_rcpp_get_entropy_try(SEXP xSEXP, SEXP baseSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type base(baseSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_entropy(x, base));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _wecoma_rcpp_get_entropy(SEXP xSEXP, SEXP baseSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_wecoma_rcpp_get_entropy_try(xSEXP, baseSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
 // rcpp_xy_from_matrix
 IntegerMatrix rcpp_xy_from_matrix(arma::imat x, Rcpp::Nullable<Rcpp::IntegerVector> cell);
 RcppExport SEXP _wecoma_rcpp_xy_from_matrix(SEXP xSEXP, SEXP cellSEXP) {
@@ -70,28 +105,74 @@ END_RCPP
 }
 // triangular_index
 int triangular_index(int r, int c);
-RcppExport SEXP _wecoma_triangular_index(SEXP rSEXP, SEXP cSEXP) {
+static SEXP _wecoma_triangular_index_try(SEXP rSEXP, SEXP cSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< int >::type r(rSEXP);
     Rcpp::traits::input_parameter< int >::type c(cSEXP);
     rcpp_result_gen = Rcpp::wrap(triangular_index(r, c));
     return rcpp_result_gen;
-END_RCPP
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _wecoma_triangular_index(SEXP rSEXP, SEXP cSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_wecoma_triangular_index_try(rSEXP, cSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
 }
 // rcpp_get_coocurrence_vector
 NumericVector rcpp_get_coocurrence_vector(IntegerMatrix x, arma::imat directions, bool ordered);
-RcppExport SEXP _wecoma_rcpp_get_coocurrence_vector(SEXP xSEXP, SEXP directionsSEXP, SEXP orderedSEXP) {
+static SEXP _wecoma_rcpp_get_coocurrence_vector_try(SEXP xSEXP, SEXP directionsSEXP, SEXP orderedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< IntegerMatrix >::type x(xSEXP);
     Rcpp::traits::input_parameter< arma::imat >::type directions(directionsSEXP);
     Rcpp::traits::input_parameter< bool >::type ordered(orderedSEXP);
     rcpp_result_gen = Rcpp::wrap(rcpp_get_coocurrence_vector(x, directions, ordered));
     return rcpp_result_gen;
-END_RCPP
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _wecoma_rcpp_get_coocurrence_vector(SEXP xSEXP, SEXP directionsSEXP, SEXP orderedSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_wecoma_rcpp_get_coocurrence_vector_try(xSEXP, directionsSEXP, orderedSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
 }
 // rcpp_get_unique_values
 std::vector<int> rcpp_get_unique_values(const Rcpp::IntegerVector& x, bool na_omit);
@@ -148,6 +229,9 @@ RcppExport SEXP _wecoma_rcpp_get_wecoma(SEXP xSEXP, SEXP wSEXP, SEXP directionsS
 static int _wecoma_RcppExport_validate(const char* sig) { 
     static std::set<std::string> signatures;
     if (signatures.empty()) {
+        signatures.insert("double(*rcpp_get_entropy)(NumericVector,std::string)");
+        signatures.insert("int(*triangular_index)(int,int)");
+        signatures.insert("NumericVector(*rcpp_get_coocurrence_vector)(IntegerMatrix,arma::imat,bool)");
         signatures.insert("NumericMatrix(*rcpp_get_wecoma)(const IntegerMatrix,const NumericMatrix,const arma::imat,const std::string,const std::string)");
     }
     return signatures.find(sig) != signatures.end();
@@ -155,12 +239,16 @@ static int _wecoma_RcppExport_validate(const char* sig) {
 
 // registerCCallable (register entry points for exported C++ functions)
 RcppExport SEXP _wecoma_RcppExport_registerCCallable() { 
+    R_RegisterCCallable("wecoma", "_wecoma_rcpp_get_entropy", (DL_FUNC)_wecoma_rcpp_get_entropy_try);
+    R_RegisterCCallable("wecoma", "_wecoma_triangular_index", (DL_FUNC)_wecoma_triangular_index_try);
+    R_RegisterCCallable("wecoma", "_wecoma_rcpp_get_coocurrence_vector", (DL_FUNC)_wecoma_rcpp_get_coocurrence_vector_try);
     R_RegisterCCallable("wecoma", "_wecoma_rcpp_get_wecoma", (DL_FUNC)_wecoma_rcpp_get_wecoma_try);
     R_RegisterCCallable("wecoma", "_wecoma_RcppExport_validate", (DL_FUNC)_wecoma_RcppExport_validate);
     return R_NilValue;
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_wecoma_rcpp_get_entropy", (DL_FUNC) &_wecoma_rcpp_get_entropy, 2},
     {"_wecoma_rcpp_xy_from_matrix", (DL_FUNC) &_wecoma_rcpp_xy_from_matrix, 2},
     {"_wecoma_rcpp_cell_from_xy", (DL_FUNC) &_wecoma_rcpp_cell_from_xy, 2},
     {"_wecoma_rcpp_create_neighborhood", (DL_FUNC) &_wecoma_rcpp_create_neighborhood, 1},

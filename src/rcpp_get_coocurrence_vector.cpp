@@ -1,4 +1,5 @@
-#include "rcpp_get_coocurrence_matrix.h"
+#include "rcpp_get_coocurrence_vector.h"
+// [[Rcpp::interfaces(r, cpp)]]
 
 // [[Rcpp::export]]
 int triangular_index(int r, int c) {

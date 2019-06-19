@@ -67,27 +67,6 @@ namespace wecoma {
         return Rcpp::as<IntegerMatrix >(rcpp_result_gen);
     }
 
-    inline int triangular_index(int r, int c) {
-        typedef SEXP(*Ptr_triangular_index)(SEXP,SEXP);
-        static Ptr_triangular_index p_triangular_index = NULL;
-        if (p_triangular_index == NULL) {
-            validateSignature("int(*triangular_index)(int,int)");
-            p_triangular_index = (Ptr_triangular_index)R_GetCCallable("wecoma", "_wecoma_triangular_index");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_triangular_index(Shield<SEXP>(Rcpp::wrap(r)), Shield<SEXP>(Rcpp::wrap(c)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<int >(rcpp_result_gen);
-    }
-
     inline NumericVector rcpp_get_coocurrence_vector(IntegerMatrix x, arma::imat directions, bool ordered) {
         typedef SEXP(*Ptr_rcpp_get_coocurrence_vector)(SEXP,SEXP,SEXP);
         static Ptr_rcpp_get_coocurrence_vector p_rcpp_get_coocurrence_vector = NULL;
@@ -128,6 +107,27 @@ namespace wecoma {
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
         return Rcpp::as<NumericMatrix >(rcpp_result_gen);
+    }
+
+    inline NumericVector rcpp_get_wecove(const IntegerMatrix x, const NumericMatrix w, const arma::imat directions, const std::string fun, const std::string na_action, bool ordered) {
+        typedef SEXP(*Ptr_rcpp_get_wecove)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_rcpp_get_wecove p_rcpp_get_wecove = NULL;
+        if (p_rcpp_get_wecove == NULL) {
+            validateSignature("NumericVector(*rcpp_get_wecove)(const IntegerMatrix,const NumericMatrix,const arma::imat,const std::string,const std::string,bool)");
+            p_rcpp_get_wecove = (Ptr_rcpp_get_wecove)R_GetCCallable("wecoma", "_wecoma_rcpp_get_wecove");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_rcpp_get_wecove(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(w)), Shield<SEXP>(Rcpp::wrap(directions)), Shield<SEXP>(Rcpp::wrap(fun)), Shield<SEXP>(Rcpp::wrap(na_action)), Shield<SEXP>(Rcpp::wrap(ordered)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
 }

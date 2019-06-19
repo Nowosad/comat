@@ -52,10 +52,6 @@ rcpp_get_coocurrence_matrix_diag <- function(x, directions) {
     .Call(`_wecoma_rcpp_get_coocurrence_matrix_diag`, x, directions)
 }
 
-triangular_index <- function(r, c) {
-    .Call(`_wecoma_triangular_index`, r, c)
-}
-
 rcpp_get_coocurrence_vector <- function(x, directions, ordered) {
     .Call(`_wecoma_rcpp_get_coocurrence_vector`, x, directions, ordered)
 }
@@ -74,6 +70,14 @@ rcpp_get_unique_values <- function(x, na_omit) {
 #' @export
 rcpp_get_wecoma <- function(x, w, directions, fun, na_action) {
     .Call(`_wecoma_rcpp_get_wecoma`, x, w, directions, fun, na_action)
+}
+
+rcpp_get_wecove <- function(x, w, directions, fun, na_action, ordered) {
+    .Call(`_wecoma_rcpp_get_wecove`, x, w, directions, fun, na_action, ordered)
+}
+
+triangular_index <- function(r, c) {
+    .Call(`_wecoma_triangular_index`, r, c)
 }
 
 # Register entry points for exported C++ functions

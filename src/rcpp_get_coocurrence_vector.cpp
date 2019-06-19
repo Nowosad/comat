@@ -1,17 +1,7 @@
+#include "traingular_index.h"
 #include "rcpp_get_coocurrence_matrix.h"
 #include "rcpp_get_coocurrence_vector.h"
 // [[Rcpp::interfaces(r, cpp)]]
-
-// [[Rcpp::export]]
-int triangular_index(int r, int c) {
-    r++;
-    c++;
-    if (c <= r){
-        return (r - 1) * r / 2 + c - 1;
-    } else {
-        return (c - 1) * c / 2 + r - 1;
-    }
-}
 
 // [[Rcpp::export]]
 NumericVector rcpp_get_coocurrence_vector(IntegerMatrix x, arma::imat directions, bool ordered) {

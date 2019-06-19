@@ -8,7 +8,8 @@ NumericVector rcpp_get_wecove(const NumericMatrix x,
   // calculate a coocurrence matrix
 
   if (ordered){
-    result = as<NumericVector>(wrap(x));
+    NumericMatrix x2 = clone(x);
+    result = as<NumericVector>(x2);
   } else {
     // get a coocurence matrix dimension (it is equal to nrow and ncol)
     int num_e = x.ncol() - 1;

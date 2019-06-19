@@ -109,17 +109,17 @@ namespace wecoma {
         return Rcpp::as<NumericMatrix >(rcpp_result_gen);
     }
 
-    inline NumericVector rcpp_get_wecove(const IntegerMatrix x, const NumericMatrix w, const arma::imat directions, const std::string fun, const std::string na_action, bool ordered) {
-        typedef SEXP(*Ptr_rcpp_get_wecove)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
+    inline NumericVector rcpp_get_wecove(const NumericMatrix x, bool ordered) {
+        typedef SEXP(*Ptr_rcpp_get_wecove)(SEXP,SEXP);
         static Ptr_rcpp_get_wecove p_rcpp_get_wecove = NULL;
         if (p_rcpp_get_wecove == NULL) {
-            validateSignature("NumericVector(*rcpp_get_wecove)(const IntegerMatrix,const NumericMatrix,const arma::imat,const std::string,const std::string,bool)");
+            validateSignature("NumericVector(*rcpp_get_wecove)(const NumericMatrix,bool)");
             p_rcpp_get_wecove = (Ptr_rcpp_get_wecove)R_GetCCallable("wecoma", "_wecoma_rcpp_get_wecove");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_rcpp_get_wecove(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(w)), Shield<SEXP>(Rcpp::wrap(directions)), Shield<SEXP>(Rcpp::wrap(fun)), Shield<SEXP>(Rcpp::wrap(na_action)), Shield<SEXP>(Rcpp::wrap(ordered)));
+            rcpp_result_gen = p_rcpp_get_wecove(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(ordered)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();

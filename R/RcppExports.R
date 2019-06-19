@@ -72,8 +72,8 @@ rcpp_get_wecoma <- function(x, w, directions, fun, na_action) {
     .Call(`_wecoma_rcpp_get_wecoma`, x, w, directions, fun, na_action)
 }
 
-rcpp_get_wecove <- function(x, w, directions, fun, na_action, ordered) {
-    .Call(`_wecoma_rcpp_get_wecove`, x, w, directions, fun, na_action, ordered)
+rcpp_get_wecove <- function(x, ordered) {
+    .Call(`_wecoma_rcpp_get_wecove`, x, ordered)
 }
 
 triangular_index <- function(r, c) {

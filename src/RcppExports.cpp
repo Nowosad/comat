@@ -213,25 +213,21 @@ RcppExport SEXP _wecoma_rcpp_get_wecoma(SEXP xSEXP, SEXP wSEXP, SEXP directionsS
     return rcpp_result_gen;
 }
 // rcpp_get_wecove
-NumericVector rcpp_get_wecove(const IntegerMatrix x, const NumericMatrix w, const arma::imat directions, const std::string fun, const std::string na_action, bool ordered);
-static SEXP _wecoma_rcpp_get_wecove_try(SEXP xSEXP, SEXP wSEXP, SEXP directionsSEXP, SEXP funSEXP, SEXP na_actionSEXP, SEXP orderedSEXP) {
+NumericVector rcpp_get_wecove(const NumericMatrix x, bool ordered);
+static SEXP _wecoma_rcpp_get_wecove_try(SEXP xSEXP, SEXP orderedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const IntegerMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< const NumericMatrix >::type w(wSEXP);
-    Rcpp::traits::input_parameter< const arma::imat >::type directions(directionsSEXP);
-    Rcpp::traits::input_parameter< const std::string >::type fun(funSEXP);
-    Rcpp::traits::input_parameter< const std::string >::type na_action(na_actionSEXP);
+    Rcpp::traits::input_parameter< const NumericMatrix >::type x(xSEXP);
     Rcpp::traits::input_parameter< bool >::type ordered(orderedSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_get_wecove(x, w, directions, fun, na_action, ordered));
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_wecove(x, ordered));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _wecoma_rcpp_get_wecove(SEXP xSEXP, SEXP wSEXP, SEXP directionsSEXP, SEXP funSEXP, SEXP na_actionSEXP, SEXP orderedSEXP) {
+RcppExport SEXP _wecoma_rcpp_get_wecove(SEXP xSEXP, SEXP orderedSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_wecoma_rcpp_get_wecove_try(xSEXP, wSEXP, directionsSEXP, funSEXP, na_actionSEXP, orderedSEXP));
+        rcpp_result_gen = PROTECT(_wecoma_rcpp_get_wecove_try(xSEXP, orderedSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -272,7 +268,7 @@ static int _wecoma_RcppExport_validate(const char* sig) {
         signatures.insert("IntegerMatrix(*rcpp_get_coocurrence_matrix)(const IntegerMatrix,const arma::imat)");
         signatures.insert("NumericVector(*rcpp_get_coocurrence_vector)(IntegerMatrix,arma::imat,bool)");
         signatures.insert("NumericMatrix(*rcpp_get_wecoma)(const IntegerMatrix,const NumericMatrix,const arma::imat,const std::string,const std::string)");
-        signatures.insert("NumericVector(*rcpp_get_wecove)(const IntegerMatrix,const NumericMatrix,const arma::imat,const std::string,const std::string,bool)");
+        signatures.insert("NumericVector(*rcpp_get_wecove)(const NumericMatrix,bool)");
     }
     return signatures.find(sig) != signatures.end();
 }
@@ -298,7 +294,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_wecoma_rcpp_get_coocurrence_vector", (DL_FUNC) &_wecoma_rcpp_get_coocurrence_vector, 3},
     {"_wecoma_rcpp_get_unique_values", (DL_FUNC) &_wecoma_rcpp_get_unique_values, 2},
     {"_wecoma_rcpp_get_wecoma", (DL_FUNC) &_wecoma_rcpp_get_wecoma, 5},
-    {"_wecoma_rcpp_get_wecove", (DL_FUNC) &_wecoma_rcpp_get_wecove, 6},
+    {"_wecoma_rcpp_get_wecove", (DL_FUNC) &_wecoma_rcpp_get_wecove, 2},
     {"_wecoma_triangular_index", (DL_FUNC) &_wecoma_triangular_index, 2},
     {"_wecoma_RcppExport_registerCCallable", (DL_FUNC) &_wecoma_RcppExport_registerCCallable, 0},
     {NULL, NULL, 0}

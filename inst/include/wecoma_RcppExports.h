@@ -67,7 +67,7 @@ namespace wecoma {
         return Rcpp::as<int >(rcpp_result_gen);
     }
 
-    inline NumericVector rcpp_get_coocurrence_vector(IntegerMatrix x, arma::imat directions, bool ordered = true) {
+    inline NumericVector rcpp_get_coocurrence_vector(IntegerMatrix x, arma::imat directions, bool ordered) {
         typedef SEXP(*Ptr_rcpp_get_coocurrence_vector)(SEXP,SEXP,SEXP);
         static Ptr_rcpp_get_coocurrence_vector p_rcpp_get_coocurrence_vector = NULL;
         if (p_rcpp_get_coocurrence_vector == NULL) {

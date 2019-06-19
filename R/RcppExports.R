@@ -56,7 +56,7 @@ triangular_index <- function(r, c) {
     .Call(`_wecoma_triangular_index`, r, c)
 }
 
-rcpp_get_coocurrence_vector <- function(x, directions, ordered = TRUE) {
+rcpp_get_coocurrence_vector <- function(x, directions, ordered) {
     .Call(`_wecoma_rcpp_get_coocurrence_vector`, x, directions, ordered)
 }
 

@@ -4,7 +4,8 @@
 \alias{get_wecoma}
 \title{Create a weighted cooccurrence matrix (wecoma)}
 \usage{
-get_wecoma(x, w, neighbourhood, fun, na_action)
+get_wecoma(x, w, neighbourhood = 4, fun = "mean",
+  na_action = "replace")
 }
 \arguments{
 \item{x}{A RasterStack}
@@ -14,9 +15,9 @@ get_wecoma(x, w, neighbourhood, fun, na_action)
 \item{neighbourhood}{The number of directions in which cell adjacencies are considered as neighbours:
 4 (rook's case) or 8 (queen's case). The default is 4.}
 
-\item{fun}{"mean", "geometric_mean", or "focal"}
+\item{fun}{"mean", "geometric_mean", or "focal". The default is "mean".}
 
-\item{na_action}{"replace", "omit", or "keep"}
+\item{na_action}{"replace", "omit", or "keep". The default is "replace".}
 }
 \value{
 A RasterStack

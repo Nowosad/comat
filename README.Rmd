@@ -25,7 +25,7 @@ The goal of comat is to create cooccurrence matrices based using spatial data, i
 
 <!-- ``` r -->
 <!-- install.packages("comat") -->
-```
+<!-- ``` -->
 
 You can install the development version from [GitHub](https://github.com/) with:
 
@@ -48,13 +48,13 @@ plot(x, main = "Categories")
 plot(w, main = "Weights")
 ```
 
-The `get_wecoma` function can next be used to create a weighted cooccurrence matrix.
+The `get_wecoma` function can be next used to create a weighted cooccurrence matrix.
 
 ```{r}
 get_wecoma(x, w)
 ```
 
-This function allows for some parametrization using additional arguments, e.g.:
+This function allows for some parametrization using additional arguments, e.g. :
 
 ```{r}
 get_wecoma(x, w, fun = "focal", na_action = "keep")

@@ -19,7 +19,7 @@ data, including a weighted coocurrence matrix
 
 <!-- install.packages("comat") -->
 
-\`\`\`
+<!-- ``` -->
 
 You can install the development version from
 [GitHub](https://github.com/) with:
@@ -48,7 +48,7 @@ plot(w, main = "Weights")
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
-The `get_wecoma` function can next be used to create a weighted
+The `get_wecoma` function can be next used to create a weighted
 cooccurrence matrix.
 
 ``` r
@@ -60,7 +60,7 @@ get_wecoma(x, w)
 ```
 
 This function allows for some parametrization using additional
-arguments, e.g.:
+arguments, e.g. :
 
 ``` r
 get_wecoma(x, w, fun = "focal", na_action = "keep")

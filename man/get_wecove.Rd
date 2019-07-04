@@ -7,16 +7,29 @@
 get_wecove(x, ordered = TRUE)
 }
 \arguments{
-\item{x}{A RasterStack}
+\item{x}{A RasterStack - an output of the \code{\link[=get_wecome]{get_wecome()}} function}
 
 \item{ordered}{The type of pairs considered.
 Either ordered (TRUE) or unordered (FALSE).
 The default is TRUE.}
 }
 \value{
-A RasterStack
+A weighted cooccurrence vector
 }
 \description{
 Converts a weighted cooccurrence matrix (wecoma) to
 a weighted cooccurrence vector (wecove)
+}
+\examples{
+library(wecoma)
+library(raster)
+data(x, package = "wecoma")
+data(w, package = "wecoma")
+
+wom = get_wecoma(x, w)
+plot(wom)
+wom
+
+wov = get_wecove(wom)
+wov
 }

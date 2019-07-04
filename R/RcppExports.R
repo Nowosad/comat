@@ -2,7 +2,7 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 rcpp_get_entropy <- function(x, base = "log2") {
-    .Call(`_wecoma_rcpp_get_entropy`, x, base)
+    .Call(`_comat_rcpp_get_entropy`, x, base)
 }
 
 #' Coordinates from a matrix
@@ -14,7 +14,7 @@ rcpp_get_entropy <- function(x, base = "log2") {
 #' If NULL, the coordinates will be calculated for the whole matrix
 #' @keywords internal
 rcpp_xy_from_matrix <- function(x, cell = NULL) {
-    .Call(`_wecoma_rcpp_xy_from_matrix`, x, cell)
+    .Call(`_comat_rcpp_xy_from_matrix`, x, cell)
 }
 
 #' Get cell number
@@ -27,7 +27,7 @@ rcpp_xy_from_matrix <- function(x, cell = NULL) {
 #' @param y A matrix with two columns (row and column numbers)
 #' @keywords internal
 rcpp_cell_from_xy <- function(x, y) {
-    .Call(`_wecoma_rcpp_cell_from_xy`, x, y)
+    .Call(`_comat_rcpp_cell_from_xy`, x, y)
 }
 
 #' Create neighborhood coordinates
@@ -41,23 +41,23 @@ rcpp_cell_from_xy <- function(x, y) {
 #' Cells with other values (e.g. NA) are ignored.
 #' @keywords internal
 rcpp_create_neighborhood <- function(directions) {
-    .Call(`_wecoma_rcpp_create_neighborhood`, directions)
+    .Call(`_comat_rcpp_create_neighborhood`, directions)
 }
 
 rcpp_get_coocurrence_matrix <- function(x, directions) {
-    .Call(`_wecoma_rcpp_get_coocurrence_matrix`, x, directions)
+    .Call(`_comat_rcpp_get_coocurrence_matrix`, x, directions)
 }
 
 rcpp_get_coocurrence_matrix_diag <- function(x, directions) {
-    .Call(`_wecoma_rcpp_get_coocurrence_matrix_diag`, x, directions)
+    .Call(`_comat_rcpp_get_coocurrence_matrix_diag`, x, directions)
 }
 
 rcpp_get_coocurrence_vector <- function(x, directions, ordered) {
-    .Call(`_wecoma_rcpp_get_coocurrence_vector`, x, directions, ordered)
+    .Call(`_comat_rcpp_get_coocurrence_vector`, x, directions, ordered)
 }
 
 rcpp_get_unique_values <- function(x, na_omit) {
-    .Call(`_wecoma_rcpp_get_unique_values`, x, na_omit)
+    .Call(`_comat_rcpp_get_unique_values`, x, na_omit)
 }
 
 #' Wecoma
@@ -69,18 +69,18 @@ rcpp_get_unique_values <- function(x, na_omit) {
 #' @param na_action "replace", "omit", "keep"
 #' @export
 rcpp_get_wecoma <- function(x, w, directions, fun, na_action) {
-    .Call(`_wecoma_rcpp_get_wecoma`, x, w, directions, fun, na_action)
+    .Call(`_comat_rcpp_get_wecoma`, x, w, directions, fun, na_action)
 }
 
 rcpp_get_wecove <- function(x, ordered) {
-    .Call(`_wecoma_rcpp_get_wecove`, x, ordered)
+    .Call(`_comat_rcpp_get_wecove`, x, ordered)
 }
 
 triangular_index <- function(r, c) {
-    .Call(`_wecoma_triangular_index`, r, c)
+    .Call(`_comat_triangular_index`, r, c)
 }
 
 # Register entry points for exported C++ functions
 methods::setLoadAction(function(ns) {
-    .Call('_wecoma_RcppExport_registerCCallable', PACKAGE = 'wecoma')
+    .Call('_comat_RcppExport_registerCCallable', PACKAGE = 'comat')
 })

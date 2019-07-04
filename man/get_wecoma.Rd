@@ -8,9 +8,9 @@ get_wecoma(x, w, neighbourhood = 4, fun = "mean",
   na_action = "replace")
 }
 \arguments{
-\item{x}{A RasterStack}
+\item{x}{A RasterStack with categories}
 
-\item{w}{A RasterStack}
+\item{w}{A RasterStack with weights}
 
 \item{neighbourhood}{The number of directions in which cell adjacencies are considered as neighbours:
 4 (rook's case) or 8 (queen's case). The default is 4.}
@@ -20,8 +20,20 @@ get_wecoma(x, w, neighbourhood = 4, fun = "mean",
 \item{na_action}{"replace", "omit", or "keep". The default is "replace".}
 }
 \value{
-A RasterStack
+A weighted cooccurrence matrix
 }
 \description{
 Create a weighted cooccurrence matrix (wecoma)
+}
+\examples{
+library(wecoma)
+library(raster)
+data(x, package = "wecoma")
+data(w, package = "wecoma")
+plot(x)
+plot(w)
+
+wom = get_wecoma(x, w)
+plot(wom)
+
 }

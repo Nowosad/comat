@@ -10,7 +10,7 @@ Authors@R: c(person(given = "Jakub",
              role = c("aut")),
              person("Tomasz", "Stepinski",
              role = c("aut")))
-Description: Builds coocurrence matrices based on the spatial raster data.
+Description: Builds cooccurrence matrices based on the spatial raster data.
     It includes creation of weighted cooccurrence matrices.
 License: MIT + file LICENSE
 Encoding: UTF-8

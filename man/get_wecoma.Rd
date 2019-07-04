@@ -8,9 +8,9 @@ get_wecoma(x, w, neighbourhood = 4, fun = "mean",
   na_action = "replace")
 }
 \arguments{
-\item{x}{A RasterStack with categories}
+\item{x}{A RasterLayer with categories}
 
-\item{w}{A RasterStack with weights}
+\item{w}{A RasterLayer with weights}
 
 \item{neighbourhood}{The number of directions in which cell adjacencies are considered as neighbours:
 4 (rook's case) or 8 (queen's case). The default is 4.}
@@ -26,14 +26,14 @@ A weighted cooccurrence matrix
 Create a weighted cooccurrence matrix (wecoma)
 }
 \examples{
-library(wecoma)
+library(comat)
 library(raster)
-data(x, package = "wecoma")
-data(w, package = "wecoma")
+data(x, package = "comat")
+data(w, package = "comat")
 plot(x)
 plot(w)
 
 wom = get_wecoma(x, w)
-plot(wom)
+wom
 
 }

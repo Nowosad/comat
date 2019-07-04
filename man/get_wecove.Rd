@@ -7,7 +7,7 @@
 get_wecove(x, ordered = TRUE)
 }
 \arguments{
-\item{x}{A RasterStack - an output of the \code{\link[=get_wecoma]{get_wecoma()}} function}
+\item{x}{A matrix - an output of the \code{\link[=get_wecoma]{get_wecoma()}} function}
 
 \item{ordered}{The type of pairs considered.
 Either ordered (TRUE) or unordered (FALSE).
@@ -21,13 +21,12 @@ Converts a weighted cooccurrence matrix (wecoma) to
 a weighted cooccurrence vector (wecove)
 }
 \examples{
-library(wecoma)
+library(comat)
 library(raster)
-data(x, package = "wecoma")
-data(w, package = "wecoma")
+data(x, package = "comat")
+data(w, package = "comat")
 
 wom = get_wecoma(x, w)
-plot(wom)
 wom
 
 wov = get_wecove(wom)

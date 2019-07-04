@@ -3,7 +3,7 @@
 #' Converts a weighted cooccurrence matrix (wecoma) to
 #' a weighted cooccurrence vector (wecove)
 #'
-#' @param x A RasterStack - an output of the [get_wecoma()] function
+#' @param x A matrix - an output of the [get_wecoma()] function
 #' @param ordered The type of pairs considered.
 #' Either ordered (TRUE) or unordered (FALSE).
 #' The default is TRUE.
@@ -12,13 +12,12 @@
 #' @export
 #'
 #' @examples
-#' library(wecoma)
+#' library(comat)
 #' library(raster)
-#' data(x, package = "wecoma")
-#' data(w, package = "wecoma")
+#' data(x, package = "comat")
+#' data(w, package = "comat")
 #'
 #' wom = get_wecoma(x, w)
-#' plot(wom)
 #' wom
 #'
 #' wov = get_wecove(wom)

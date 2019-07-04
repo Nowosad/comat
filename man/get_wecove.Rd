@@ -7,7 +7,7 @@
 get_wecove(x, ordered = TRUE)
 }
 \arguments{
-\item{x}{A RasterStack - an output of the \code{\link[=get_wecome]{get_wecome()}} function}
+\item{x}{A RasterStack - an output of the \code{\link[=get_wecoma]{get_wecoma()}} function}
 
 \item{ordered}{The type of pairs considered.
 Either ordered (TRUE) or unordered (FALSE).

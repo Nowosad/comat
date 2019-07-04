@@ -3,7 +3,7 @@
 #' Converts a weighted cooccurrence matrix (wecoma) to
 #' a weighted cooccurrence vector (wecove)
 #'
-#' @param x A RasterStack - an output of the [get_wecome()] function
+#' @param x A RasterStack - an output of the [get_wecoma()] function
 #' @param ordered The type of pairs considered.
 #' Either ordered (TRUE) or unordered (FALSE).
 #' The default is TRUE.

@@ -1,5 +1,5 @@
-Package: wecoma
-Title: What the Package Does (One Line, Title Case)
+Package: comat
+Title: Creates Cooccurrence Matrices
 Version: 0.0.1
 Authors@R: c(person(given = "Jakub",
              family = "Nowosad",
@@ -10,10 +10,11 @@ Authors@R: c(person(given = "Jakub",
              role = c("aut")),
              person("Tomasz", "Stepinski",
              role = c("aut")))
-Description: What the package does (one paragraph).
+Description: Builds coocurrence matrices based on the spatial raster data.
+    It includes creation of weighted cooccurrence matrices.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
+LazyData: false
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 LinkingTo: 

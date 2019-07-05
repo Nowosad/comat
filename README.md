@@ -7,6 +7,8 @@
 
 [![Travis build
 status](https://travis-ci.org/Nowosad/wecoma.svg?branch=master)](https://travis-ci.org/Nowosad/wecoma)
+[![Codecov test
+coverage](https://codecov.io/gh/Nowosad/wecoma/branch/master/graph/badge.svg)](https://codecov.io/gh/Nowosad/wecoma?branch=master)
 <!-- badges: end -->
 
 The goal of **comat** is to create cooccurrence matrices based on

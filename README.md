@@ -5,11 +5,13 @@
 
 <!-- badges: start -->
 
+[![Travis build
+status](https://travis-ci.org/Nowosad/wecoma.svg?branch=master)](https://travis-ci.org/Nowosad/wecoma)
 <!-- badges: end -->
 
-The goal of comat is to create cooccurrence matrices based using spatial
-data, including a weighted coocurrence matrix
-(wecoma).
+The goal of **comat** is to create cooccurrence matrices based on
+spatial data, including a weighted coocurrence matrix
+(*wecoma*).
 
 ## Installation
 

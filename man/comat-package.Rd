@@ -6,8 +6,8 @@
 \alias{comat-package}
 \title{comat: Creates Cooccurrence Matrices}
 \description{
-Builds cooccurrence matrices based on the spatial raster data.
-    It includes creation of weighted cooccurrence matrices.
+Builds cooccurrence matrices based on the spatial raster data. It includes creation of
+           weighted cooccurrence matrices.
 }
 \author{
 \strong{Maintainer}: Jakub Nowosad \email{nowosad.jakub@gmail.com} (0000-0002-1057-3721)

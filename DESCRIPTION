@@ -2,18 +2,23 @@ Package: comat
 Title: Creates Cooccurrence Matrices
 Version: 0.1.0
 Authors@R: c(person(given = "Jakub", family = "Nowosad", role = c("aut", "cre"), email =
-           "nowosad.jakub@gmail.com", comment = c(ORCID = "0000-0002-1057-3721")), person("Anna",
-           "Dmowska", role = c("aut")), person("Tomasz", "Stepinski", role = c("aut")))
-Description: Builds cooccurrence matrices based on the spatial raster data. It includes creation of
-           weighted cooccurrence matrices.
+           "nowosad.jakub@gmail.com", comment = c(ORCID = "0000-0002-1057-3721")), 
+           person("Anna", "Dmowska", role = c("aut")), 
+           person("Tomasz", "Stepinski", role = c("aut")))
+Description: Builds cooccurrence matrices based on the spatial raster data.
+    It includes creation of weighted cooccurrence matrices.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: false
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 Depends: R (>= 2.10)
-LinkingTo: Rcpp, RcppArmadillo
-Imports: Rcpp, raster
+LinkingTo: 
+    Rcpp, 
+    RcppArmadillo
+Imports: 
+    Rcpp,
+    raster
 Suggests: 
     tinytest,
     covr

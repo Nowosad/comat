@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A RasterLayer with categories and missing values — x_na • comat</title>
+<title>Create an integrated cooccurrence matrix (wecoma) — get_incoma • comat</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="A RasterLayer with categories and missing values — x_na" />
+<meta property="og:title" content="Create an integrated cooccurrence matrix (wecoma) — get_incoma" />
 
-<meta property="og:description" content="A RasterLayer with categories and missing values" />
+<meta property="og:description" content="Create an integrated cooccurrence matrix (wecoma)" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -94,31 +94,63 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>A RasterLayer with categories and missing values</h1>
+    <h1>Create an integrated cooccurrence matrix (wecoma)</h1>
     
-    <div class="hidden name"><code>x_na.Rd</code></div>
+    <div class="hidden name"><code>get_incoma.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A RasterLayer with categories and missing values</p>
+    <p>Create an integrated cooccurrence matrix (wecoma)</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>x_na</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <pre class="usage"><span class='fu'>get_incoma</span>(<span class='no'>x</span>, <span class='kw'>neighbourhood</span> <span class='kw'>=</span> <span class='fl'>4</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>A RasterStack object containing categorical rasters</p></td>
+    </tr>
+    <tr>
+      <th>neighbourhood</th>
+      <td><p>The number of directions in which cell adjacencies are considered as neighbours:
+4 (rook's case) or 8 (queen's case). The default is 4.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A RasterLayer</p>
+    <p>An integrated cooccurrence matrix</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>raster</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: sp</span></div><div class='input'>
+<span class='no'>l1</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/raster/topics/raster'>raster</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>10</span>))
+<span class='no'>l2</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/raster/topics/raster'>raster</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>9</span>, <span class='fl'>6</span>, <span class='fl'>3</span>), <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>10</span>))
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/raster/topics/stack'>stack</a></span>(<span class='no'>l1</span>, <span class='no'>l2</span>, <span class='no'>l1</span>)
+
+<span class='fu'>get_incoma</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;    1  2  3  6  9  1  2
+#&gt; 1 88 97 56 49 80 88 97
+#&gt; 2 97 78 57 50 68 97 78
+#&gt; 3 56 57 30 30 53 56 57
+#&gt; 6 49 50 30 22 47 49 50
+#&gt; 9 80 68 53 47 48 80 68
+#&gt; 1 88 97 56 49 80 88 97
+#&gt; 2 97 78 57 50 68 97 78</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#format">Format</a></li>
-          </ul>
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

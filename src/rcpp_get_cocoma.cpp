@@ -1,7 +1,4 @@
-#include "rcpp_create_neighborhood.h"
-#include "rcpp_get_unique_values.h"
-#include "get_class_index_map.h"
-#include <RcppArmadillo.h>
+#include "rcpp_get_cocoma.h"
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::plugins(cpp11)]]
 // [[Rcpp::interfaces(r, cpp)]]
@@ -10,9 +7,7 @@ using namespace Rcpp;
 // [[Rcpp::export]]
 NumericMatrix rcpp_get_cocoma(const IntegerMatrix x,
                               const IntegerMatrix y,
-                              const arma::imat directions,
-                              const std::string fun,
-                              const std::string na_action) {
+                              const arma::imat directions) {
 
     const int na = NA_INTEGER;
     const unsigned ncols = x.ncol();

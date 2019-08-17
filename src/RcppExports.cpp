@@ -79,6 +79,42 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_get_cocoma
+NumericMatrix rcpp_get_cocoma(const IntegerMatrix x, const IntegerMatrix y, const arma::imat directions);
+static SEXP _comat_rcpp_get_cocoma_try(SEXP xSEXP, SEXP ySEXP, SEXP directionsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const IntegerMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const IntegerMatrix >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const arma::imat >::type directions(directionsSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_cocoma(x, y, directions));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _comat_rcpp_get_cocoma(SEXP xSEXP, SEXP ySEXP, SEXP directionsSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_comat_rcpp_get_cocoma_try(xSEXP, ySEXP, directionsSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
 // rcpp_get_coocurrence_matrix
 IntegerMatrix rcpp_get_coocurrence_matrix(const IntegerMatrix x, const arma::imat directions);
 static SEXP _comat_rcpp_get_coocurrence_matrix_try(SEXP xSEXP, SEXP directionsSEXP) {
@@ -265,6 +301,7 @@ static int _comat_RcppExport_validate(const char* sig) {
     static std::set<std::string> signatures;
     if (signatures.empty()) {
         signatures.insert("double(*rcpp_get_entropy)(NumericVector,std::string)");
+        signatures.insert("NumericMatrix(*rcpp_get_cocoma)(const IntegerMatrix,const IntegerMatrix,const arma::imat)");
         signatures.insert("IntegerMatrix(*rcpp_get_coocurrence_matrix)(const IntegerMatrix,const arma::imat)");
         signatures.insert("NumericVector(*rcpp_get_coocurrence_vector)(IntegerMatrix,arma::imat,bool)");
         signatures.insert("NumericMatrix(*rcpp_get_wecoma)(const IntegerMatrix,const NumericMatrix,const arma::imat,const std::string,const std::string)");
@@ -276,6 +313,7 @@ static int _comat_RcppExport_validate(const char* sig) {
 // registerCCallable (register entry points for exported C++ functions)
 RcppExport SEXP _comat_RcppExport_registerCCallable() { 
     R_RegisterCCallable("comat", "_comat_rcpp_get_entropy", (DL_FUNC)_comat_rcpp_get_entropy_try);
+    R_RegisterCCallable("comat", "_comat_rcpp_get_cocoma", (DL_FUNC)_comat_rcpp_get_cocoma_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_coocurrence_matrix", (DL_FUNC)_comat_rcpp_get_coocurrence_matrix_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_coocurrence_vector", (DL_FUNC)_comat_rcpp_get_coocurrence_vector_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_wecoma", (DL_FUNC)_comat_rcpp_get_wecoma_try);
@@ -289,6 +327,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_comat_rcpp_xy_from_matrix", (DL_FUNC) &_comat_rcpp_xy_from_matrix, 2},
     {"_comat_rcpp_cell_from_xy", (DL_FUNC) &_comat_rcpp_cell_from_xy, 2},
     {"_comat_rcpp_create_neighborhood", (DL_FUNC) &_comat_rcpp_create_neighborhood, 1},
+    {"_comat_rcpp_get_cocoma", (DL_FUNC) &_comat_rcpp_get_cocoma, 3},
     {"_comat_rcpp_get_coocurrence_matrix", (DL_FUNC) &_comat_rcpp_get_coocurrence_matrix, 2},
     {"_comat_rcpp_get_coocurrence_matrix_diag", (DL_FUNC) &_comat_rcpp_get_coocurrence_matrix_diag, 2},
     {"_comat_rcpp_get_coocurrence_vector", (DL_FUNC) &_comat_rcpp_get_coocurrence_vector, 3},

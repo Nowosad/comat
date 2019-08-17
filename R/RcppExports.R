@@ -44,6 +44,10 @@ rcpp_create_neighborhood <- function(directions) {
     .Call(`_comat_rcpp_create_neighborhood`, directions)
 }
 
+rcpp_get_cocoma <- function(x, y, directions) {
+    .Call(`_comat_rcpp_get_cocoma`, x, y, directions)
+}
+
 rcpp_get_coocurrence_matrix <- function(x, directions) {
     .Call(`_comat_rcpp_get_coocurrence_matrix`, x, directions)
 }

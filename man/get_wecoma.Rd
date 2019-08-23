@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_wecoma.R
 \name{get_wecoma}
 \alias{get_wecoma}
-\title{Create a weighted cooccurrence matrix (wecoma)}
+\title{Create a weighted co-occurrence matrix (wecoma)}
 \usage{
 get_wecoma(x, w, neighbourhood = 4, fun = "mean",
   na_action = "replace")
@@ -20,10 +20,10 @@ get_wecoma(x, w, neighbourhood = 4, fun = "mean",
 \item{na_action}{"replace", "omit", or "keep". The default is "replace".}
 }
 \value{
-A weighted cooccurrence matrix
+A weighted co-occurrence matrix
 }
 \description{
-Create a weighted cooccurrence matrix (wecoma)
+Create a weighted co-occurrence matrix (wecoma)
 }
 \examples{
 library(comat)

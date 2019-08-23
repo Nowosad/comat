@@ -1,18 +1,18 @@
 #include "traingular_index.h"
-#include "rcpp_get_coocurrence_matrix.h"
-#include "rcpp_get_coocurrence_vector.h"
+#include "rcpp_get_coma.h"
+#include "rcpp_get_cove.h"
 // [[Rcpp::interfaces(r, cpp)]]
 
 // [[Rcpp::export]]
-NumericVector rcpp_get_coocurrence_vector(IntegerMatrix x, arma::imat directions, bool ordered) {
+NumericVector rcpp_get_cove(IntegerMatrix x,
+                            bool ordered) {
     NumericVector result;
     // calculate a coocurrence matrix
-    IntegerMatrix y = rcpp_get_coocurrence_matrix(x, directions);
     if (ordered){
-        result = as<NumericVector>(wrap(y));
+        result = as<NumericVector>(wrap(x));
     } else {
         // get a coocurence matrix dimension (it is equal to nrow and ncol)
-        int num_e = y.ncol() - 1;
+        int num_e = x.ncol() - 1;
         // Unique combinations number
         int uc = triangular_index(num_e, num_e) + 1;
         // create an empty vector of the unique combinations size
@@ -20,7 +20,7 @@ NumericVector rcpp_get_coocurrence_vector(IntegerMatrix x, arma::imat directions
         // populate a histogram
         for (int i = 0; i <= num_e; i++) {
             for (int j = 0; j <= num_e; j++) {
-                hist(triangular_index(i, j)) += y(i, j);
+                hist(triangular_index(i, j)) += x(i, j);
             }
         }
         // every value of neighborhood was calculated twice, therefore divide by 2

@@ -1,10 +1,10 @@
-#' Create an integrated cooccurrence matrix (wecoma)
+#' Create an integrated co-occurrence matrix (wecoma)
 #'
 #' @param x A RasterStack object containing categorical rasters
 #' @param neighbourhood The number of directions in which cell adjacencies are considered as neighbours:
 #' 4 (rook's case) or 8 (queen's case). The default is 4.
 #'
-#' @return An integrated cooccurrence matrix
+#' @return An integrated co-occurrence matrix
 #' @export
 #'
 #' @examples
@@ -44,7 +44,7 @@ get_incoma = function(x, neighbourhood = 4){
 
 select_coma = function(id1, id2, x, directions){
   if (id1 == id2){
-    rcpp_get_coocurrence_matrix(x[[id1]], directions = directions)
+    rcpp_get_coma(x[[id1]], directions = directions)
   } else {
     rcpp_get_cocoma(x[[id1]], x[[id2]], directions = directions)
   }

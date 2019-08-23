@@ -21,7 +21,7 @@ NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
     const unsigned ncols = x.ncol();
     const unsigned nrows = x.nrow();
 
-    std::vector<int> classes = rcpp_get_unique_values(x);
+    std::vector<int> classes = get_unique_values(x);
     std::map<int, unsigned> class_index = get_class_index_map(classes);
 
     unsigned n_classes = class_index.size();
@@ -30,7 +30,7 @@ NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
     NumericMatrix result(n_classes, n_classes);
 
     // create neighbors coordinates
-    IntegerMatrix tmp = rcpp_create_neighborhood(directions);
+    IntegerMatrix tmp = create_neighborhood(directions);
     int neigh_len = tmp.nrow();
     std::vector<std::vector<int> > neig_coords;
     for (int row = 0; row < neigh_len; row++) {

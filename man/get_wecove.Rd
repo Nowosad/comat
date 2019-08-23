@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_wecove.R
 \name{get_wecove}
 \alias{get_wecove}
-\title{Create a weighted cooccurrence vector (wecove)}
+\title{Create a weighted co-occurrence vector (wecove)}
 \usage{
 get_wecove(x, ordered = TRUE)
 }
@@ -14,11 +14,11 @@ Either ordered (TRUE) or unordered (FALSE).
 The default is TRUE.}
 }
 \value{
-A weighted cooccurrence vector
+A weighted co-occurrence vector
 }
 \description{
-Converts a weighted cooccurrence matrix (wecoma) to
-a weighted cooccurrence vector (wecove)
+Converts a weighted co-occurrence matrix (wecoma) to
+a weighted co-occurrence vector (wecove)
 }
 \examples{
 library(comat)

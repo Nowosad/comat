@@ -9,6 +9,41 @@
 
 using namespace Rcpp;
 
+// rcpp_xy_from_matrix
+IntegerMatrix rcpp_xy_from_matrix(arma::imat x, Rcpp::Nullable<Rcpp::IntegerVector> cell);
+RcppExport SEXP _comat_rcpp_xy_from_matrix(SEXP xSEXP, SEXP cellSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::imat >::type x(xSEXP);
+    Rcpp::traits::input_parameter< Rcpp::Nullable<Rcpp::IntegerVector> >::type cell(cellSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_xy_from_matrix(x, cell));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_cell_from_xy
+IntegerVector rcpp_cell_from_xy(arma::imat x, IntegerMatrix y);
+RcppExport SEXP _comat_rcpp_cell_from_xy(SEXP xSEXP, SEXP ySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::imat >::type x(xSEXP);
+    Rcpp::traits::input_parameter< IntegerMatrix >::type y(ySEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_cell_from_xy(x, y));
+    return rcpp_result_gen;
+END_RCPP
+}
+// create_neighborhood
+IntegerMatrix create_neighborhood(arma::imat directions);
+RcppExport SEXP _comat_create_neighborhood(SEXP directionsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::imat >::type directions(directionsSEXP);
+    rcpp_result_gen = Rcpp::wrap(create_neighborhood(directions));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_get_entropy
 double rcpp_get_entropy(NumericVector x, std::string base);
 static SEXP _comat_rcpp_get_entropy_try(SEXP xSEXP, SEXP baseSEXP) {
@@ -44,40 +79,40 @@ RcppExport SEXP _comat_rcpp_get_entropy(SEXP xSEXP, SEXP baseSEXP) {
     UNPROTECT(1);
     return rcpp_result_gen;
 }
-// rcpp_xy_from_matrix
-IntegerMatrix rcpp_xy_from_matrix(arma::imat x, Rcpp::Nullable<Rcpp::IntegerVector> cell);
-RcppExport SEXP _comat_rcpp_xy_from_matrix(SEXP xSEXP, SEXP cellSEXP) {
+// get_unique_values
+std::vector<int> get_unique_values(const Rcpp::IntegerVector& x, bool na_omit);
+static SEXP _comat_get_unique_values_try(SEXP xSEXP, SEXP na_omitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::imat >::type x(xSEXP);
-    Rcpp::traits::input_parameter< Rcpp::Nullable<Rcpp::IntegerVector> >::type cell(cellSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_xy_from_matrix(x, cell));
+    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< bool >::type na_omit(na_omitSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_unique_values(x, na_omit));
     return rcpp_result_gen;
-END_RCPP
+END_RCPP_RETURN_ERROR
 }
-// rcpp_cell_from_xy
-IntegerVector rcpp_cell_from_xy(arma::imat x, IntegerMatrix y);
-RcppExport SEXP _comat_rcpp_cell_from_xy(SEXP xSEXP, SEXP ySEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::imat >::type x(xSEXP);
-    Rcpp::traits::input_parameter< IntegerMatrix >::type y(ySEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_cell_from_xy(x, y));
+RcppExport SEXP _comat_get_unique_values(SEXP xSEXP, SEXP na_omitSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_comat_get_unique_values_try(xSEXP, na_omitSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
     return rcpp_result_gen;
-END_RCPP
-}
-// rcpp_create_neighborhood
-IntegerMatrix rcpp_create_neighborhood(arma::imat directions);
-RcppExport SEXP _comat_rcpp_create_neighborhood(SEXP directionsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::imat >::type directions(directionsSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_create_neighborhood(directions));
-    return rcpp_result_gen;
-END_RCPP
 }
 // rcpp_get_cocoma
 NumericMatrix rcpp_get_cocoma(const IntegerMatrix x, const IntegerMatrix y, const arma::imat directions);
@@ -115,22 +150,22 @@ RcppExport SEXP _comat_rcpp_get_cocoma(SEXP xSEXP, SEXP ySEXP, SEXP directionsSE
     UNPROTECT(1);
     return rcpp_result_gen;
 }
-// rcpp_get_coocurrence_matrix
-IntegerMatrix rcpp_get_coocurrence_matrix(const IntegerMatrix x, const arma::imat directions);
-static SEXP _comat_rcpp_get_coocurrence_matrix_try(SEXP xSEXP, SEXP directionsSEXP) {
+// rcpp_get_coma
+IntegerMatrix rcpp_get_coma(const IntegerMatrix x, const arma::imat directions);
+static SEXP _comat_rcpp_get_coma_try(SEXP xSEXP, SEXP directionsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< const IntegerMatrix >::type x(xSEXP);
     Rcpp::traits::input_parameter< const arma::imat >::type directions(directionsSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_get_coocurrence_matrix(x, directions));
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_coma(x, directions));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _comat_rcpp_get_coocurrence_matrix(SEXP xSEXP, SEXP directionsSEXP) {
+RcppExport SEXP _comat_rcpp_get_coma(SEXP xSEXP, SEXP directionsSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_comat_rcpp_get_coocurrence_matrix_try(xSEXP, directionsSEXP));
+        rcpp_result_gen = PROTECT(_comat_rcpp_get_coma_try(xSEXP, directionsSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -150,35 +185,22 @@ RcppExport SEXP _comat_rcpp_get_coocurrence_matrix(SEXP xSEXP, SEXP directionsSE
     UNPROTECT(1);
     return rcpp_result_gen;
 }
-// rcpp_get_coocurrence_matrix_diag
-IntegerVector rcpp_get_coocurrence_matrix_diag(const IntegerMatrix x, const arma::imat directions);
-RcppExport SEXP _comat_rcpp_get_coocurrence_matrix_diag(SEXP xSEXP, SEXP directionsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const IntegerMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< const arma::imat >::type directions(directionsSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_get_coocurrence_matrix_diag(x, directions));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpp_get_coocurrence_vector
-NumericVector rcpp_get_coocurrence_vector(IntegerMatrix x, arma::imat directions, bool ordered);
-static SEXP _comat_rcpp_get_coocurrence_vector_try(SEXP xSEXP, SEXP directionsSEXP, SEXP orderedSEXP) {
+// rcpp_get_cove
+NumericVector rcpp_get_cove(IntegerMatrix x, bool ordered);
+static SEXP _comat_rcpp_get_cove_try(SEXP xSEXP, SEXP orderedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< IntegerMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< arma::imat >::type directions(directionsSEXP);
     Rcpp::traits::input_parameter< bool >::type ordered(orderedSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_get_coocurrence_vector(x, directions, ordered));
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_cove(x, ordered));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _comat_rcpp_get_coocurrence_vector(SEXP xSEXP, SEXP directionsSEXP, SEXP orderedSEXP) {
+RcppExport SEXP _comat_rcpp_get_cove(SEXP xSEXP, SEXP orderedSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_comat_rcpp_get_coocurrence_vector_try(xSEXP, directionsSEXP, orderedSEXP));
+        rcpp_result_gen = PROTECT(_comat_rcpp_get_cove_try(xSEXP, orderedSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -197,18 +219,6 @@ RcppExport SEXP _comat_rcpp_get_coocurrence_vector(SEXP xSEXP, SEXP directionsSE
     }
     UNPROTECT(1);
     return rcpp_result_gen;
-}
-// rcpp_get_unique_values
-std::vector<int> rcpp_get_unique_values(const Rcpp::IntegerVector& x, bool na_omit);
-RcppExport SEXP _comat_rcpp_get_unique_values(SEXP xSEXP, SEXP na_omitSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< bool >::type na_omit(na_omitSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_get_unique_values(x, na_omit));
-    return rcpp_result_gen;
-END_RCPP
 }
 // rcpp_get_wecoma
 NumericMatrix rcpp_get_wecoma(const IntegerMatrix x, const NumericMatrix w, const arma::imat directions, const std::string fun, const std::string na_action);
@@ -301,9 +311,10 @@ static int _comat_RcppExport_validate(const char* sig) {
     static std::set<std::string> signatures;
     if (signatures.empty()) {
         signatures.insert("double(*rcpp_get_entropy)(NumericVector,std::string)");
+        signatures.insert("std::vector<int>(*get_unique_values)(const Rcpp::IntegerVector&,bool)");
         signatures.insert("NumericMatrix(*rcpp_get_cocoma)(const IntegerMatrix,const IntegerMatrix,const arma::imat)");
-        signatures.insert("IntegerMatrix(*rcpp_get_coocurrence_matrix)(const IntegerMatrix,const arma::imat)");
-        signatures.insert("NumericVector(*rcpp_get_coocurrence_vector)(IntegerMatrix,arma::imat,bool)");
+        signatures.insert("IntegerMatrix(*rcpp_get_coma)(const IntegerMatrix,const arma::imat)");
+        signatures.insert("NumericVector(*rcpp_get_cove)(IntegerMatrix,bool)");
         signatures.insert("NumericMatrix(*rcpp_get_wecoma)(const IntegerMatrix,const NumericMatrix,const arma::imat,const std::string,const std::string)");
         signatures.insert("NumericVector(*rcpp_get_wecove)(const NumericMatrix,bool)");
     }
@@ -313,9 +324,10 @@ static int _comat_RcppExport_validate(const char* sig) {
 // registerCCallable (register entry points for exported C++ functions)
 RcppExport SEXP _comat_RcppExport_registerCCallable() { 
     R_RegisterCCallable("comat", "_comat_rcpp_get_entropy", (DL_FUNC)_comat_rcpp_get_entropy_try);
+    R_RegisterCCallable("comat", "_comat_get_unique_values", (DL_FUNC)_comat_get_unique_values_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_cocoma", (DL_FUNC)_comat_rcpp_get_cocoma_try);
-    R_RegisterCCallable("comat", "_comat_rcpp_get_coocurrence_matrix", (DL_FUNC)_comat_rcpp_get_coocurrence_matrix_try);
-    R_RegisterCCallable("comat", "_comat_rcpp_get_coocurrence_vector", (DL_FUNC)_comat_rcpp_get_coocurrence_vector_try);
+    R_RegisterCCallable("comat", "_comat_rcpp_get_coma", (DL_FUNC)_comat_rcpp_get_coma_try);
+    R_RegisterCCallable("comat", "_comat_rcpp_get_cove", (DL_FUNC)_comat_rcpp_get_cove_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_wecoma", (DL_FUNC)_comat_rcpp_get_wecoma_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_wecove", (DL_FUNC)_comat_rcpp_get_wecove_try);
     R_RegisterCCallable("comat", "_comat_RcppExport_validate", (DL_FUNC)_comat_RcppExport_validate);
@@ -323,15 +335,14 @@ RcppExport SEXP _comat_RcppExport_registerCCallable() {
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_comat_rcpp_get_entropy", (DL_FUNC) &_comat_rcpp_get_entropy, 2},
     {"_comat_rcpp_xy_from_matrix", (DL_FUNC) &_comat_rcpp_xy_from_matrix, 2},
     {"_comat_rcpp_cell_from_xy", (DL_FUNC) &_comat_rcpp_cell_from_xy, 2},
-    {"_comat_rcpp_create_neighborhood", (DL_FUNC) &_comat_rcpp_create_neighborhood, 1},
+    {"_comat_create_neighborhood", (DL_FUNC) &_comat_create_neighborhood, 1},
+    {"_comat_rcpp_get_entropy", (DL_FUNC) &_comat_rcpp_get_entropy, 2},
+    {"_comat_get_unique_values", (DL_FUNC) &_comat_get_unique_values, 2},
     {"_comat_rcpp_get_cocoma", (DL_FUNC) &_comat_rcpp_get_cocoma, 3},
-    {"_comat_rcpp_get_coocurrence_matrix", (DL_FUNC) &_comat_rcpp_get_coocurrence_matrix, 2},
-    {"_comat_rcpp_get_coocurrence_matrix_diag", (DL_FUNC) &_comat_rcpp_get_coocurrence_matrix_diag, 2},
-    {"_comat_rcpp_get_coocurrence_vector", (DL_FUNC) &_comat_rcpp_get_coocurrence_vector, 3},
-    {"_comat_rcpp_get_unique_values", (DL_FUNC) &_comat_rcpp_get_unique_values, 2},
+    {"_comat_rcpp_get_coma", (DL_FUNC) &_comat_rcpp_get_coma, 2},
+    {"_comat_rcpp_get_cove", (DL_FUNC) &_comat_rcpp_get_cove, 2},
     {"_comat_rcpp_get_wecoma", (DL_FUNC) &_comat_rcpp_get_wecoma, 5},
     {"_comat_rcpp_get_wecove", (DL_FUNC) &_comat_rcpp_get_wecove, 2},
     {"_comat_triangular_index", (DL_FUNC) &_comat_triangular_index, 2},

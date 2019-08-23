@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_incoma.R
 \name{get_incoma}
 \alias{get_incoma}
-\title{Create an integrated cooccurrence matrix (wecoma)}
+\title{Create an integrated co-occurrence matrix (wecoma)}
 \usage{
 get_incoma(x, neighbourhood = 4)
 }
@@ -13,10 +13,10 @@ get_incoma(x, neighbourhood = 4)
 4 (rook's case) or 8 (queen's case). The default is 4.}
 }
 \value{
-An integrated cooccurrence matrix
+An integrated co-occurrence matrix
 }
 \description{
-Create an integrated cooccurrence matrix (wecoma)
+Create an integrated co-occurrence matrix (wecoma)
 }
 \examples{
 library(raster)

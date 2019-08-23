@@ -46,6 +46,27 @@ namespace comat {
         return Rcpp::as<double >(rcpp_result_gen);
     }
 
+    inline std::vector<int> get_unique_values(const Rcpp::IntegerVector& x, bool na_omit) {
+        typedef SEXP(*Ptr_get_unique_values)(SEXP,SEXP);
+        static Ptr_get_unique_values p_get_unique_values = NULL;
+        if (p_get_unique_values == NULL) {
+            validateSignature("std::vector<int>(*get_unique_values)(const Rcpp::IntegerVector&,bool)");
+            p_get_unique_values = (Ptr_get_unique_values)R_GetCCallable("comat", "_comat_get_unique_values");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_get_unique_values(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(na_omit)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<std::vector<int> >(rcpp_result_gen);
+    }
+
     inline NumericMatrix rcpp_get_cocoma(const IntegerMatrix x, const IntegerMatrix y, const arma::imat directions) {
         typedef SEXP(*Ptr_rcpp_get_cocoma)(SEXP,SEXP,SEXP);
         static Ptr_rcpp_get_cocoma p_rcpp_get_cocoma = NULL;
@@ -67,17 +88,17 @@ namespace comat {
         return Rcpp::as<NumericMatrix >(rcpp_result_gen);
     }
 
-    inline IntegerMatrix rcpp_get_coocurrence_matrix(const IntegerMatrix x, const arma::imat directions) {
-        typedef SEXP(*Ptr_rcpp_get_coocurrence_matrix)(SEXP,SEXP);
-        static Ptr_rcpp_get_coocurrence_matrix p_rcpp_get_coocurrence_matrix = NULL;
-        if (p_rcpp_get_coocurrence_matrix == NULL) {
-            validateSignature("IntegerMatrix(*rcpp_get_coocurrence_matrix)(const IntegerMatrix,const arma::imat)");
-            p_rcpp_get_coocurrence_matrix = (Ptr_rcpp_get_coocurrence_matrix)R_GetCCallable("comat", "_comat_rcpp_get_coocurrence_matrix");
+    inline IntegerMatrix rcpp_get_coma(const IntegerMatrix x, const arma::imat directions) {
+        typedef SEXP(*Ptr_rcpp_get_coma)(SEXP,SEXP);
+        static Ptr_rcpp_get_coma p_rcpp_get_coma = NULL;
+        if (p_rcpp_get_coma == NULL) {
+            validateSignature("IntegerMatrix(*rcpp_get_coma)(const IntegerMatrix,const arma::imat)");
+            p_rcpp_get_coma = (Ptr_rcpp_get_coma)R_GetCCallable("comat", "_comat_rcpp_get_coma");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_rcpp_get_coocurrence_matrix(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(directions)));
+            rcpp_result_gen = p_rcpp_get_coma(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(directions)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -88,17 +109,17 @@ namespace comat {
         return Rcpp::as<IntegerMatrix >(rcpp_result_gen);
     }
 
-    inline NumericVector rcpp_get_coocurrence_vector(IntegerMatrix x, arma::imat directions, bool ordered) {
-        typedef SEXP(*Ptr_rcpp_get_coocurrence_vector)(SEXP,SEXP,SEXP);
-        static Ptr_rcpp_get_coocurrence_vector p_rcpp_get_coocurrence_vector = NULL;
-        if (p_rcpp_get_coocurrence_vector == NULL) {
-            validateSignature("NumericVector(*rcpp_get_coocurrence_vector)(IntegerMatrix,arma::imat,bool)");
-            p_rcpp_get_coocurrence_vector = (Ptr_rcpp_get_coocurrence_vector)R_GetCCallable("comat", "_comat_rcpp_get_coocurrence_vector");
+    inline NumericVector rcpp_get_cove(IntegerMatrix x, bool ordered) {
+        typedef SEXP(*Ptr_rcpp_get_cove)(SEXP,SEXP);
+        static Ptr_rcpp_get_cove p_rcpp_get_cove = NULL;
+        if (p_rcpp_get_cove == NULL) {
+            validateSignature("NumericVector(*rcpp_get_cove)(IntegerMatrix,bool)");
+            p_rcpp_get_cove = (Ptr_rcpp_get_cove)R_GetCCallable("comat", "_comat_rcpp_get_cove");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_rcpp_get_coocurrence_vector(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(directions)), Shield<SEXP>(Rcpp::wrap(ordered)));
+            rcpp_result_gen = p_rcpp_get_cove(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(ordered)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();

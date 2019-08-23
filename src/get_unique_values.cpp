@@ -1,8 +1,9 @@
-#include "rcpp_get_unique_values.h"
+#include "get_unique_values.h"
 using namespace Rcpp;
+// [[Rcpp::interfaces(r, cpp)]]
 
 // [[Rcpp::export]]
-std::vector<int> rcpp_get_unique_values(const Rcpp::IntegerVector &x, bool na_omit)
+std::vector<int> get_unique_values(const Rcpp::IntegerVector &x, bool na_omit)
 {
     std::set<int> s;
     unsigned size = x.size();

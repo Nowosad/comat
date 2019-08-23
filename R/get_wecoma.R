@@ -1,4 +1,4 @@
-#' Create a weighted cooccurrence matrix (wecoma)
+#' Create a weighted co-occurrence matrix (wecoma)
 #'
 #' @param x A RasterLayer with categories
 #' @param w A RasterLayer with weights
@@ -7,7 +7,7 @@
 #' @param fun "mean", "geometric_mean", or "focal". The default is "mean".
 #' @param na_action "replace", "omit", or "keep". The default is "replace".
 #'
-#' @return A weighted cooccurrence matrix
+#' @return A weighted co-occurrence matrix
 #' @export
 #'
 #' @examples

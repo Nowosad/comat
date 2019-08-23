@@ -67,7 +67,6 @@ rcpp_get_cove <- function(x, ordered) {
 #' @param directions A matrix.
 #' @param fun "mean", "geometric_mean", or "focal".
 #' @param na_action "replace", "omit", "keep"
-#' @export
 rcpp_get_wecoma <- function(x, w, directions, fun, na_action) {
     .Call(`_comat_rcpp_get_wecoma`, x, w, directions, fun, na_action)
 }

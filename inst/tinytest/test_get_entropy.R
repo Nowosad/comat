@@ -1,5 +1,5 @@
-r1 = comat::rcpp_get_entropy(c(5, 9), "log2")
-r2 = comat::rcpp_get_entropy(c(5, 9), "log")
+r1 = comat:::rcpp_get_entropy(c(5, 9), "log2")
+r2 = comat:::rcpp_get_entropy(c(5, 9), "log")
 
 buys = c("no", "no", "yes", "yes", "yes", "no", "yes", "no", "yes", "yes", "yes", "yes", "yes", "no")
 freqs = table(buys)/length(buys)

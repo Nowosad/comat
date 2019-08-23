@@ -11,9 +11,10 @@ status](https://travis-ci.org/Nowosad/comat.svg?branch=master)](https://travis-c
 coverage](https://codecov.io/gh/Nowosad/comat/branch/master/graph/badge.svg)](https://codecov.io/gh/Nowosad/comat?branch=master)
 <!-- badges: end -->
 
-The goal of **comat** is to create cooccurrence matrices based on
-spatial data, including a weighted coocurrence matrix
-(*wecoma*).
+The goal of **comat** is to create co-occurrence matrices based on
+spatial data, including a weighted co-ocurrence matrix (*wecoma*) and an
+integrated co-occurrence matrix
+(*incoma*).
 
 ## Installation
 
@@ -36,8 +37,9 @@ devtools::install_github("Nowosad/comat")
 ## Example
 
 This is a basic example which shows you how to create a weighted
-cooccurrence matrix based on two simple rasters. The first one `x`
-represents some categories, and the second one `w` represents weights.
+co-occurrence matrix (*wecoma*) based on two simple rasters. The first
+one `x` represents some categories, and the second one `w` represents
+weights.
 
 ``` r
 library(comat)
@@ -52,8 +54,8 @@ plot(w, main = "Weights")
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
-The `get_wecoma` function can be next used to create a weighted
-cooccurrence matrix.
+The `get_wecoma()` function can be next used to create a weighted
+co-occurrence matrix.
 
 ``` r
 get_wecoma(x, w)
@@ -64,7 +66,7 @@ get_wecoma(x, w)
 ```
 
 This function allows for some parametrization using additional
-arguments, e.g. :
+arguments, e.g.:
 
 ``` r
 get_wecoma(x, w, fun = "focal", na_action = "keep")

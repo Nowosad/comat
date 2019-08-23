@@ -1,4 +1,3 @@
-library(comat)
 library(raster)
 data(x, package = "comat")
 data(w, package = "comat")

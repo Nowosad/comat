@@ -40,3 +40,7 @@ expect_equal(r6, t6)
 expect_equal(r7, t7)
 
 expect_error(get_wecoma(x_na, w_na, fun = "median"))
+
+r8 = get_wecove(r1)
+t8 = c(12, 5, 13.5, 5, 12, 14.5, 13.5, 14.5, 49)
+expect_equal(r8, t8)

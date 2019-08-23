@@ -3,6 +3,5 @@
 export(get_incoma)
 export(get_wecoma)
 export(get_wecove)
-export(rcpp_get_wecoma)
 importFrom(Rcpp,sourceCpp)
 useDynLib(comat, .registration = TRUE)

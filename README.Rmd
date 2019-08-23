@@ -61,3 +61,9 @@ This function allows for some parametrization using additional arguments, e.g.:
 ```{r}
 get_wecoma(x, w, fun = "focal", na_action = "keep")
 ```
+
+## Contribution
+
+Contributions to this package are welcome.
+The preferred method of contribution is through a GitHub pull request. 
+Feel free to contact me by creating [an issue](https://github.com/Nowosad/comat/issues). 

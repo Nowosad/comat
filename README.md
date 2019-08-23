@@ -75,3 +75,9 @@ get_wecoma(x, w, fun = "focal", na_action = "keep")
 #> 2  4 12 16
 #> 3 17 13 49
 ```
+
+## Contribution
+
+Contributions to this package are welcome. The preferred method of
+contribution is through a GitHub pull request. Feel free to contact me
+by creating [an issue](https://github.com/Nowosad/comat/issues).

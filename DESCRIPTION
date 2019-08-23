@@ -22,3 +22,4 @@ Imports:
 Suggests: 
     tinytest,
     covr
+SystemRequirements: C++11

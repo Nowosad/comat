@@ -1,4 +1,4 @@
-#include "traingular_index.h"
+#include "triangular_index.h"
 
 // [[Rcpp::export]]
 int triangular_index(int r, int c) {

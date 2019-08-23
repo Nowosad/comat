@@ -2,7 +2,7 @@
 #define RCPP_GET_WECOVE_H
 
 #include "rcpp_get_wecoma.h"
-#include "traingular_index.h"
+#include "triangular_index.h"
 #include <RcppArmadillo.h>
 using namespace Rcpp;
 

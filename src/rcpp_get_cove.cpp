@@ -1,4 +1,4 @@
-#include "traingular_index.h"
+#include "triangular_index.h"
 #include "rcpp_get_coma.h"
 #include "rcpp_get_cove.h"
 // [[Rcpp::interfaces(r, cpp)]]

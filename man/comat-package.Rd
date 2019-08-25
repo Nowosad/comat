@@ -8,7 +8,8 @@
 \description{
 Builds co-occurrence matrices based on spatial raster data.
     It includes creation of weighted co-occurrence matrices (wecoma) and 
-    integrated co-occurrence matrices (incoma).
+    integrated co-occurrence matrices 
+    (incoma; Vadivel et al. (2007) <doi:10.1016/j.patrec.2007.01.004>).
 }
 \seealso{
 Useful links:

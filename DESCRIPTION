@@ -19,7 +19,8 @@ Authors@R: c(person(given = "Jakub", family = "Nowosad", role = c("aut", "cre"),
              get_unique_values(), and rcpp_get_coma() functions"))
 Description: Builds co-occurrence matrices based on spatial raster data.
     It includes creation of weighted co-occurrence matrices (wecoma) and 
-    integrated co-occurrence matrices (incoma).
+    integrated co-occurrence matrices 
+    (incoma; Vadivel et al. (2007) <doi:10.1016/j.patrec.2007.01.004>).
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

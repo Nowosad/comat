@@ -9,22 +9,22 @@
 status](https://travis-ci.org/Nowosad/comat.svg?branch=master)](https://travis-ci.org/Nowosad/comat)
 [![Codecov test
 coverage](https://codecov.io/gh/Nowosad/comat/branch/master/graph/badge.svg)](https://codecov.io/gh/Nowosad/comat?branch=master)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/comat)](https://CRAN.R-project.org/package=comat)
 <!-- badges: end -->
 
 The goal of **comat** is to create co-occurrence matrices based on
 spatial data, including a weighted co-ocurrence matrix (*wecoma*) and an
-integrated co-occurrence matrix
-(*incoma*).
+integrated co-occurrence matrix (*incoma*).
 
 ## Installation
 
-<!-- You can install the released version of comat from [CRAN](https://CRAN.R-project.org) with: -->
+You can install the released version of **comat** from
+[CRAN](https://CRAN.R-project.org) with:
 
-<!-- ``` r -->
-
-<!-- install.packages("comat") -->
-
-<!-- ``` -->
+``` r
+install.packages("comat")
+```
 
 You can install the development version from
 [GitHub](https://github.com/) with:

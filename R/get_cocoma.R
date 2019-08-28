@@ -11,12 +11,10 @@
 #' @examples
 #' library(comat)
 #' library(raster)
-#' data(x, package = "comat")
-#' data(x_na, package = "comat")
-#' plot(x)
-#' plot(x_na)
+#' l1 = raster(matrix(sample(1:2, size = 100, replace = TRUE), ncol = 10))
+#' l2 = raster(matrix(sample(c(9, 6, 3), size = 100, replace = TRUE), ncol = 10))
 #'
-#' coom = get_cocoma(x, x_na)
+#' coom = get_cocoma(l1, l2)
 #' coom
 #'
 get_cocoma = function(x, y, neighbourhood = 4){

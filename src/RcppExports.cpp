@@ -220,6 +220,44 @@ RcppExport SEXP _comat_rcpp_get_vec(SEXP xSEXP, SEXP orderedSEXP) {
     UNPROTECT(1);
     return rcpp_result_gen;
 }
+// rcpp_get_wecoma
+NumericMatrix rcpp_get_wecoma(const IntegerMatrix x, const NumericMatrix w, const arma::imat directions, const std::string fun, const std::string na_action);
+static SEXP _comat_rcpp_get_wecoma_try(SEXP xSEXP, SEXP wSEXP, SEXP directionsSEXP, SEXP funSEXP, SEXP na_actionSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const IntegerMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const NumericMatrix >::type w(wSEXP);
+    Rcpp::traits::input_parameter< const arma::imat >::type directions(directionsSEXP);
+    Rcpp::traits::input_parameter< const std::string >::type fun(funSEXP);
+    Rcpp::traits::input_parameter< const std::string >::type na_action(na_actionSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_wecoma(x, w, directions, fun, na_action));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _comat_rcpp_get_wecoma(SEXP xSEXP, SEXP wSEXP, SEXP directionsSEXP, SEXP funSEXP, SEXP na_actionSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_comat_rcpp_get_wecoma_try(xSEXP, wSEXP, directionsSEXP, funSEXP, na_actionSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
 // triangular_index
 int triangular_index(int r, int c);
 RcppExport SEXP _comat_triangular_index(SEXP rSEXP, SEXP cSEXP) {
@@ -242,6 +280,7 @@ static int _comat_RcppExport_validate(const char* sig) {
         signatures.insert("NumericMatrix(*rcpp_get_cocoma)(const IntegerMatrix,const IntegerMatrix,const arma::imat)");
         signatures.insert("IntegerMatrix(*rcpp_get_coma)(const IntegerMatrix,const arma::imat)");
         signatures.insert("NumericVector(*rcpp_get_vec)(NumericMatrix,bool)");
+        signatures.insert("NumericMatrix(*rcpp_get_wecoma)(const IntegerMatrix,const NumericMatrix,const arma::imat,const std::string,const std::string)");
     }
     return signatures.find(sig) != signatures.end();
 }
@@ -253,6 +292,7 @@ RcppExport SEXP _comat_RcppExport_registerCCallable() {
     R_RegisterCCallable("comat", "_comat_rcpp_get_cocoma", (DL_FUNC)_comat_rcpp_get_cocoma_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_coma", (DL_FUNC)_comat_rcpp_get_coma_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_vec", (DL_FUNC)_comat_rcpp_get_vec_try);
+    R_RegisterCCallable("comat", "_comat_rcpp_get_wecoma", (DL_FUNC)_comat_rcpp_get_wecoma_try);
     R_RegisterCCallable("comat", "_comat_RcppExport_validate", (DL_FUNC)_comat_RcppExport_validate);
     return R_NilValue;
 }
@@ -266,6 +306,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_comat_rcpp_get_cocoma", (DL_FUNC) &_comat_rcpp_get_cocoma, 3},
     {"_comat_rcpp_get_coma", (DL_FUNC) &_comat_rcpp_get_coma, 2},
     {"_comat_rcpp_get_vec", (DL_FUNC) &_comat_rcpp_get_vec, 2},
+    {"_comat_rcpp_get_wecoma", (DL_FUNC) &_comat_rcpp_get_wecoma, 5},
     {"_comat_triangular_index", (DL_FUNC) &_comat_triangular_index, 2},
     {"_comat_RcppExport_registerCCallable", (DL_FUNC) &_comat_RcppExport_registerCCallable, 0},
     {NULL, NULL, 0}

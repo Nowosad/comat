@@ -60,14 +60,9 @@ rcpp_get_vec <- function(x, ordered) {
     .Call(`_comat_rcpp_get_vec`, x, ordered)
 }
 
-#' Wecoma
-#'
-#' @param x A matrix.
-#' @param w A matrix.
-#' @param directions A matrix.
-#' @param fun "mean", "geometric_mean", or "focal".
-#' @param na_action "replace", "omit", "keep"
-NULL
+rcpp_get_wecoma <- function(x, w, directions, fun, na_action) {
+    .Call(`_comat_rcpp_get_wecoma`, x, w, directions, fun, na_action)
+}
 
 triangular_index <- function(r, c) {
     .Call(`_comat_triangular_index`, r, c)

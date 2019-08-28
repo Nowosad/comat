@@ -109,17 +109,17 @@ namespace comat {
         return Rcpp::as<IntegerMatrix >(rcpp_result_gen);
     }
 
-    inline NumericVector rcpp_get_cove(IntegerMatrix x, bool ordered) {
-        typedef SEXP(*Ptr_rcpp_get_cove)(SEXP,SEXP);
-        static Ptr_rcpp_get_cove p_rcpp_get_cove = NULL;
-        if (p_rcpp_get_cove == NULL) {
-            validateSignature("NumericVector(*rcpp_get_cove)(IntegerMatrix,bool)");
-            p_rcpp_get_cove = (Ptr_rcpp_get_cove)R_GetCCallable("comat", "_comat_rcpp_get_cove");
+    inline NumericVector rcpp_get_vec(NumericMatrix x, bool ordered) {
+        typedef SEXP(*Ptr_rcpp_get_vec)(SEXP,SEXP);
+        static Ptr_rcpp_get_vec p_rcpp_get_vec = NULL;
+        if (p_rcpp_get_vec == NULL) {
+            validateSignature("NumericVector(*rcpp_get_vec)(NumericMatrix,bool)");
+            p_rcpp_get_vec = (Ptr_rcpp_get_vec)R_GetCCallable("comat", "_comat_rcpp_get_vec");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_rcpp_get_cove(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(ordered)));
+            rcpp_result_gen = p_rcpp_get_vec(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(ordered)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -149,27 +149,6 @@ namespace comat {
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
         return Rcpp::as<NumericMatrix >(rcpp_result_gen);
-    }
-
-    inline NumericVector rcpp_get_wecove(const NumericMatrix x, bool ordered) {
-        typedef SEXP(*Ptr_rcpp_get_wecove)(SEXP,SEXP);
-        static Ptr_rcpp_get_wecove p_rcpp_get_wecove = NULL;
-        if (p_rcpp_get_wecove == NULL) {
-            validateSignature("NumericVector(*rcpp_get_wecove)(const NumericMatrix,bool)");
-            p_rcpp_get_wecove = (Ptr_rcpp_get_wecove)R_GetCCallable("comat", "_comat_rcpp_get_wecove");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_rcpp_get_wecove(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(ordered)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
 }

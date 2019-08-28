@@ -24,5 +24,5 @@
 #' wov
 get_wecove = function(x, ordered = TRUE){
   x = raster::as.matrix(x)
-  rcpp_get_wecove(x, ordered)
+  rcpp_get_vec(x, ordered)
 }

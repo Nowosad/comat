@@ -10,7 +10,6 @@
 //' @param directions A matrix.
 //' @param fun "mean", "geometric_mean", or "focal".
 //' @param na_action "replace", "omit", "keep"
-// [[Rcpp::export]]
 NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
                               const NumericMatrix w,
                               const arma::imat directions,

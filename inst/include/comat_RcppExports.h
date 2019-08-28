@@ -130,27 +130,6 @@ namespace comat {
         return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
-    inline NumericMatrix rcpp_get_wecoma(const IntegerMatrix x, const NumericMatrix w, const arma::imat directions, const std::string fun, const std::string na_action) {
-        typedef SEXP(*Ptr_rcpp_get_wecoma)(SEXP,SEXP,SEXP,SEXP,SEXP);
-        static Ptr_rcpp_get_wecoma p_rcpp_get_wecoma = NULL;
-        if (p_rcpp_get_wecoma == NULL) {
-            validateSignature("NumericMatrix(*rcpp_get_wecoma)(const IntegerMatrix,const NumericMatrix,const arma::imat,const std::string,const std::string)");
-            p_rcpp_get_wecoma = (Ptr_rcpp_get_wecoma)R_GetCCallable("comat", "_comat_rcpp_get_wecoma");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_rcpp_get_wecoma(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(w)), Shield<SEXP>(Rcpp::wrap(directions)), Shield<SEXP>(Rcpp::wrap(fun)), Shield<SEXP>(Rcpp::wrap(na_action)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericMatrix >(rcpp_result_gen);
-    }
-
 }
 
 #endif // RCPP_comat_RCPPEXPORTS_H_GEN_

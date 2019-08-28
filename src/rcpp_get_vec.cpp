@@ -1,15 +1,14 @@
-#include "triangular_index.h"
-#include "rcpp_get_coma.h"
-#include "rcpp_get_cove.h"
+#include "rcpp_get_vec.h"
 // [[Rcpp::interfaces(r, cpp)]]
 
 // [[Rcpp::export]]
-NumericVector rcpp_get_cove(IntegerMatrix x,
+NumericVector rcpp_get_vec(NumericMatrix x,
                             bool ordered) {
     NumericVector result;
     // calculate a coocurrence matrix
     if (ordered){
-        result = as<NumericVector>(wrap(x));
+        NumericMatrix x2 = clone(x);
+        result = as<NumericVector>(wrap(x2));
     } else {
         // get a coocurence matrix dimension (it is equal to nrow and ncol)
         int num_e = x.ncol() - 1;

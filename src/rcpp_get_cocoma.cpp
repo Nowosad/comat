@@ -76,5 +76,5 @@ set.seed(2019-08-15)
 l1 = matrix(sample(1:2, size = 100, replace = TRUE), ncol = 10)
 l2 = matrix(sample(c(9, 6, 3), size = 100, replace = TRUE), ncol = 10)
 
-rcpp_get_cocoma(l1, l2, matrix(4), fun = "geometric_mean", na_action = "aa")
+rcpp_get_cocoma(l1, l2, matrix(4))
 */

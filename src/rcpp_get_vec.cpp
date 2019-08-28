@@ -30,3 +30,10 @@ NumericVector rcpp_get_vec(NumericMatrix x,
     result.attr("dim") = R_NilValue;
     return result;
 }
+
+// [[Rcpp::export]]
+NumericVector rcpp_get_wecove(NumericMatrix x,
+                           bool ordered) {
+
+    return rcpp_get_vec(x, ordered);
+}

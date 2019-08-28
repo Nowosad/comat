@@ -130,6 +130,27 @@ namespace comat {
         return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
+    inline NumericVector rcpp_get_wecove(NumericMatrix x, bool ordered) {
+        typedef SEXP(*Ptr_rcpp_get_wecove)(SEXP,SEXP);
+        static Ptr_rcpp_get_wecove p_rcpp_get_wecove = NULL;
+        if (p_rcpp_get_wecove == NULL) {
+            validateSignature("NumericVector(*rcpp_get_wecove)(NumericMatrix,bool)");
+            p_rcpp_get_wecove = (Ptr_rcpp_get_wecove)R_GetCCallable("comat", "_comat_rcpp_get_wecove");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_rcpp_get_wecove(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(ordered)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<NumericVector >(rcpp_result_gen);
+    }
+
     inline NumericMatrix rcpp_get_wecoma(const IntegerMatrix x, const NumericMatrix w, const arma::imat directions, const std::string fun, const std::string na_action) {
         typedef SEXP(*Ptr_rcpp_get_wecoma)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_rcpp_get_wecoma p_rcpp_get_wecoma = NULL;

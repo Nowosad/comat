@@ -8,5 +8,6 @@ using namespace Rcpp;
 // [[Rcpp::plugins(cpp11)]]
 
 NumericVector rcpp_get_vec(NumericMatrix x, bool ordered = true);
+NumericVector rcpp_get_wecove(NumericMatrix x, bool ordered = true);
 
 #endif // GET_VEC_H

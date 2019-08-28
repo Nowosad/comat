@@ -60,6 +60,10 @@ rcpp_get_vec <- function(x, ordered) {
     .Call(`_comat_rcpp_get_vec`, x, ordered)
 }
 
+rcpp_get_wecove <- function(x, ordered) {
+    .Call(`_comat_rcpp_get_wecove`, x, ordered)
+}
+
 rcpp_get_wecoma <- function(x, w, directions, fun, na_action) {
     .Call(`_comat_rcpp_get_wecoma`, x, w, directions, fun, na_action)
 }

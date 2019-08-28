@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a weighted co-occurrence vector (wecove) — get_wecove • comat</title>
+<title>Create an integrated co-occurrence vector (wecove) — get_incove • comat</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,10 @@
 
 
 
-<meta property="og:title" content="Create a weighted co-occurrence vector (wecove) — get_wecove" />
+<meta property="og:title" content="Create an integrated co-occurrence vector (wecove) — get_incove" />
 
-<meta property="og:description" content="Converts a weighted co-occurrence matrix (wecoma) to
-a weighted co-occurrence vector (wecove)" />
+<meta property="og:description" content="Converts an integrated co-occurrence matrix (wecoma) to
+an integrated co-occurrence vector (wecove)" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -98,26 +98,26 @@ a weighted co-occurrence vector (wecove)" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a weighted co-occurrence vector (wecove)</h1>
+    <h1>Create an integrated co-occurrence vector (wecove)</h1>
     
-    <div class="hidden name"><code>get_wecove.Rd</code></div>
+    <div class="hidden name"><code>get_incove.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Converts a weighted co-occurrence matrix (wecoma) to
-a weighted co-occurrence vector (wecove)</p>
+    <p>Converts an integrated co-occurrence matrix (wecoma) to
+an integrated co-occurrence vector (wecove)</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_wecove</span>(<span class='no'>x</span>, <span class='kw'>ordered</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>get_incove</span>(<span class='no'>x</span>, <span class='kw'>ordered</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A matrix - an output of the <code><a href='get_wecoma.html'>get_wecoma()</a></code> function</p></td>
+      <td><p>A matrix - an output of the <code><a href='get_incoma.html'>get_incoma()</a></code> function</p></td>
     </tr>
     <tr>
       <th>ordered</th>
@@ -129,22 +129,23 @@ The default is TRUE.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A weighted co-occurrence vector</p>
+    <p>An integrated co-occurrence vector</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>comat</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>raster</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>x</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"comat"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>w</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"comat"</span>)
 
-<span class='no'>wom</span> <span class='kw'>=</span> <span class='fu'><a href='get_wecoma.html'>get_wecoma</a></span>(<span class='no'>x</span>, <span class='no'>w</span>)
-<span class='no'>wom</span></div><div class='output co'>#&gt;      1    2    3
-#&gt; 1 12.0  5.0 13.5
-#&gt; 2  5.0 12.0 14.5
-#&gt; 3 13.5 14.5 49.0</div><div class='input'>
-<span class='no'>wov</span> <span class='kw'>=</span> <span class='fu'>get_wecove</span>(<span class='no'>wom</span>)
-<span class='no'>wov</span></div><div class='output co'>#&gt; [1] 12.0  5.0 13.5  5.0 12.0 14.5 13.5 14.5 49.0</div></pre>
+<span class='no'>l1</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/raster/topics/raster'>raster</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>10</span>))
+<span class='no'>l2</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/raster/topics/raster'>raster</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>9</span>, <span class='fl'>6</span>, <span class='fl'>3</span>), <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>10</span>))
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/raster/topics/stack'>stack</a></span>(<span class='no'>l1</span>, <span class='no'>l2</span>, <span class='no'>l1</span>)
+
+<span class='no'>incom</span> <span class='kw'>=</span> <span class='fu'><a href='get_incoma.html'>get_incoma</a></span>(<span class='no'>x</span>)
+
+<span class='no'>incov</span> <span class='kw'>=</span> <span class='fu'><a href='get_cove.html'>get_cove</a></span>(<span class='no'>incom</span>)
+<span class='no'>incov</span></div><div class='output co'>#&gt;  [1]  68  93  46  62  53  68  93  93 106  59  85  55  93 106  46  59  30  47  28
+#&gt; [20]  46  59  62  85  47  48  52  62  85  53  55  28  52  28  53  55  68  93  46
+#&gt; [39]  62  53  68  93  93 106  59  85  55  93 106</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

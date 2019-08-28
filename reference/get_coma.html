@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a weighted co-occurrence vector (wecove) — get_wecove • comat</title>
+<title>Create a co-occurrence matrix (coma) — get_coma • comat</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Create a weighted co-occurrence vector (wecove) — get_wecove" />
+<meta property="og:title" content="Create a co-occurrence matrix (coma) — get_coma" />
 
-<meta property="og:description" content="Converts a weighted co-occurrence matrix (wecoma) to
-a weighted co-occurrence vector (wecove)" />
+<meta property="og:description" content="Create a co-occurrence matrix (coma)" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -98,53 +97,49 @@ a weighted co-occurrence vector (wecove)" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a weighted co-occurrence vector (wecove)</h1>
+    <h1>Create a co-occurrence matrix (coma)</h1>
     
-    <div class="hidden name"><code>get_wecove.Rd</code></div>
+    <div class="hidden name"><code>get_coma.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Converts a weighted co-occurrence matrix (wecoma) to
-a weighted co-occurrence vector (wecove)</p>
+    <p>Create a co-occurrence matrix (coma)</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_wecove</span>(<span class='no'>x</span>, <span class='kw'>ordered</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>get_coma</span>(<span class='no'>x</span>, <span class='kw'>neighbourhood</span> <span class='kw'>=</span> <span class='fl'>4</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A matrix - an output of the <code><a href='get_wecoma.html'>get_wecoma()</a></code> function</p></td>
+      <td><p>A RasterLayer with categories</p></td>
     </tr>
     <tr>
-      <th>ordered</th>
-      <td><p>The type of pairs considered.
-Either ordered (TRUE) or unordered (FALSE).
-The default is TRUE.</p></td>
+      <th>neighbourhood</th>
+      <td><p>The number of directions in which cell adjacencies are considered as neighbours:
+4 (rook's case) or 8 (queen's case). The default is 4.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A weighted co-occurrence vector</p>
+    <p>A co-occurrence matrix</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>comat</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>raster</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>x</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"comat"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>w</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"comat"</span>)
-
-<span class='no'>wom</span> <span class='kw'>=</span> <span class='fu'><a href='get_wecoma.html'>get_wecoma</a></span>(<span class='no'>x</span>, <span class='no'>w</span>)
-<span class='no'>wom</span></div><div class='output co'>#&gt;      1    2    3
-#&gt; 1 12.0  5.0 13.5
-#&gt; 2  5.0 12.0 14.5
-#&gt; 3 13.5 14.5 49.0</div><div class='input'>
-<span class='no'>wov</span> <span class='kw'>=</span> <span class='fu'>get_wecove</span>(<span class='no'>wom</span>)
-<span class='no'>wov</span></div><div class='output co'>#&gt; [1] 12.0  5.0 13.5  5.0 12.0 14.5 13.5 14.5 49.0</div></pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/raster/topics/plot'>plot</a></span>(<span class='no'>x</span>)</div><div class='img'><img src='get_coma-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='no'>com</span> <span class='kw'>=</span> <span class='fu'>get_coma</span>(<span class='no'>x</span>)
+<span class='no'>com</span></div><div class='output co'>#&gt;   1 2 3
+#&gt; 1 4 1 3
+#&gt; 2 1 2 2
+#&gt; 3 3 2 6</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

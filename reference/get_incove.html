@@ -142,10 +142,17 @@ The default is TRUE.</p></td>
 
 <span class='no'>incom</span> <span class='kw'>=</span> <span class='fu'><a href='get_incoma.html'>get_incoma</a></span>(<span class='no'>x</span>)
 
-<span class='no'>incov</span> <span class='kw'>=</span> <span class='fu'><a href='get_cove.html'>get_cove</a></span>(<span class='no'>incom</span>)
-<span class='no'>incov</span></div><div class='output co'>#&gt;  [1] 100  94  44  77  73 100  94  94  72  50  52  64  94  72  44  50  18  37  39
+<span class='no'>incov1</span> <span class='kw'>=</span> <span class='fu'>get_incove</span>(<span class='no'>incom</span>)
+<span class='no'>incov1</span></div><div class='output co'>#&gt;  [1] 100  94  44  77  73 100  94  94  72  50  52  64  94  72  44  50  18  37  39
 #&gt; [20]  44  50  77  52  37  38  54  77  52  73  64  39  54  44  73  64 100  94  44
-#&gt; [39]  77  73 100  94  94  72  50  52  64  94  72</div></pre>
+#&gt; [39]  77  73 100  94  94  72  50  52  64  94  72
+#&gt; attr(,"class")
+#&gt; [1] "numeric" "incove" </div><div class='input'>
+<span class='no'>incov2</span> <span class='kw'>=</span> <span class='fu'>get_incove</span>(<span class='no'>incom</span>, <span class='kw'>ordered</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='no'>incov2</span></div><div class='output co'>#&gt;  [1]  50  94  36  44  50   9  77  52  37  19  73  64  39  54  22 100  94  44  77
+#&gt; [20]  73  50  94  72  50  52  64  94  36
+#&gt; attr(,"class")
+#&gt; [1] "numeric" "incove" </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

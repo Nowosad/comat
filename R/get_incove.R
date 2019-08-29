@@ -21,9 +21,13 @@
 #'
 #' incom = get_incoma(x)
 #'
-#' incov = get_cove(incom)
-#' incov
+#' incov1 = get_incove(incom)
+#' incov1
+#'
+#' incov2 = get_incove(incom, ordered = FALSE)
+#' incov2
 get_incove = function(x, ordered = TRUE){
   x = raster::as.matrix(x)
   rcpp_get_vec(x, ordered)
 }
+

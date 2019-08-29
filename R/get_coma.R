@@ -21,5 +21,6 @@ get_coma = function(x, neighbourhood = 4){
   w = raster::as.matrix(w)
   directions = as.matrix(neighbourhood)
 
-  rcpp_get_coma(x, directions)
+  n = rcpp_get_coma(x, directions)
+  structure(n, class = c(class(n), "coma"))
 }

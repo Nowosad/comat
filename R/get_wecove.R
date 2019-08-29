@@ -23,6 +23,6 @@
 #' wov = get_wecove(wom)
 #' wov
 get_wecove = function(x, ordered = TRUE){
-  x = raster::as.matrix(x)
-  rcpp_get_vec(x, ordered)
+  y = rcpp_get_vec(x, ordered)
+  structure(y, class = c("numeric", "wecove"))
 }

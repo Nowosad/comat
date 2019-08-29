@@ -39,7 +39,7 @@ get_incoma = function(x, neighbourhood = 4){
     }
     n = rbind(n, m)
   }
-  n
+  structure(n, class = c(class(n), "incoma"))
 }
 
 select_coma = function(id1, id2, x, directions){

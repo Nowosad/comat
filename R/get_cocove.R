@@ -26,5 +26,6 @@
 #' coov
 get_cocove = function(x, ordered = TRUE){
   x = raster::as.matrix(x)
-  rcpp_get_vec(x, ordered)
+  y = rcpp_get_vec(x, ordered)
+  structure(y, class = c("numeric", "cocove"))
 }

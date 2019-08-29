@@ -30,6 +30,9 @@ x = stack(l1, l2, l1)
 
 incom = get_incoma(x)
 
-incov = get_cove(incom)
-incov
+incov1 = get_incove(incom)
+incov1
+
+incov2 = get_incove(incom, ordered = FALSE)
+incov2
 }

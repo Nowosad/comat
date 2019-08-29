@@ -26,5 +26,6 @@ get_wecoma = function(x, w, neighbourhood = 4, fun = "mean", na_action = "replac
   w = raster::as.matrix(w)
   directions = as.matrix(neighbourhood)
 
-  rcpp_get_wecoma(x, w, directions, fun, na_action)
+  n = rcpp_get_wecoma(x, w, directions, fun, na_action)
+  structure(n, class = c(class(n), "wecoma"))
 }

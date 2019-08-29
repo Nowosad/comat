@@ -31,20 +31,20 @@ t6 = structure(c(4, 0, 0, 0, 0, 0, 0, 0, 0), .Dim = c(3L, 3L),
 t7 = structure(c(4, 0, NA, 0, NA, NA, NA, NA, 0), .Dim = c(3L, 3L),
                .Dimnames = list(c("1", "2", "3"), c("1", "2", "3")))
 
-expect_equal(r1, t1)
-expect_equal(r2, t2)
-expect_equal(r3, t3)
-expect_equal(r4, t4)
-expect_equal(r5, t5)
-expect_equal(r6, t6)
-expect_equal(r7, t7)
+expect_equivalent(r1, t1)
+expect_equivalent(r2, t2)
+expect_equivalent(r3, t3)
+expect_equivalent(r4, t4)
+expect_equivalent(r5, t5)
+expect_equivalent(r6, t6)
+expect_equivalent(r7, t7)
 
 expect_error(get_wecoma(x_na, w_na, fun = "median"))
 
 r8 = get_wecove(r1)
 t8 = c(12, 5, 13.5, 5, 12, 14.5, 13.5, 14.5, 49)
-expect_equal(r8, t8)
+expect_equivalent(r8, t8)
 
 r9 = get_wecove(r1, ordered = FALSE)
 t9 = c(6, 5, 6, 13.5, 14.5, 24.5)
-expect_equal(r9, t9)
+expect_equivalent(r9, t9)

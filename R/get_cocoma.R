@@ -22,5 +22,6 @@ get_cocoma = function(x, y, neighbourhood = 4){
   y = raster::as.matrix(y)
   directions = as.matrix(neighbourhood)
 
-  rcpp_get_cocoma(x, y, directions)
+  n = rcpp_get_cocoma(x, y, directions)
+  structure(n, class = c(class(n), "cocoma"))
 }

@@ -28,6 +28,7 @@ NumericVector rcpp_get_vec(NumericMatrix x,
     }
     // remove a dim attribute
     result.attr("dim") = R_NilValue;
+    //result.attr("names")
     return result;
 }
 

@@ -6,12 +6,12 @@ t1 = structure(c(4L, 1L, 3L, 1L, 2L, 2L, 3L, 2L, 6L),
                .Dim = c(3L, 3L),
                .Dimnames = list(c("1", "2", "3"), c("1", "2", "3")))
 
-expect_equal(r1, t1)
+expect_equivalent(r1, t1)
 
 r2 = get_cove(r1, ordered = TRUE)
 t2 = c(4, 1, 3, 1, 2, 2, 3, 2, 6)
 
-expect_equal(r2, t2)
+expect_equivalent(r2, t2)
 
 r3 = get_cove(r1, ordered = FALSE)
 t3 = c(2, 1, 1, 3, 2, 3)

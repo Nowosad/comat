@@ -56,6 +56,10 @@ rcpp_get_coma <- function(x, directions) {
     .Call(`_comat_rcpp_get_coma`, x, directions)
 }
 
+rcpp_get_incoma <- function(x, directions) {
+    .Call(`_comat_rcpp_get_incoma`, x, directions)
+}
+
 rcpp_get_vec <- function(x, ordered) {
     .Call(`_comat_rcpp_get_vec`, x, ordered)
 }

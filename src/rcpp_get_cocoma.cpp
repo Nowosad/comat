@@ -5,7 +5,7 @@
 
 using namespace Rcpp;
 // [[Rcpp::export]]
-NumericMatrix rcpp_get_cocoma(const IntegerMatrix x,
+IntegerMatrix rcpp_get_cocoma(const IntegerMatrix x,
                               const IntegerMatrix y,
                               const arma::imat directions) {
 
@@ -25,7 +25,7 @@ NumericMatrix rcpp_get_cocoma(const IntegerMatrix x,
     // NAs need an index, otherwise they are counted as neighbors of class[0]
     class_index_y.insert(std::make_pair(na, n_classes_y));
 
-    NumericMatrix result(n_classes_x, n_classes_y);
+    IntegerMatrix result(n_classes_x, n_classes_y);
 
     // create neighbors coordinates
     IntegerMatrix tmp = create_neighborhood(directions);

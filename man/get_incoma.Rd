@@ -21,6 +21,7 @@ Create an integrated co-occurrence matrix (wecoma)
 \examples{
 library(raster)
 
+set.seed(10100)
 l1 = raster(matrix(sample(1:2, size = 100, replace = TRUE), ncol = 10))
 l2 = raster(matrix(sample(c(9, 6, 3), size = 100, replace = TRUE), ncol = 10))
 x = stack(l1, l2, l1)

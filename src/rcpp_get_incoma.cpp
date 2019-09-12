@@ -1,7 +1,7 @@
-#include "rcpp_get_coma.h"
-#include "rcpp_get_cocoma.h"
-#include <RcppArmadillo.h>
-using namespace Rcpp;
+#include "rcpp_get_incoma.h"
+// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::plugins(cpp11)]]
+// [[Rcpp::interfaces(r, cpp)]]
 
 // [[Rcpp::export]]
 IntegerMatrix rcpp_get_incoma(const List x,
@@ -23,9 +23,14 @@ IntegerMatrix rcpp_get_incoma(const List x,
   }
 
   int mat_len = 0;
+  CharacterVector classes_xy;
   for (int k = 0; k < v1_len; k++){
     IntegerMatrix mat_list_k = mat_list[k];
     mat_len = mat_len + mat_list_k.ncol();
+    CharacterVector col_names_k = colnames(mat_list_k);
+    for (int kka = 0; kka < col_names_k.length(); kka++){
+      classes_xy.push_back(col_names_k(kka));
+    }
   }
 
   arma::imat result(0, mat_len);
@@ -41,9 +46,10 @@ IntegerMatrix rcpp_get_incoma(const List x,
   }
 
   // add names
-  // List u_names = List::create(classes_x, classes_y);
-  // result.attr("dimnames") = u_names;
-  return wrap(result);
+  List u_names = List::create(classes_xy, classes_xy);
+  IntegerMatrix result_r = as<IntegerMatrix>(wrap(result));
+  result_r.attr("dimnames") = u_names;
+  return result_r;
 }
 
 
@@ -51,11 +57,15 @@ IntegerMatrix rcpp_get_incoma(const List x,
 /*** R
 library(raster)
 set.seed(10100)
-l1 = raster(matrix(sample(1:2, size = 100, replace = TRUE), ncol = 10))
-l2 = raster(matrix(sample(c(9, 6, 3), size = 100, replace = TRUE), ncol = 10))
+l1 = raster(matrix(sample(1:2, size = 1000000, replace = TRUE), ncol = 1000))
+l2 = raster(matrix(sample(c(9, 6, 3), size = 1000000, replace = TRUE), ncol = 1000))
 x = stack(l1, l2, l1)
 rasters = lapply(raster::as.list(x), raster::as.matrix)
 neighbourhood = 4
 directions = as.matrix(neighbourhood)
 rcpp_get_incoma(rasters, directions)
+# profvis::profvis(get_incoma(x))
+bench::mark(check = FALSE,
+  rcpp_get_incoma(rasters, directions),
+            get_incoma(x))
 */

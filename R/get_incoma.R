@@ -21,34 +21,6 @@ get_incoma = function(x, neighbourhood = 4){
   rasters = lapply(raster::as.list(x), raster::as.matrix)
   directions = as.matrix(neighbourhood)
 
-  # raster_pairs = expand.grid(seq_along(rasters), seq_along(rasters))
-  #
-  # comas = mapply(select_coma,
-  #                raster_pairs[, 2], raster_pairs[, 1],
-  #                MoreArgs = list(x = rasters, directions = directions),
-  #                SIMPLIFY = FALSE)
-  #
-  # mat_dims = vapply(comas[seq_along(rasters)], ncol, FUN.VALUE = 1)
-  # mat_len = sum(mat_dims)
-  # n = matrix(ncol = mat_len, nrow = 0)
-  # o = 1
-  # for (i in seq_along(rasters)){
-  #   m = matrix(ncol = 0, nrow = nrow(comas[[o]]))
-  #   for (j in seq_along(rasters)){
-  #     m = cbind(m, comas[[o]])
-  #     o = o + 1
-  #   }
-  #   n = rbind(n, m)
-  # }
-  #
   n = rcpp_get_incoma(rasters, directions)
   structure(n, class = c(class(n), "incoma"))
 }
-
-# select_coma = function(id1, id2, x, directions){
-#   if (id1 == id2){
-#     rcpp_get_coma(x[[id1]], directions = directions)
-#   } else {
-#     rcpp_get_cocoma(x[[id1]], x[[id2]], directions = directions)
-#   }
-# }

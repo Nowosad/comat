@@ -54,11 +54,13 @@ List get_motifels(const List input,
   int m_row = 1;
   int m_col = 1;
 
+  IntegerVector all_nr_of_motifels(nr_of_motifels);
   IntegerVector all_m_row(nr_of_motifels);
   IntegerVector all_m_col(nr_of_motifels);
 
   for (int i = 0; i < num_r; i = i + shift){
     for (int j = 0; j < num_c; j = j + shift){
+      all_nr_of_motifels(nr_of_motifels2) = nr_of_motifels2 + 1;
       all_m_row(nr_of_motifels2) = m_row;
       all_m_col(nr_of_motifels2) = m_col;
 
@@ -101,9 +103,10 @@ List get_motifels(const List input,
     m_col = 1;
     m_row++;
   }
-  List df = List::create(Named("V1") = all_m_row,
-                         Named("V2") = all_m_col,
-                         Named("V3") = result);
+  List df = List::create(Named("id") = all_nr_of_motifels,
+                         Named("row") = all_m_row,
+                         Named("col") = all_m_col,
+                         Named("matrix") = result);
   return df;
 }
 

@@ -1,20 +1,45 @@
 #include "rcpp_get_coma.h"
+#include "rcpp_get_wecoma.h"
+#include "rcpp_get_cocoma.h"
+#include "rcpp_get_incoma.h"
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::plugins(cpp11)]]
 // [[Rcpp::interfaces(r, cpp)]]
 
 // [[Rcpp::export]]
-DataFrame get_motifels(const List y,
+List get_motifels(const List input,
                   const arma::imat directions,
                   int size,
                   int shift,
-                  std::string what = "coma") {
+                  std::string what = "coma",
+                  const std::string fun = "mean",
+                  const std::string na_action = "replace") {
 
-  IntegerMatrix x = y(0);
-
+  IntegerMatrix x = input(0);
   int num_r = x.nrow();
   int num_c = x.ncol();
-  int num_l = y.length();
+  int num_l = input.length();
+
+  NumericMatrix w(num_r, num_c);
+  IntegerMatrix y(num_r, num_c);
+  std::vector<int> classes_x;
+  std::vector<int> classes_y;
+  List classes(num_l);
+
+  if (what == "coma"){
+    classes_x = get_unique_values(x);
+  } else if (what == "wecoma"){
+    w = wrap(input(1));
+    classes_x = get_unique_values(x);
+  } else if (what == "cocoma"){
+    y = wrap(input(1));
+    classes_x = get_unique_values(x);
+    classes_y = get_unique_values(y);
+  } else if (what == "incoma"){
+    for (int i = 0; i < num_l; i++){
+      classes(i) = get_unique_values(input[i]);
+    }
+  }
 
   int nr_of_motifels = 0;
   for (int i = 0; i < num_r; i = i + shift) {
@@ -46,19 +71,29 @@ DataFrame get_motifels(const List y,
         j_max = num_c - 1;
       }
 
-      for (int l = 0; l < num_l; l++){
-        if (what == "coma"){
-          IntegerMatrix motifel_x = x(Range(i, i_max), Range(j, j_max));
-          result[nr_of_motifels2] = rcpp_get_coma(motifel_x, directions);
+      if (what == "coma"){
+        IntegerMatrix motifel_x = x(Range(i, i_max), Range(j, j_max));
+        result[nr_of_motifels2] = rcpp_get_coma_internal(motifel_x, directions, classes_x);
+      } else if (what == "wecoma"){
+        IntegerMatrix motifel_x = x(Range(i, i_max), Range(j, j_max));
+        NumericMatrix motifel_w = w(Range(i, i_max), Range(j, j_max));
+        result[nr_of_motifels2] = rcpp_get_wecoma_internal(motifel_x, motifel_w, directions, classes_x, fun, na_action);
+      } else if (what == "cocoma"){
+        IntegerMatrix motifel_x = x(Range(i, i_max), Range(j, j_max));
+        IntegerMatrix motifel_y = y(Range(i, i_max), Range(j, j_max));
+        // Rcout << "The value of motifel_x : " << motifel_x << "\n";
+        // Rcout << "The value of motifel_y : " << motifel_y << "\n";
+        result[nr_of_motifels2] = rcpp_get_cocoma_internal(motifel_x, motifel_y, directions, classes_x, classes_y);
+      } else if (what == "incoma"){
+        List motifel_input(num_l);
+        for (int l = 0; l < num_l; l++){
+          IntegerMatrix layer_l = input(l);
+          motifel_input(l) = layer_l(Range(i, i_max), Range(j, j_max));
         }
+        result[nr_of_motifels2] = rcpp_get_incoma_internal(motifel_input, directions, classes);
       }
 
-      // IntegerMatrix motifel_x = x(Range(i, i_max), Range(j, j_max));
-      // NumericMatrix motifel_w = w(Range(i, i_max), Range(j, j_max));
       // double na_perc = na_prop(motifel_x);
-      // if (na_perc <= na_threshold){
-      //
-      // }
 
       nr_of_motifels2 ++;
       m_col++;
@@ -66,13 +101,11 @@ DataFrame get_motifels(const List y,
     m_col = 1;
     m_row++;
   }
-  DataFrame df = DataFrame::create(Named("V1") = all_m_row,
-                                   Named("V2") = all_m_col,
-                                   Named("V3") = result);
+  List df = List::create(Named("V1") = all_m_row,
+                         Named("V2") = all_m_col,
+                         Named("V3") = result);
   return df;
 }
-
-
 
 /*** R
 library(raster)
@@ -83,5 +116,9 @@ x = stack(l1, l2, l1)
 rasters = lapply(raster::as.list(x), raster::as.matrix)
 directions = as.matrix(4)
 a = list(as.matrix(l1))
-get_motifels(a, directions = directions, size = 100, shift = 100)
+res = get_motifels(a, directions = directions, size = 100, shift = 100)
+library(tibble)
+res_df = as_tibble(res)
+
+get_cove(res_df$V3[[4]])
 */

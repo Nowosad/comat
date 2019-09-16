@@ -36,4 +36,7 @@ plot(w)
 wom = get_wecoma(x, w)
 wom
 
+get_wecoma2(x, w)
+get_wecoma2(x, w, size = 3, shift = 3)
+
 }

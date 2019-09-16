@@ -29,4 +29,9 @@ l2 = raster(matrix(sample(c(9, 6, 3), size = 100, replace = TRUE), ncol = 10))
 coom = get_cocoma(l1, l2)
 coom
 
+get_cocoma2(l1, l2)
+get_cocoma2(l1, l2, size = 100, shift = 100)
+
+get_cocoma(l1, l2)
+get_cocoma2(l1, l2, size = 1000000, shift = 1000000)$V3
 }

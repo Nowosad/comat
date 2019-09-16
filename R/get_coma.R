@@ -16,11 +16,37 @@
 #' com = get_coma(x)
 #' com
 #'
+#' com2 = get_coma2(x, neighbourhood = 4, size = 2, shift = 2)
+#' com2
+#'
+#' com3 = get_coma2(x, neighbourhood = 4)
+#' com3
+#'
+#' get_coma(x)
+#' get_coma2(x, neighbourhood = 4, size = 3, shift = 3)$V3
 get_coma = function(x, neighbourhood = 4){
   x = raster::as.matrix(x)
-  w = raster::as.matrix(w)
   directions = as.matrix(neighbourhood)
 
   n = rcpp_get_coma(x, directions)
+  structure(n, class = c(class(n), "coma"))
+}
+
+#' @export
+get_coma2 = function(x, neighbourhood = 4, size = NULL, shift = NULL){
+  x = raster::as.matrix(x)
+  directions = as.matrix(neighbourhood)
+
+  if (is.null(size)){
+    V3 = rcpp_get_coma(x, directions)
+    n = tibble::tibble(V1 = 1, V2 = 1, V3 = list(V3))
+  } else {
+    n = get_motifels(list(x), directions = directions,
+                     size = size, shift = shift,
+                     what = "coma")
+    n = tibble::as_tibble(n)
+  }
+
+  # n
   structure(n, class = c(class(n), "coma"))
 }

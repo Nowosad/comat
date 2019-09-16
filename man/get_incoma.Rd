@@ -22,10 +22,14 @@ Create an integrated co-occurrence matrix (wecoma)
 library(raster)
 
 set.seed(10100)
-l1 = raster(matrix(sample(1:2, size = 100, replace = TRUE), ncol = 10))
-l2 = raster(matrix(sample(c(9, 6, 3), size = 100, replace = TRUE), ncol = 10))
+l1 = raster(matrix(sample(1:2, size = 1000000, replace = TRUE), ncol = 1000))
+l2 = raster(matrix(sample(c(9, 6, 3), size = 1000000, replace = TRUE), ncol = 1000))
 x = stack(l1, l2, l1)
 
 get_incoma(x)
+get_incoma2(x)
+get_incoma2(x, size = 100, shift = 100)
 
+get_incoma(x)
+get_incoma2(x, size = 1000000, shift = 1000000)$V3
 }

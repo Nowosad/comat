@@ -21,6 +21,9 @@
 #' wom = get_wecoma(x, w)
 #' wom
 #'
+#' get_wecoma(x, w)
+#' get_wecoma2(x, w, size = 2, shift = 2)$V3
+#'
 get_wecoma = function(x, w, neighbourhood = 4, fun = "mean", na_action = "replace"){
   x = raster::as.matrix(x)
   w = raster::as.matrix(w)
@@ -28,4 +31,28 @@ get_wecoma = function(x, w, neighbourhood = 4, fun = "mean", na_action = "replac
 
   n = rcpp_get_wecoma(x, w, directions, fun, na_action)
   structure(n, class = c(class(n), "wecoma"))
+}
+
+#' @export
+get_wecoma2 = function(x, y, neighbourhood = 4, size = NULL, shift = NULL, fun = "mean", na_action = "replace"){
+  x = raster::as.matrix(x)
+  w = raster::as.matrix(w)
+  directions = as.matrix(neighbourhood)
+
+  if (is.null(size)){
+    V3 = rcpp_get_wecoma(x, w, directions, fun, na_action)
+    n = tibble::tibble(V1 = 1, V2 = 1, V3 = list(V3))
+  } else {
+    n = get_motifels(list(x, w),
+                     directions = directions,
+                     size = size,
+                     shift = shift,
+                     what = "wecoma",
+                     fun = "mean",
+                     na_action = "replace")
+    n = tibble::as_tibble(n)
+  }
+
+  # n
+  structure(n, class = c(class(n), "coma"))
 }

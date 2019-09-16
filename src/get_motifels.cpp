@@ -2,6 +2,7 @@
 #include "rcpp_get_wecoma.h"
 #include "rcpp_get_cocoma.h"
 #include "rcpp_get_incoma.h"
+#include "create_attributes.h"
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::plugins(cpp11)]]
 // [[Rcpp::interfaces(r, cpp)]]
@@ -22,19 +23,19 @@ List get_motifels(const List input,
 
   NumericMatrix w(num_r, num_c);
   IntegerMatrix y(num_r, num_c);
-  std::vector<int> classes_x;
-  std::vector<int> classes_y;
+  // std::vector<int> classes_x;
+  // std::vector<int> classes_y;
   List classes(num_l);
 
   if (what == "coma"){
-    classes_x = get_unique_values(x);
+    classes(0) = get_unique_values(x);
   } else if (what == "wecoma"){
     w = wrap(input(1));
-    classes_x = get_unique_values(x);
+    classes(0) = get_unique_values(x);
   } else if (what == "cocoma"){
     y = wrap(input(1));
-    classes_x = get_unique_values(x);
-    classes_y = get_unique_values(y);
+    classes(0) = get_unique_values(x);
+    classes(1) = get_unique_values(y);
   } else if (what == "incoma"){
     for (int i = 0; i < num_l; i++){
       classes(i) = get_unique_values(input[i]);
@@ -75,17 +76,17 @@ List get_motifels(const List input,
 
       if (what == "coma"){
         IntegerMatrix motifel_x = x(Range(i, i_max), Range(j, j_max));
-        result[nr_of_motifels2] = rcpp_get_coma_internal(motifel_x, directions, classes_x);
+        result[nr_of_motifels2] = rcpp_get_coma_internal(motifel_x, directions, classes(0));
       } else if (what == "wecoma"){
         IntegerMatrix motifel_x = x(Range(i, i_max), Range(j, j_max));
         NumericMatrix motifel_w = w(Range(i, i_max), Range(j, j_max));
-        result[nr_of_motifels2] = rcpp_get_wecoma_internal(motifel_x, motifel_w, directions, classes_x, fun, na_action);
+        result[nr_of_motifels2] = rcpp_get_wecoma_internal(motifel_x, motifel_w, directions, classes(0), fun, na_action);
       } else if (what == "cocoma"){
         IntegerMatrix motifel_x = x(Range(i, i_max), Range(j, j_max));
         IntegerMatrix motifel_y = y(Range(i, i_max), Range(j, j_max));
         // Rcout << "The value of motifel_x : " << motifel_x << "\n";
         // Rcout << "The value of motifel_y : " << motifel_y << "\n";
-        result[nr_of_motifels2] = rcpp_get_cocoma_internal(motifel_x, motifel_y, directions, classes_x, classes_y);
+        result[nr_of_motifels2] = rcpp_get_cocoma_internal(motifel_x, motifel_y, directions, classes(0), classes(1));
       } else if (what == "incoma"){
         List motifel_input(num_l);
         for (int l = 0; l < num_l; l++){
@@ -103,10 +104,18 @@ List get_motifels(const List input,
     m_col = 1;
     m_row++;
   }
+  List attr = create_attributes(classes);
+
   List df = List::create(Named("id") = all_nr_of_motifels,
                          Named("row") = all_m_row,
                          Named("col") = all_m_col,
                          Named("matrix") = result);
+  df.attr("metadata") = attr;
+
+  CharacterVector my_class(2);
+  my_class(0) = "list";
+  my_class(1) = what;
+  df.attr("class") = my_class;
   return df;
 }
 

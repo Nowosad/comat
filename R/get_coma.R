@@ -47,6 +47,6 @@ get_coma2 = function(x, neighbourhood = 4, size = NULL, shift = NULL){
     n = tibble::as_tibble(n)
   }
 
-  # n
-  structure(n, class = c(class(n), "coma"))
+  n
+  # structure(n, class = c(class(n), "coma"))
 }

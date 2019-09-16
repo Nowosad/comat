@@ -12,4 +12,10 @@ Rcpp::IntegerMatrix rcpp_get_cocoma(const Rcpp::IntegerMatrix x,
                                     const Rcpp::IntegerMatrix y,
                                     const arma::imat directions) ;
 
+Rcpp::IntegerMatrix rcpp_get_cocoma_internal(const Rcpp::IntegerMatrix x,
+                                    const Rcpp::IntegerMatrix y,
+                                    const arma::imat directions,
+                                    std::vector<int> classes_x,
+                                    std::vector<int> classes_y) ;
+
 #endif // RCPP_GET_COCOMA_H

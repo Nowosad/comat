@@ -7,19 +7,31 @@ using namespace Rcpp;
 // [[Rcpp::export]]
 IntegerMatrix rcpp_get_cocoma(const IntegerMatrix x,
                               const IntegerMatrix y,
-                              const arma::imat directions) {
+                              const arma::imat directions){
+    std::vector<int> classes_x = get_unique_values(x);
+    std::vector<int> classes_y = get_unique_values(y);
+    IntegerMatrix result = rcpp_get_cocoma_internal(x, y, directions, classes_x, classes_y);
+    return result;
+}
+
+// [[Rcpp::export]]
+IntegerMatrix rcpp_get_cocoma_internal(const IntegerMatrix x,
+                              const IntegerMatrix y,
+                              const arma::imat directions,
+                              std::vector<int> classes_x,
+                              std::vector<int> classes_y) {
 
     const int na = NA_INTEGER;
     const unsigned ncols = x.ncol();
     const unsigned nrows = x.nrow();
 
-    std::vector<int> classes_x = get_unique_values(x);
+    // std::vector<int> classes_x = get_unique_values(x);
     std::map<int, unsigned> class_index_x = get_class_index_map(classes_x);
     unsigned n_classes_x = class_index_x.size();
     // NAs need an index, otherwise they are counted as neighbors of class[0]
     class_index_x.insert(std::make_pair(na, n_classes_x));
 
-    std::vector<int> classes_y = get_unique_values(y);
+    // std::vector<int> classes_y = get_unique_values(y);
     std::map<int, unsigned> class_index_y = get_class_index_map(classes_y);
     unsigned n_classes_y = class_index_y.size();
     // NAs need an index, otherwise they are counted as neighbors of class[0]

@@ -40,8 +40,8 @@ get_wecoma2 = function(x, y, neighbourhood = 4, size = NULL, shift = NULL, fun =
   directions = as.matrix(neighbourhood)
 
   if (is.null(size)){
-    V3 = rcpp_get_wecoma(x, w, directions, fun, na_action)
-    n = tibble::tibble(V1 = 1, V2 = 1, V3 = list(V3))
+    mat = rcpp_get_wecoma(x, w, directions, fun, na_action)
+    n = tibble::tibble(id = 1, row = 1, col = 1, matrix = list(mat))
   } else {
     n = get_motifels(list(x, w),
                      directions = directions,

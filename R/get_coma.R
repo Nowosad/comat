@@ -38,8 +38,8 @@ get_coma2 = function(x, neighbourhood = 4, size = NULL, shift = NULL){
   directions = as.matrix(neighbourhood)
 
   if (is.null(size)){
-    V3 = rcpp_get_coma(x, directions)
-    n = tibble::tibble(V1 = 1, V2 = 1, V3 = list(V3))
+    mat = rcpp_get_coma(x, directions)
+    n = tibble::tibble(id = 1, row = 1, col = 1, matrix = list(mat))
   } else {
     n = get_motifels(list(x), directions = directions,
                      size = size, shift = shift,

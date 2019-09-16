@@ -1,4 +1,8 @@
 #include "rcpp_get_wecoma.h"
+#include "rcpp_get_coma.h"
+#include "create_neighborhood.h"
+#include "get_unique_values.h"
+#include "get_class_index_map.h"
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::plugins(cpp11)]]
 // [[Rcpp::interfaces(r, cpp)]]
@@ -9,11 +13,23 @@ NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
                               const arma::imat directions,
                               const std::string fun,
                               const std::string na_action) {
+    std::vector<int> classes = get_unique_values(x);
+    NumericMatrix result = rcpp_get_wecoma_internal(x, w, directions, classes, fun, na_action);
+    return result;
+}
+
+// [[Rcpp::export]]
+NumericMatrix rcpp_get_wecoma_internal(const IntegerMatrix x,
+                              const NumericMatrix w,
+                              const arma::imat directions,
+                              std::vector<int> classes,
+                              const std::string fun,
+                              const std::string na_action) {
     const int na = NA_INTEGER;
     const unsigned ncols = x.ncol();
     const unsigned nrows = x.nrow();
 
-    std::vector<int> classes = get_unique_values(x);
+    // std::vector<int> classes = get_unique_values(x);
     std::map<int, unsigned> class_index = get_class_index_map(classes);
 
     unsigned n_classes = class_index.size();

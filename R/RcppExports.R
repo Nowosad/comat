@@ -5,8 +5,16 @@ create_obj <- function(y, x) {
     .Call(`_comat_create_obj`, y, x)
 }
 
+test_s3 <- function(x) {
+    .Call(`_comat_test_s3`, x)
+}
+
 get_classes <- function(x) {
     .Call(`_comat_get_classes`, x)
+}
+
+create_attributes <- function(x) {
+    .Call(`_comat_create_attributes`, x)
 }
 
 #' Coordinates from a matrix

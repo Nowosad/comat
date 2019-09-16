@@ -21,6 +21,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// test_s3
+List test_s3(List x);
+RcppExport SEXP _comat_test_s3(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(test_s3(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // get_classes
 std::vector<int> get_classes(const IntegerMatrix x);
 static SEXP _comat_get_classes_try(SEXP xSEXP) {
@@ -54,6 +65,17 @@ RcppExport SEXP _comat_get_classes(SEXP xSEXP) {
     }
     UNPROTECT(1);
     return rcpp_result_gen;
+}
+// create_attributes
+List create_attributes(List x);
+RcppExport SEXP _comat_create_attributes(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(create_attributes(x));
+    return rcpp_result_gen;
+END_RCPP
 }
 // rcpp_xy_from_matrix
 IntegerMatrix rcpp_xy_from_matrix(arma::imat x, Rcpp::Nullable<Rcpp::IntegerVector> cell);
@@ -620,7 +642,9 @@ RcppExport SEXP _comat_RcppExport_registerCCallable() {
 
 static const R_CallMethodDef CallEntries[] = {
     {"_comat_create_obj", (DL_FUNC) &_comat_create_obj, 2},
+    {"_comat_test_s3", (DL_FUNC) &_comat_test_s3, 1},
     {"_comat_get_classes", (DL_FUNC) &_comat_get_classes, 1},
+    {"_comat_create_attributes", (DL_FUNC) &_comat_create_attributes, 1},
     {"_comat_rcpp_xy_from_matrix", (DL_FUNC) &_comat_rcpp_xy_from_matrix, 2},
     {"_comat_rcpp_cell_from_xy", (DL_FUNC) &_comat_rcpp_cell_from_xy, 2},
     {"_comat_create_neighborhood", (DL_FUNC) &_comat_create_neighborhood, 1},

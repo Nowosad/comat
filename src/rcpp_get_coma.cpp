@@ -1,17 +1,22 @@
 #include "rcpp_get_coma.h"
-#include "create_neighborhood.h"
-#include "get_unique_values.h"
-#include "get_class_index_map.h"
 // [[Rcpp::interfaces(r, cpp)]]
 
 // [[Rcpp::export]]
 IntegerMatrix rcpp_get_coma(const IntegerMatrix x,
-                            const arma::imat directions) {
+                            const arma::imat directions){
+    std::vector<int> classes = get_unique_values(x);
+    IntegerMatrix result = rcpp_get_coma_internal(x, directions, classes);
+    return result;
+}
+
+// [[Rcpp::export]]
+IntegerMatrix rcpp_get_coma_internal(const IntegerMatrix x,
+                            const arma::imat directions,
+                            std::vector<int> classes) {
     const int na = NA_INTEGER;
     const unsigned ncols = x.ncol();
     const unsigned nrows = x.nrow();
 
-    std::vector<int> classes = get_unique_values(x);
     std::map<int, unsigned> class_index = get_class_index_map(classes);
 
     unsigned n_classes = class_index.size();
@@ -61,6 +66,9 @@ IntegerMatrix rcpp_get_coma(const IntegerMatrix x,
         }
     }
 
+    // Rcout << "The value of cooc_mat : " << cooc_mat << "\n";
+    // Rcout << "The value of result : " << result << "\n";
+
     // add names
     List u_names = List::create(classes, classes);
     result.attr("dimnames") = u_names;
@@ -75,10 +83,13 @@ test = landscapemetrics::augusta_nlcd
 # test <- raster("~/Desktop/lc_2008_4bit_clip.tif") # produces a matrix filled with NA ????
 mat = raster::as.matrix(test)
 four = as.matrix(4)
-rcpp_get_coma(mat, four)
+r = rcpp_get_coma(mat, four)
 
+
+cl = get_classes(mat)
+r = rcpp_get_coma(mat, four, cl)
 
 # lsm_p_contig(test)
 
-get_unique_values(mat)
+# get_unique_values(mat)
 */

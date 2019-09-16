@@ -5,7 +5,20 @@
 
 // [[Rcpp::export]]
 IntegerMatrix rcpp_get_incoma(const List x,
-                     const arma::imat directions) {
+                                       const arma::imat directions) {
+  int v1_len = x.length();
+  List classes(v1_len);
+  for (int i = 0; i < v1_len; i++){
+    classes(i) = get_unique_values(x[i]);
+  }
+  IntegerMatrix result = rcpp_get_incoma_internal(x, directions, classes);
+  return result;
+}
+
+// [[Rcpp::export]]
+IntegerMatrix rcpp_get_incoma_internal(const List x,
+                     const arma::imat directions,
+                     List classes) {
 
   int v1_len = x.length();
   List mat_list(v1_len * v1_len);
@@ -14,9 +27,12 @@ IntegerMatrix rcpp_get_incoma(const List x,
   for (int i = 0; i < v1_len; i++){
     for (int j = 0; j < v1_len; j++){
       if (i == j){
-        mat_list[loop] = rcpp_get_coma(x[i], directions);
+        // std::vector<int> classes = get_unique_values(x[i]);
+        mat_list[loop] = rcpp_get_coma_internal(x[i], directions, classes[i]);
       } else {
-        mat_list[loop] = rcpp_get_cocoma(x[i], x[j], directions);
+        // std::vector<int> classes_x = get_unique_values(x[i]);
+        // std::vector<int> classes_y = get_unique_values(x[j]);
+        mat_list[loop] = rcpp_get_cocoma_internal(x[i], x[j], directions, classes[i], classes[j]);
       }
       loop ++;
     }

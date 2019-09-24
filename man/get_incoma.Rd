@@ -4,7 +4,7 @@
 \alias{get_incoma}
 \title{Create an integrated co-occurrence matrix (wecoma)}
 \usage{
-get_incoma(x, neighbourhood = 4)
+get_incoma(x, neighbourhood = 4, size = NULL, shift = NULL)
 }
 \arguments{
 \item{x}{A RasterStack object containing categorical rasters}
@@ -27,9 +27,6 @@ l2 = raster(matrix(sample(c(9, 6, 3), size = 1000000, replace = TRUE), ncol = 10
 x = stack(l1, l2, l1)
 
 get_incoma(x)
-get_incoma2(x)
-get_incoma2(x, size = 100, shift = 100)
+get_incoma(x, size = 100, shift = 100)
 
-get_incoma(x)
-get_incoma2(x, size = 1000000, shift = 1000000)$V3
 }

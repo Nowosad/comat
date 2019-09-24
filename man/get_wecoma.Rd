@@ -4,13 +4,11 @@
 \alias{get_wecoma}
 \title{Create a weighted co-occurrence matrix (wecoma)}
 \usage{
-get_wecoma(x, w, neighbourhood = 4, fun = "mean",
-  na_action = "replace")
+get_wecoma(x, y, neighbourhood = 4, size = NULL, shift = NULL,
+  fun = "mean", na_action = "replace")
 }
 \arguments{
 \item{x}{A RasterLayer with categories}
-
-\item{w}{A RasterLayer with weights}
 
 \item{neighbourhood}{The number of directions in which cell adjacencies are considered as neighbours:
 4 (rook's case) or 8 (queen's case). The default is 4.}
@@ -18,6 +16,8 @@ get_wecoma(x, w, neighbourhood = 4, fun = "mean",
 \item{fun}{"mean", "geometric_mean", or "focal". The default is "mean".}
 
 \item{na_action}{"replace", "omit", or "keep". The default is "replace".}
+
+\item{w}{A RasterLayer with weights}
 }
 \value{
 A weighted co-occurrence matrix
@@ -35,8 +35,7 @@ plot(w)
 
 wom = get_wecoma(x, w)
 wom
-
-get_wecoma2(x, w)
-get_wecoma2(x, w, size = 3, shift = 3)
+wom2 = get_wecoma(x, w, size = 2, shift = 2)
+wom2
 
 }

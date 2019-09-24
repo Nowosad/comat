@@ -4,7 +4,7 @@
 \alias{get_cocoma}
 \title{Create a co-located co-occurrence matrix (cocoma)}
 \usage{
-get_cocoma(x, y, neighbourhood = 4)
+get_cocoma(x, y, neighbourhood = 4, size = NULL, shift = NULL)
 }
 \arguments{
 \item{x}{A RasterLayer with categories}
@@ -29,9 +29,6 @@ l2 = raster(matrix(sample(c(9, 6, 3), size = 100, replace = TRUE), ncol = 10))
 coom = get_cocoma(l1, l2)
 coom
 
-get_cocoma2(l1, l2)
-get_cocoma2(l1, l2, size = 100, shift = 100)
-
-get_cocoma(l1, l2)
-get_cocoma2(l1, l2, size = 1000000, shift = 1000000)$V3
+coom2 = get_cocoma(l1, l2, size = 100, shift = 100)
+coom2
 }

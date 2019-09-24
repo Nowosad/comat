@@ -4,7 +4,7 @@
 \alias{get_coma}
 \title{Create a co-occurrence matrix (coma)}
 \usage{
-get_coma(x, neighbourhood = 4)
+get_coma(x, neighbourhood = 4, size = NULL, shift = NULL)
 }
 \arguments{
 \item{x}{A RasterLayer with categories}
@@ -27,12 +27,6 @@ plot(x)
 com = get_coma(x)
 com
 
-com2 = get_coma2(x, neighbourhood = 4, size = 2, shift = 2)
+com2 = get_coma(x, neighbourhood = 4, size = 2, shift = 2)
 com2
-
-com3 = get_coma2(x, neighbourhood = 4)
-com3
-
-get_coma(x)
-get_coma2(x, neighbourhood = 4, size = 3, shift = 3)$V3
 }

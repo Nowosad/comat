@@ -25,9 +25,11 @@ library(comat)
 library(raster)
 data(x, package = "comat")
 
-com = get_coma(x)
+com = get_coma2(x)
 com
 
-cov = get_cove(com)
+cov = get_cove(com$matrix[[1]])
 cov
+
+get_cove2(com)
 }

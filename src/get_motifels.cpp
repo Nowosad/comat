@@ -19,22 +19,26 @@ int get_motifel_size(int num_r, int num_c, int shift){
 }
 
 // [[Rcpp::export]]
-List get_motifels_coma(const List input,
+List get_motifels_coma(IntegerMatrix x,
                        const arma::imat directions,
                        int size,
                        int shift,
                        const std::string fun = "mean",
                        const std::string na_action = "replace") {
 
-  IntegerMatrix x = input(0);
   int num_r = x.nrow();
   int num_c = x.ncol();
 
-  int num_l = input.length();
-  List classes(num_l);
+  List classes(1);
   classes(0) = get_unique_values(x);
 
-  int nr_of_motifels = get_motifel_size(num_r, num_c, shift);
+  int nr_of_motifels;
+  if (size == 0){
+    nr_of_motifels = 1;
+  } else {
+    nr_of_motifels = get_motifel_size(num_r, num_c, shift);
+  }
+
   List result(nr_of_motifels);
   IntegerVector all_nr_of_motifels(nr_of_motifels);
   IntegerVector all_m_row(nr_of_motifels);
@@ -44,33 +48,42 @@ List get_motifels_coma(const List input,
   int m_row = 1;
   int m_col = 1;
 
-  IntegerMatrix motifel_x;
+  if (size == 0){
+    all_nr_of_motifels(0) = 1;
+    all_m_row(0) = m_row;
+    all_m_col(0) = m_col;
+    result[0] = rcpp_get_coma_internal(x, directions, classes(0));
+  } else {
 
-  for (int i = 0; i < num_r; i = i + shift){
-    for (int j = 0; j < num_c; j = j + shift){
-      all_nr_of_motifels(nr_of_motifels2) = nr_of_motifels2 + 1;
-      all_m_row(nr_of_motifels2) = m_row;
-      all_m_col(nr_of_motifels2) = m_col;
+    IntegerMatrix motifel_x;
 
-      int i_max = i + (size - 1);
-      if (i_max >= num_r){
-        i_max = num_r - 1;
+    for (int i = 0; i < num_r; i = i + shift){
+      for (int j = 0; j < num_c; j = j + shift){
+        all_nr_of_motifels(nr_of_motifels2) = nr_of_motifels2 + 1;
+        all_m_row(nr_of_motifels2) = m_row;
+        all_m_col(nr_of_motifels2) = m_col;
+
+        int i_max = i + (size - 1);
+        if (i_max >= num_r){
+          i_max = num_r - 1;
+        }
+        int j_max = j + (size - 1);
+        if (j_max >= num_c){
+          j_max = num_c - 1;
+        }
+        motifel_x = x(Range(i, i_max), Range(j, j_max));
+        result[nr_of_motifels2] = rcpp_get_coma_internal(motifel_x, directions, classes(0));
+
+        // double na_perc = na_prop(motifel_x);
+
+        nr_of_motifels2 ++;
+        m_col++;
       }
-      int j_max = j + (size - 1);
-      if (j_max >= num_c){
-        j_max = num_c - 1;
-      }
-      motifel_x = x(Range(i, i_max), Range(j, j_max));
-      result[nr_of_motifels2] = rcpp_get_coma_internal(motifel_x, directions, classes(0));
-
-      // double na_perc = na_prop(motifel_x);
-
-      nr_of_motifels2 ++;
-      m_col++;
+      m_col = 1;
+      m_row++;
     }
-    m_col = 1;
-    m_row++;
   }
+
   List attr = create_attributes(classes);
 
   List df = List::create(Named("id") = all_nr_of_motifels,
@@ -87,24 +100,27 @@ List get_motifels_coma(const List input,
 }
 
 // [[Rcpp::export]]
-List get_motifels_wecoma(const List input,
-                  const arma::imat directions,
-                  int size,
-                  int shift,
-                  const std::string fun = "mean",
-                  const std::string na_action = "replace") {
+List get_motifels_wecoma(IntegerMatrix x,
+                         NumericMatrix w,
+                         const arma::imat directions,
+                         int size,
+                         int shift,
+                         const std::string fun = "mean",
+                         const std::string na_action = "replace") {
 
-  int num_l = input.length();
-  List classes(num_l);
-
-  IntegerMatrix x = input(0);
+  List classes(1);
   classes(0) = get_unique_values(x);
-  NumericMatrix w = input(1);
 
   int num_r = x.nrow();
   int num_c = x.ncol();
 
-  int nr_of_motifels = get_motifel_size(num_r, num_c, shift);
+  int nr_of_motifels;
+  if (size == 0){
+    nr_of_motifels = 1;
+  } else {
+    nr_of_motifels = get_motifel_size(num_r, num_c, shift);
+  }
+
   List result(nr_of_motifels);
   IntegerVector all_nr_of_motifels(nr_of_motifels);
   IntegerVector all_m_row(nr_of_motifels);
@@ -114,34 +130,43 @@ List get_motifels_wecoma(const List input,
   int m_row = 1;
   int m_col = 1;
 
-  IntegerMatrix motifel_x;
-  NumericMatrix motifel_w;
+  if (size == 0){
+    all_nr_of_motifels(0) = 1;
+    all_m_row(0) = m_row;
+    all_m_col(0) = m_col;
+    result[0] = rcpp_get_wecoma_internal(x, w, directions, classes(0), fun, na_action);
+  } else {
 
-  for (int i = 0; i < num_r; i = i + shift){
-    for (int j = 0; j < num_c; j = j + shift){
-      all_nr_of_motifels(nr_of_motifels2) = nr_of_motifels2 + 1;
-      all_m_row(nr_of_motifels2) = m_row;
-      all_m_col(nr_of_motifels2) = m_col;
+    IntegerMatrix motifel_x;
+    NumericMatrix motifel_w;
 
-      int i_max = i + (size - 1);
-      if (i_max >= num_r){
-        i_max = num_r - 1;
+    for (int i = 0; i < num_r; i = i + shift){
+      for (int j = 0; j < num_c; j = j + shift){
+        all_nr_of_motifels(nr_of_motifels2) = nr_of_motifels2 + 1;
+        all_m_row(nr_of_motifels2) = m_row;
+        all_m_col(nr_of_motifels2) = m_col;
+
+        int i_max = i + (size - 1);
+        if (i_max >= num_r){
+          i_max = num_r - 1;
+        }
+        int j_max = j + (size - 1);
+        if (j_max >= num_c){
+          j_max = num_c - 1;
+        }
+
+        motifel_x = x(Range(i, i_max), Range(j, j_max));
+        motifel_w = w(Range(i, i_max), Range(j, j_max));
+        result[nr_of_motifels2] = rcpp_get_wecoma_internal(motifel_x, motifel_w, directions, classes(0), fun, na_action);
+        // double na_perc = na_prop(motifel_x);
+
+        nr_of_motifels2 ++;
+        m_col++;
       }
-      int j_max = j + (size - 1);
-      if (j_max >= num_c){
-        j_max = num_c - 1;
-      }
-
-      motifel_x = x(Range(i, i_max), Range(j, j_max));
-      motifel_w = w(Range(i, i_max), Range(j, j_max));
-      result[nr_of_motifels2] = rcpp_get_wecoma_internal(motifel_x, motifel_w, directions, classes(0), fun, na_action);
-      // double na_perc = na_prop(motifel_x);
-
-      nr_of_motifels2 ++;
-      m_col++;
+      m_col = 1;
+      m_row++;
     }
-    m_col = 1;
-    m_row++;
+
   }
   List attr = create_attributes(classes);
 
@@ -160,22 +185,26 @@ List get_motifels_wecoma(const List input,
 
 
 // [[Rcpp::export]]
-List get_motifels_cocoma(const List input,
-                  const arma::imat directions,
-                  int size,
-                  int shift) {
+List get_motifels_cocoma(IntegerMatrix x,
+                         IntegerMatrix y,
+                         const arma::imat directions,
+                         int size,
+                         int shift) {
 
-  int num_l = input.length();
-  List classes(num_l);
+  List classes(2);
 
-  IntegerMatrix x = input(0);
-  IntegerMatrix y = input(1);
   classes(0) = get_unique_values(x);
   classes(1) = get_unique_values(y);
   int num_r = x.nrow();
   int num_c = x.ncol();
 
-  int nr_of_motifels = get_motifel_size(num_r, num_c, shift);
+  int nr_of_motifels;
+  if (size == 0){
+    nr_of_motifels = 1;
+  } else {
+    nr_of_motifels = get_motifel_size(num_r, num_c, shift);
+  }
+
   List result(nr_of_motifels);
   IntegerVector all_nr_of_motifels(nr_of_motifels);
   IntegerVector all_m_row(nr_of_motifels);
@@ -185,35 +214,43 @@ List get_motifels_cocoma(const List input,
   int m_row = 1;
   int m_col = 1;
 
-  IntegerMatrix motifel_x;
-  IntegerMatrix motifel_y;
+  if (size == 0){
+    all_nr_of_motifels(0) = 1;
+    all_m_row(0) = m_row;
+    all_m_col(0) = m_col;
+    result[0] = rcpp_get_cocoma_internal(x, y, directions, classes(0), classes(1));
+  } else {
 
-  for (int i = 0; i < num_r; i = i + shift){
-    for (int j = 0; j < num_c; j = j + shift){
-      all_nr_of_motifels(nr_of_motifels2) = nr_of_motifels2 + 1;
-      all_m_row(nr_of_motifels2) = m_row;
-      all_m_col(nr_of_motifels2) = m_col;
+    IntegerMatrix motifel_x;
+    IntegerMatrix motifel_y;
 
-      int i_max = i + (size - 1);
-      if (i_max >= num_r){
-        i_max = num_r - 1;
+    for (int i = 0; i < num_r; i = i + shift){
+      for (int j = 0; j < num_c; j = j + shift){
+        all_nr_of_motifels(nr_of_motifels2) = nr_of_motifels2 + 1;
+        all_m_row(nr_of_motifels2) = m_row;
+        all_m_col(nr_of_motifels2) = m_col;
+
+        int i_max = i + (size - 1);
+        if (i_max >= num_r){
+          i_max = num_r - 1;
+        }
+        int j_max = j + (size - 1);
+        if (j_max >= num_c){
+          j_max = num_c - 1;
+        }
+
+        motifel_x = x(Range(i, i_max), Range(j, j_max));
+        motifel_y = y(Range(i, i_max), Range(j, j_max));
+        result[nr_of_motifels2] = rcpp_get_cocoma_internal(motifel_x, motifel_y, directions, classes(0), classes(1));
+
+        // double na_perc = na_prop(motifel_x);
+
+        nr_of_motifels2 ++;
+        m_col++;
       }
-      int j_max = j + (size - 1);
-      if (j_max >= num_c){
-        j_max = num_c - 1;
-      }
-
-      motifel_x = x(Range(i, i_max), Range(j, j_max));
-      motifel_y = y(Range(i, i_max), Range(j, j_max));
-      result[nr_of_motifels2] = rcpp_get_cocoma_internal(motifel_x, motifel_y, directions, classes(0), classes(1));
-
-      // double na_perc = na_prop(motifel_x);
-
-      nr_of_motifels2 ++;
-      m_col++;
+      m_col = 1;
+      m_row++;
     }
-    m_col = 1;
-    m_row++;
   }
   List attr = create_attributes(classes);
 
@@ -247,7 +284,13 @@ List get_motifels_incoma(const List input,
   int num_r = x.nrow();
   int num_c = x.ncol();
 
-  int nr_of_motifels = get_motifel_size(num_r, num_c, shift);
+  int nr_of_motifels;
+  if (size == 0){
+    nr_of_motifels = 1;
+  } else {
+    nr_of_motifels = get_motifel_size(num_r, num_c, shift);
+  }
+
   List result(nr_of_motifels);
   IntegerVector all_nr_of_motifels(nr_of_motifels);
   IntegerVector all_m_row(nr_of_motifels);
@@ -257,44 +300,53 @@ List get_motifels_incoma(const List input,
   int m_row = 1;
   int m_col = 1;
 
-  List motifel_input(num_l);
   for (int l = 0; l < num_l; l++){
     classes(l) = get_unique_values(input[l]);
   }
 
-  IntegerMatrix layer_l(num_r, num_c);
+  if (size == 0){
+    all_nr_of_motifels(0) = 1;
+    all_m_row(0) = m_row;
+    all_m_col(0) = m_col;
+    result[0] = rcpp_get_incoma_internal(input, directions, classes);
 
-  for (int i = 0; i < num_r; i = i + shift){
-    for (int j = 0; j < num_c; j = j + shift){
-      all_nr_of_motifels(nr_of_motifels2) = nr_of_motifels2 + 1;
-      all_m_row(nr_of_motifels2) = m_row;
-      all_m_col(nr_of_motifels2) = m_col;
+  } else {
+    List motifel_input(num_l);
+    IntegerMatrix layer_l(num_r, num_c);
 
-      int i_max = i + (size - 1);
-      if (i_max >= num_r){
-        i_max = num_r - 1;
+    for (int i = 0; i < num_r; i = i + shift){
+      for (int j = 0; j < num_c; j = j + shift){
+        all_nr_of_motifels(nr_of_motifels2) = nr_of_motifels2 + 1;
+        all_m_row(nr_of_motifels2) = m_row;
+        all_m_col(nr_of_motifels2) = m_col;
+
+        int i_max = i + (size - 1);
+        if (i_max >= num_r){
+          i_max = num_r - 1;
+        }
+        int j_max = j + (size - 1);
+        if (j_max >= num_c){
+          j_max = num_c - 1;
+        }
+
+        for (int l = 0; l < num_l; l++){
+          // IntegerMatrix layer_l;
+
+          layer_l = wrap(input(l));
+          motifel_input(l) = layer_l(Range(i, i_max), Range(j, j_max));
+        }
+        result[nr_of_motifels2] = rcpp_get_incoma_internal(motifel_input, directions, classes);
+
+        // double na_perc = na_prop(motifel_x);
+
+        nr_of_motifels2 ++;
+        m_col++;
       }
-      int j_max = j + (size - 1);
-      if (j_max >= num_c){
-        j_max = num_c - 1;
-      }
-
-      for (int l = 0; l < num_l; l++){
-        // IntegerMatrix layer_l;
-
-        layer_l = wrap(input(l));
-        motifel_input(l) = layer_l(Range(i, i_max), Range(j, j_max));
-      }
-      result[nr_of_motifels2] = rcpp_get_incoma_internal(motifel_input, directions, classes);
-
-      // double na_perc = na_prop(motifel_x);
-
-      nr_of_motifels2 ++;
-      m_col++;
+      m_col = 1;
+      m_row++;
     }
-    m_col = 1;
-    m_row++;
   }
+
   List attr = create_attributes(classes);
 
   List df = List::create(Named("id") = all_nr_of_motifels,

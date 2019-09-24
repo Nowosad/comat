@@ -32,7 +32,8 @@ LinkingTo:
     RcppArmadillo
 Imports: 
     Rcpp,
-    raster
+    raster,
+    tibble
 Suggests: 
     tinytest,
     covr,

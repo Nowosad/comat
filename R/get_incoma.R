@@ -16,33 +16,31 @@
 #' x = stack(l1, l2, l1)
 #'
 #' get_incoma(x)
-#' get_incoma2(x)
-#' get_incoma2(x, size = 100, shift = 100)
+#' get_incoma(x, size = 100, shift = 100)
 #'
-#' get_incoma(x)
-#' get_incoma2(x, size = 1000000, shift = 1000000)$V3
-get_incoma = function(x, neighbourhood = 4){
-  rasters = lapply(raster::as.list(x), raster::as.matrix)
-  directions = as.matrix(neighbourhood)
-
-  n = rcpp_get_incoma(rasters, directions)
-  structure(n, class = c(class(n), "incoma"))
-}
-
-#' @export
-get_incoma2 = function(x, neighbourhood = 4, size = NULL, shift = NULL){
+get_incoma = function(x, neighbourhood = 4, size = NULL, shift = NULL){
   rasters = lapply(raster::as.list(x), raster::as.matrix)
   directions = as.matrix(neighbourhood)
 
   if (is.null(size)){
-    mat = rcpp_get_incoma(rasters, directions)
-    n = tibble::tibble(id = 1, row = 1, col = 1, matrix = list(mat))
-  } else {
-    n = get_motifels(rasters, directions = directions,
-                     size = size, shift = shift,
-                     what = "incoma")
-    n = tibble::as_tibble(n)
+    size = 0
   }
+  if (missing(shift)){
+    shift = size
+  }
+
+  n = get_motifels_incoma(rasters, directions = directions,
+                          size = size, shift = shift)
+  n = tibble::as_tibble(n)
+
   # n
   structure(n, class = c(class(n), "incoma"))
 }
+
+# get_incoma = function(x, neighbourhood = 4){
+#   rasters = lapply(raster::as.list(x), raster::as.matrix)
+#   directions = as.matrix(neighbourhood)
+#
+#   n = rcpp_get_incoma(rasters, directions)
+#   structure(n, class = c(class(n), "incoma"))
+# }

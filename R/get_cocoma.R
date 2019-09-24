@@ -17,39 +17,36 @@
 #' coom = get_cocoma(l1, l2)
 #' coom
 #'
-#' get_cocoma2(l1, l2)
-#' get_cocoma2(l1, l2, size = 100, shift = 100)
-#'
-#' get_cocoma(l1, l2)
-#' get_cocoma2(l1, l2, size = 100, shift = 100)$V3
-get_cocoma = function(x, y, neighbourhood = 4){
-  x = raster::as.matrix(x)
-  y = raster::as.matrix(y)
-  directions = as.matrix(neighbourhood)
-
-  n = rcpp_get_cocoma(x, y, directions)
-  structure(n, class = c(class(n), "cocoma"))
-}
-
-#' @export
-get_cocoma2 = function(x, y, neighbourhood = 4, size = NULL, shift = NULL){
+#' coom2 = get_cocoma(l1, l2, size = 100, shift = 100)
+#' coom2
+get_cocoma = function(x, y, neighbourhood = 4, size = NULL, shift = NULL){
   x = raster::as.matrix(x)
   y = raster::as.matrix(y)
   directions = as.matrix(neighbourhood)
 
   if (is.null(size)){
-    mat = rcpp_get_cocoma(x, y, directions)
-    n = tibble::tibble(id = 1, row = 1, col = 1, matrix = list(mat))
-  } else {
-    n = get_motifels(list(x, y),
-                     directions = directions,
-                     size = size,
-                     shift = shift,
-                     what = "cocoma")
-    n = tibble::as_tibble(n)
+    size = 0
+  }
+  if (missing(shift)){
+    shift = size
   }
 
+  n = get_motifels_cocoma(x,
+                   y,
+                   directions = directions,
+                   size = size,
+                   shift = shift)
+  n = tibble::as_tibble(n)
+
   # n
-  structure(n, class = c(class(n), "coma"))
+  structure(n, class = c(class(n), "cocoma"))
 }
 
+# get_cocoma = function(x, y, neighbourhood = 4){
+#   x = raster::as.matrix(x)
+#   y = raster::as.matrix(y)
+#   directions = as.matrix(neighbourhood)
+#
+#   n = rcpp_get_cocoma(x, y, directions)
+#   structure(n, class = c(class(n), "cocoma"))
+# }

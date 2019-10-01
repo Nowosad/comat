@@ -9,17 +9,6 @@
 
 using namespace Rcpp;
 
-// create_attributes
-List create_attributes(List x);
-RcppExport SEXP _comat_create_attributes(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< List >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(create_attributes(x));
-    return rcpp_result_gen;
-END_RCPP
-}
 // rcpp_xy_from_matrix
 IntegerMatrix rcpp_xy_from_matrix(arma::imat x, Rcpp::Nullable<Rcpp::IntegerVector> cell);
 RcppExport SEXP _comat_rcpp_xy_from_matrix(SEXP xSEXP, SEXP cellSEXP) {
@@ -540,7 +529,6 @@ RcppExport SEXP _comat_RcppExport_registerCCallable() {
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_comat_create_attributes", (DL_FUNC) &_comat_create_attributes, 1},
     {"_comat_rcpp_xy_from_matrix", (DL_FUNC) &_comat_rcpp_xy_from_matrix, 2},
     {"_comat_rcpp_cell_from_xy", (DL_FUNC) &_comat_rcpp_cell_from_xy, 2},
     {"_comat_create_neighborhood", (DL_FUNC) &_comat_create_neighborhood, 1},

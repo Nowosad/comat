@@ -48,26 +48,6 @@ rcpp_get_entropy <- function(x, base = "log2") {
     .Call(`_comat_rcpp_get_entropy`, x, base)
 }
 
-get_motifel_size <- function(num_r, num_c, shift) {
-    .Call(`_comat_get_motifel_size`, num_r, num_c, shift)
-}
-
-get_motifels_coma <- function(x, directions, size, shift, fun = "mean", na_action = "replace") {
-    .Call(`_comat_get_motifels_coma`, x, directions, size, shift, fun, na_action)
-}
-
-get_motifels_wecoma <- function(x, w, directions, size, shift, fun = "mean", na_action = "replace") {
-    .Call(`_comat_get_motifels_wecoma`, x, w, directions, size, shift, fun, na_action)
-}
-
-get_motifels_cocoma <- function(x, y, directions, size, shift) {
-    .Call(`_comat_get_motifels_cocoma`, x, y, directions, size, shift)
-}
-
-get_motifels_incoma <- function(input, directions, size, shift, fun = "mean", na_action = "replace") {
-    .Call(`_comat_get_motifels_incoma`, input, directions, size, shift, fun, na_action)
-}
-
 get_unique_values <- function(x, na_omit) {
     .Call(`_comat_get_unique_values`, x, na_omit)
 }

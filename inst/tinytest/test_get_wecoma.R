@@ -4,13 +4,18 @@ data(w, package = "comat")
 data(x_na, package = "comat")
 data(w_na, package = "comat")
 
-r1 = get_wecoma(x, w, fun = "mean", na_action = "replace")
-r2 = get_wecoma(x, w, fun = "geometric_mean", na_action = "replace")
-r3 = get_wecoma(x, w, fun = "focal", na_action = "replace")
-r4 = get_wecoma(x, w_na, fun = "mean", na_action = "omit")
-r5 = get_wecoma(x, w_na, fun = "mean", na_action = "replace")
-r6 = get_wecoma(x_na, w_na, fun = "mean", na_action = "omit")
-r7 = get_wecoma(x_na, w_na, fun = "mean", na_action = "keep")
+x = as.matrix(x)
+w = as.matrix(w)
+x_na = as.matrix(x_na)
+w_na = as.matrix(w_na)
+
+r1 = comat:::rcpp_get_wecoma(x, w, fun = "mean", na_action = "replace", directions = matrix(4))
+r2 = comat:::rcpp_get_wecoma(x, w, fun = "geometric_mean", na_action = "replace", directions = matrix(4))
+r3 = comat:::rcpp_get_wecoma(x, w, fun = "focal", na_action = "replace", directions = matrix(4))
+r4 = comat:::rcpp_get_wecoma(x, w_na, fun = "mean", na_action = "omit", directions = matrix(4))
+r5 = comat:::rcpp_get_wecoma(x, w_na, fun = "mean", na_action = "replace", directions = matrix(4))
+r6 = comat:::rcpp_get_wecoma(x_na, w_na, fun = "mean", na_action = "omit", directions = matrix(4))
+r7 = comat:::rcpp_get_wecoma(x_na, w_na, fun = "mean", na_action = "keep", directions = matrix(4))
 
 t1 = structure(c(12, 5, 13.5, 5, 12, 14.5, 13.5, 14.5, 49),
                .Dim = c(3L, 3L),
@@ -39,12 +44,12 @@ expect_equivalent(r5, t5)
 expect_equivalent(r6, t6)
 expect_equivalent(r7, t7)
 
-expect_error(get_wecoma(x_na, w_na, fun = "median"))
+expect_error(comat:::rcpp_get_wecoma(x_na, w_na, fun = "median"))
 
-r8 = get_wecove(r1)
+r8 = comat:::rcpp_get_wecove(r1, ordered = TRUE)
 t8 = c(12, 5, 13.5, 5, 12, 14.5, 13.5, 14.5, 49)
 expect_equivalent(r8, t8)
 
-r9 = get_wecove(r1, ordered = FALSE)
+r9 = comat:::rcpp_get_vec(r1, ordered = FALSE)
 t9 = c(6, 5, 6, 13.5, 14.5, 24.5)
 expect_equivalent(r9, t9)

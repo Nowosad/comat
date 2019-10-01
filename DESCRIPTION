@@ -31,13 +31,12 @@ LinkingTo:
     Rcpp, 
     RcppArmadillo
 Imports: 
-    Rcpp,
-    raster,
-    tibble
+    Rcpp
 Suggests: 
     tinytest,
     covr,
     knitr,
+    raster,
     rmarkdown
 SystemRequirements: C++11
 URL: https://nowosad.github.io/comat/

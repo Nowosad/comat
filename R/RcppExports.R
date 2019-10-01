@@ -44,6 +44,10 @@ rcpp_get_entropy <- function(x, base = "log2") {
     .Call(`_comat_rcpp_get_entropy`, x, base)
 }
 
+get_normalized <- function(x, normalization) {
+    .Call(`_comat_get_normalized`, x, normalization)
+}
+
 get_unique_values <- function(x, na_omit) {
     .Call(`_comat_get_unique_values`, x, na_omit)
 }
@@ -72,8 +76,8 @@ rcpp_get_incoma_internal <- function(x, directions, classes) {
     .Call(`_comat_rcpp_get_incoma_internal`, x, directions, classes)
 }
 
-rcpp_get_vec <- function(x, ordered) {
-    .Call(`_comat_rcpp_get_vec`, x, ordered)
+rcpp_get_vec <- function(x, ordered, normalization) {
+    .Call(`_comat_rcpp_get_vec`, x, ordered, normalization)
 }
 
 rcpp_get_wecove <- function(x, ordered) {

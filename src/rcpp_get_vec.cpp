@@ -3,7 +3,8 @@
 
 // [[Rcpp::export]]
 NumericVector rcpp_get_vec(NumericMatrix x,
-                            bool ordered) {
+                           bool ordered,
+                           std::string normalization) {
     NumericVector result;
     // calculate a coocurrence matrix
     if (ordered){
@@ -26,6 +27,8 @@ NumericVector rcpp_get_vec(NumericMatrix x,
         // return a coocurrence vector
         result = as<NumericVector>(wrap(hist / 2));
     }
+    // normalize the output vector
+    result = get_normalized(result, normalization);
     // remove a dim attribute
     result.attr("dim") = R_NilValue;
     //result.attr("names")

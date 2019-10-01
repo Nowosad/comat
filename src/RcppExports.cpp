@@ -79,6 +79,18 @@ RcppExport SEXP _comat_rcpp_get_entropy(SEXP xSEXP, SEXP baseSEXP) {
     UNPROTECT(1);
     return rcpp_result_gen;
 }
+// get_normalized
+NumericVector get_normalized(NumericVector& x, std::string normalization);
+RcppExport SEXP _comat_get_normalized(SEXP xSEXP, SEXP normalizationSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type normalization(normalizationSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_normalized(x, normalization));
+    return rcpp_result_gen;
+END_RCPP
+}
 // get_unique_values
 std::vector<int> get_unique_values(const Rcpp::IntegerVector& x, bool na_omit);
 static SEXP _comat_get_unique_values_try(SEXP xSEXP, SEXP na_omitSEXP) {
@@ -331,21 +343,22 @@ RcppExport SEXP _comat_rcpp_get_incoma_internal(SEXP xSEXP, SEXP directionsSEXP,
     return rcpp_result_gen;
 }
 // rcpp_get_vec
-NumericVector rcpp_get_vec(NumericMatrix x, bool ordered);
-static SEXP _comat_rcpp_get_vec_try(SEXP xSEXP, SEXP orderedSEXP) {
+NumericVector rcpp_get_vec(NumericMatrix x, bool ordered, std::string normalization);
+static SEXP _comat_rcpp_get_vec_try(SEXP xSEXP, SEXP orderedSEXP, SEXP normalizationSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
     Rcpp::traits::input_parameter< bool >::type ordered(orderedSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_get_vec(x, ordered));
+    Rcpp::traits::input_parameter< std::string >::type normalization(normalizationSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_vec(x, ordered, normalization));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _comat_rcpp_get_vec(SEXP xSEXP, SEXP orderedSEXP) {
+RcppExport SEXP _comat_rcpp_get_vec(SEXP xSEXP, SEXP orderedSEXP, SEXP normalizationSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_comat_rcpp_get_vec_try(xSEXP, orderedSEXP));
+        rcpp_result_gen = PROTECT(_comat_rcpp_get_vec_try(xSEXP, orderedSEXP, normalizationSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -502,7 +515,7 @@ static int _comat_RcppExport_validate(const char* sig) {
         signatures.insert("IntegerMatrix(*rcpp_get_coma_internal)(const IntegerMatrix,const arma::imat,std::vector<int>)");
         signatures.insert("IntegerMatrix(*rcpp_get_incoma)(const List,const arma::imat)");
         signatures.insert("IntegerMatrix(*rcpp_get_incoma_internal)(const List,const arma::imat,List)");
-        signatures.insert("NumericVector(*rcpp_get_vec)(NumericMatrix,bool)");
+        signatures.insert("NumericVector(*rcpp_get_vec)(NumericMatrix,bool,std::string)");
         signatures.insert("NumericVector(*rcpp_get_wecove)(NumericMatrix,bool)");
         signatures.insert("NumericMatrix(*rcpp_get_wecoma)(const IntegerMatrix,const NumericMatrix,const arma::imat,const std::string,const std::string)");
         signatures.insert("NumericMatrix(*rcpp_get_wecoma_internal)(const IntegerMatrix,const NumericMatrix,const arma::imat,std::vector<int>,const std::string,const std::string)");
@@ -533,6 +546,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_comat_rcpp_cell_from_xy", (DL_FUNC) &_comat_rcpp_cell_from_xy, 2},
     {"_comat_create_neighborhood", (DL_FUNC) &_comat_create_neighborhood, 1},
     {"_comat_rcpp_get_entropy", (DL_FUNC) &_comat_rcpp_get_entropy, 2},
+    {"_comat_get_normalized", (DL_FUNC) &_comat_get_normalized, 2},
     {"_comat_get_unique_values", (DL_FUNC) &_comat_get_unique_values, 2},
     {"_comat_rcpp_get_cocoma", (DL_FUNC) &_comat_rcpp_get_cocoma, 3},
     {"_comat_rcpp_get_cocoma_internal", (DL_FUNC) &_comat_rcpp_get_cocoma_internal, 5},
@@ -540,7 +554,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_comat_rcpp_get_coma_internal", (DL_FUNC) &_comat_rcpp_get_coma_internal, 3},
     {"_comat_rcpp_get_incoma", (DL_FUNC) &_comat_rcpp_get_incoma, 2},
     {"_comat_rcpp_get_incoma_internal", (DL_FUNC) &_comat_rcpp_get_incoma_internal, 3},
-    {"_comat_rcpp_get_vec", (DL_FUNC) &_comat_rcpp_get_vec, 2},
+    {"_comat_rcpp_get_vec", (DL_FUNC) &_comat_rcpp_get_vec, 3},
     {"_comat_rcpp_get_wecove", (DL_FUNC) &_comat_rcpp_get_wecove, 2},
     {"_comat_rcpp_get_wecoma", (DL_FUNC) &_comat_rcpp_get_wecoma, 5},
     {"_comat_rcpp_get_wecoma_internal", (DL_FUNC) &_comat_rcpp_get_wecoma_internal, 6},

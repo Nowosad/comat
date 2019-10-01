@@ -50,6 +50,6 @@ r8 = comat:::rcpp_get_wecove(r1, ordered = TRUE)
 t8 = c(12, 5, 13.5, 5, 12, 14.5, 13.5, 14.5, 49)
 expect_equivalent(r8, t8)
 
-r9 = comat:::rcpp_get_vec(r1, ordered = FALSE)
+r9 = comat:::rcpp_get_vec(r1, ordered = FALSE, normalization = "none")
 t9 = c(6, 5, 6, 13.5, 14.5, 24.5)
 expect_equivalent(r9, t9)

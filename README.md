@@ -30,8 +30,8 @@ You can install the development version from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("Nowosad/comat")
+# install.packages("remotes")
+remotes::install_github("Nowosad/comat")
 ```
 
 ## Example
@@ -54,11 +54,14 @@ plot(w, main = "Weights")
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
-The `get_wecoma()` function can be next used to create a weighted
-co-occurrence matrix.
+The `comat:::rcpp_get_wecoma()` function can be next used to create a
+weighted co-occurrence matrix.
 
 ``` r
-get_wecoma(x, w)
+comat:::rcpp_get_wecoma(as.matrix(x), as.matrix(w), 
+                        directions = matrix(4),
+                        fun = "mean",
+                        na_action = "replace")
 #>      1    2    3
 #> 1 12.0  5.0 13.5
 #> 2  5.0 12.0 14.5
@@ -69,7 +72,10 @@ This function allows for some parametrization using additional
 arguments, e.g.:
 
 ``` r
-get_wecoma(x, w, fun = "focal", na_action = "keep")
+comat:::rcpp_get_wecoma(as.matrix(x), as.matrix(w), 
+                        directions = matrix(4),
+                        fun = "focal",
+                        na_action = "keep")
 #>    1  2  3
 #> 1 12  6 10
 #> 2  4 12 16

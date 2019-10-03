@@ -235,17 +235,17 @@ namespace comat {
         return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
-    inline NumericVector rcpp_get_wecove(NumericMatrix x, bool ordered) {
-        typedef SEXP(*Ptr_rcpp_get_wecove)(SEXP,SEXP);
+    inline NumericVector rcpp_get_wecove(NumericMatrix x, std::string type, std::string normalization) {
+        typedef SEXP(*Ptr_rcpp_get_wecove)(SEXP,SEXP,SEXP);
         static Ptr_rcpp_get_wecove p_rcpp_get_wecove = NULL;
         if (p_rcpp_get_wecove == NULL) {
-            validateSignature("NumericVector(*rcpp_get_wecove)(NumericMatrix,bool)");
+            validateSignature("NumericVector(*rcpp_get_wecove)(NumericMatrix,std::string,std::string)");
             p_rcpp_get_wecove = (Ptr_rcpp_get_wecove)R_GetCCallable("comat", "_comat_rcpp_get_wecove");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_rcpp_get_wecove(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(ordered)));
+            rcpp_result_gen = p_rcpp_get_wecove(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(type)), Shield<SEXP>(Rcpp::wrap(normalization)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -256,17 +256,17 @@ namespace comat {
         return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
-    inline NumericVector rcpp_get_cove(IntegerMatrix x, bool ordered) {
-        typedef SEXP(*Ptr_rcpp_get_cove)(SEXP,SEXP);
+    inline NumericVector rcpp_get_cove(IntegerMatrix x, std::string type, std::string normalization) {
+        typedef SEXP(*Ptr_rcpp_get_cove)(SEXP,SEXP,SEXP);
         static Ptr_rcpp_get_cove p_rcpp_get_cove = NULL;
         if (p_rcpp_get_cove == NULL) {
-            validateSignature("NumericVector(*rcpp_get_cove)(IntegerMatrix,bool)");
+            validateSignature("NumericVector(*rcpp_get_cove)(IntegerMatrix,std::string,std::string)");
             p_rcpp_get_cove = (Ptr_rcpp_get_cove)R_GetCCallable("comat", "_comat_rcpp_get_cove");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_rcpp_get_cove(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(ordered)));
+            rcpp_result_gen = p_rcpp_get_cove(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(type)), Shield<SEXP>(Rcpp::wrap(normalization)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -277,17 +277,17 @@ namespace comat {
         return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
-    inline NumericVector rcpp_get_cocove(IntegerMatrix x, bool ordered) {
-        typedef SEXP(*Ptr_rcpp_get_cocove)(SEXP,SEXP);
+    inline NumericVector rcpp_get_cocove(IntegerMatrix x, std::string type, std::string normalization) {
+        typedef SEXP(*Ptr_rcpp_get_cocove)(SEXP,SEXP,SEXP);
         static Ptr_rcpp_get_cocove p_rcpp_get_cocove = NULL;
         if (p_rcpp_get_cocove == NULL) {
-            validateSignature("NumericVector(*rcpp_get_cocove)(IntegerMatrix,bool)");
+            validateSignature("NumericVector(*rcpp_get_cocove)(IntegerMatrix,std::string,std::string)");
             p_rcpp_get_cocove = (Ptr_rcpp_get_cocove)R_GetCCallable("comat", "_comat_rcpp_get_cocove");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_rcpp_get_cocove(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(ordered)));
+            rcpp_result_gen = p_rcpp_get_cocove(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(type)), Shield<SEXP>(Rcpp::wrap(normalization)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();

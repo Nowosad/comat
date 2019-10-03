@@ -413,21 +413,22 @@ RcppExport SEXP _comat_rcpp_get_vec(SEXP xSEXP, SEXP orderedSEXP, SEXP normaliza
     return rcpp_result_gen;
 }
 // rcpp_get_wecove
-NumericVector rcpp_get_wecove(NumericMatrix x, bool ordered);
-static SEXP _comat_rcpp_get_wecove_try(SEXP xSEXP, SEXP orderedSEXP) {
+NumericVector rcpp_get_wecove(NumericMatrix x, std::string type, std::string normalization);
+static SEXP _comat_rcpp_get_wecove_try(SEXP xSEXP, SEXP typeSEXP, SEXP normalizationSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< bool >::type ordered(orderedSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_get_wecove(x, ordered));
+    Rcpp::traits::input_parameter< std::string >::type type(typeSEXP);
+    Rcpp::traits::input_parameter< std::string >::type normalization(normalizationSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_wecove(x, type, normalization));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _comat_rcpp_get_wecove(SEXP xSEXP, SEXP orderedSEXP) {
+RcppExport SEXP _comat_rcpp_get_wecove(SEXP xSEXP, SEXP typeSEXP, SEXP normalizationSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_comat_rcpp_get_wecove_try(xSEXP, orderedSEXP));
+        rcpp_result_gen = PROTECT(_comat_rcpp_get_wecove_try(xSEXP, typeSEXP, normalizationSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -448,21 +449,22 @@ RcppExport SEXP _comat_rcpp_get_wecove(SEXP xSEXP, SEXP orderedSEXP) {
     return rcpp_result_gen;
 }
 // rcpp_get_cove
-NumericVector rcpp_get_cove(IntegerMatrix x, bool ordered);
-static SEXP _comat_rcpp_get_cove_try(SEXP xSEXP, SEXP orderedSEXP) {
+NumericVector rcpp_get_cove(IntegerMatrix x, std::string type, std::string normalization);
+static SEXP _comat_rcpp_get_cove_try(SEXP xSEXP, SEXP typeSEXP, SEXP normalizationSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< IntegerMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< bool >::type ordered(orderedSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_get_cove(x, ordered));
+    Rcpp::traits::input_parameter< std::string >::type type(typeSEXP);
+    Rcpp::traits::input_parameter< std::string >::type normalization(normalizationSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_cove(x, type, normalization));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _comat_rcpp_get_cove(SEXP xSEXP, SEXP orderedSEXP) {
+RcppExport SEXP _comat_rcpp_get_cove(SEXP xSEXP, SEXP typeSEXP, SEXP normalizationSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_comat_rcpp_get_cove_try(xSEXP, orderedSEXP));
+        rcpp_result_gen = PROTECT(_comat_rcpp_get_cove_try(xSEXP, typeSEXP, normalizationSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -483,21 +485,22 @@ RcppExport SEXP _comat_rcpp_get_cove(SEXP xSEXP, SEXP orderedSEXP) {
     return rcpp_result_gen;
 }
 // rcpp_get_cocove
-NumericVector rcpp_get_cocove(IntegerMatrix x, bool ordered);
-static SEXP _comat_rcpp_get_cocove_try(SEXP xSEXP, SEXP orderedSEXP) {
+NumericVector rcpp_get_cocove(IntegerMatrix x, std::string type, std::string normalization);
+static SEXP _comat_rcpp_get_cocove_try(SEXP xSEXP, SEXP typeSEXP, SEXP normalizationSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< IntegerMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< bool >::type ordered(orderedSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_get_cocove(x, ordered));
+    Rcpp::traits::input_parameter< std::string >::type type(typeSEXP);
+    Rcpp::traits::input_parameter< std::string >::type normalization(normalizationSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_cocove(x, type, normalization));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _comat_rcpp_get_cocove(SEXP xSEXP, SEXP orderedSEXP) {
+RcppExport SEXP _comat_rcpp_get_cocove(SEXP xSEXP, SEXP typeSEXP, SEXP normalizationSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_comat_rcpp_get_cocove_try(xSEXP, orderedSEXP));
+        rcpp_result_gen = PROTECT(_comat_rcpp_get_cocove_try(xSEXP, typeSEXP, normalizationSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -691,9 +694,9 @@ static int _comat_RcppExport_validate(const char* sig) {
         signatures.insert("List(*rcpp_get_incoma_list)(const List,const arma::imat,List)");
         signatures.insert("IntegerMatrix(*rcpp_get_incoma_matrix)(const List)");
         signatures.insert("NumericVector(*rcpp_get_vec)(NumericMatrix,bool,std::string)");
-        signatures.insert("NumericVector(*rcpp_get_wecove)(NumericMatrix,bool)");
-        signatures.insert("NumericVector(*rcpp_get_cove)(IntegerMatrix,bool)");
-        signatures.insert("NumericVector(*rcpp_get_cocove)(IntegerMatrix,bool)");
+        signatures.insert("NumericVector(*rcpp_get_wecove)(NumericMatrix,std::string,std::string)");
+        signatures.insert("NumericVector(*rcpp_get_cove)(IntegerMatrix,std::string,std::string)");
+        signatures.insert("NumericVector(*rcpp_get_cocove)(IntegerMatrix,std::string,std::string)");
         signatures.insert("IntegerVector(*is_cross_mat)(int)");
         signatures.insert("NumericVector(*rcpp_get_incove)(List,std::string,std::string)");
         signatures.insert("NumericMatrix(*rcpp_get_wecoma)(const IntegerMatrix,const NumericMatrix,const arma::imat,const std::string,const std::string)");
@@ -740,9 +743,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_comat_rcpp_get_incoma_list", (DL_FUNC) &_comat_rcpp_get_incoma_list, 3},
     {"_comat_rcpp_get_incoma_matrix", (DL_FUNC) &_comat_rcpp_get_incoma_matrix, 1},
     {"_comat_rcpp_get_vec", (DL_FUNC) &_comat_rcpp_get_vec, 3},
-    {"_comat_rcpp_get_wecove", (DL_FUNC) &_comat_rcpp_get_wecove, 2},
-    {"_comat_rcpp_get_cove", (DL_FUNC) &_comat_rcpp_get_cove, 2},
-    {"_comat_rcpp_get_cocove", (DL_FUNC) &_comat_rcpp_get_cocove, 2},
+    {"_comat_rcpp_get_wecove", (DL_FUNC) &_comat_rcpp_get_wecove, 3},
+    {"_comat_rcpp_get_cove", (DL_FUNC) &_comat_rcpp_get_cove, 3},
+    {"_comat_rcpp_get_cocove", (DL_FUNC) &_comat_rcpp_get_cocove, 3},
     {"_comat_is_cross_mat", (DL_FUNC) &_comat_is_cross_mat, 1},
     {"_comat_rcpp_get_incove", (DL_FUNC) &_comat_rcpp_get_incove, 3},
     {"_comat_rcpp_get_wecoma", (DL_FUNC) &_comat_rcpp_get_wecoma, 5},

@@ -1,5 +1,4 @@
 #include "rcpp_get_vec.h"
-#include "get_unique_values.h"
 // [[Rcpp::interfaces(r, cpp)]]
 // [[Rcpp::plugins(cpp11)]]
 
@@ -39,23 +38,41 @@ NumericVector rcpp_get_vec(NumericMatrix x,
 
 // [[Rcpp::export]]
 NumericVector rcpp_get_wecove(NumericMatrix x,
-                           bool ordered) {
-
-    return rcpp_get_vec(x, ordered);
+                              std::string type,
+                           std::string normalization) {
+    bool ordered;
+    if (type == "ordered"){
+        ordered = true;
+    } else if (type == "unordered"){
+        ordered = false;
+    }
+    return rcpp_get_vec(x, ordered, normalization);
 }
 
 // [[Rcpp::export]]
 NumericVector rcpp_get_cove(IntegerMatrix x,
-                            bool ordered) {
-
-    return rcpp_get_vec(wrap(x), ordered);
+                            std::string type,
+                            std::string normalization) {
+    bool ordered;
+    if (type == "ordered"){
+        ordered = true;
+    } else if (type == "unordered"){
+        ordered = false;
+    }
+    return rcpp_get_vec(wrap(x), ordered, normalization);
 }
 
 // [[Rcpp::export]]
 NumericVector rcpp_get_cocove(IntegerMatrix x,
-                              bool ordered) {
-
-    return rcpp_get_vec(wrap(x), ordered);
+                              std::string type,
+                              std::string normalization) {
+    bool ordered;
+    if (type == "ordered"){
+        ordered = true;
+    } else if (type == "unordered"){
+        ordered = false;
+    }
+    return rcpp_get_vec(wrap(x), ordered, normalization);
 }
 
 // [[Rcpp::export]]
@@ -103,7 +120,7 @@ NumericVector rcpp_get_incove(List x,
             // Update the index
             index += x_iv.size();
         }
-    } else if (type == "unordered1"){
+    } else if (type == "unordered"){
         IntegerVector cros_mat_id = is_cross_mat(sqrt(x_len));
 
         std::size_t index = 0;

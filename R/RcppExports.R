@@ -84,16 +84,16 @@ rcpp_get_vec <- function(x, ordered, normalization) {
     .Call(`_comat_rcpp_get_vec`, x, ordered, normalization)
 }
 
-rcpp_get_wecove <- function(x, ordered) {
-    .Call(`_comat_rcpp_get_wecove`, x, ordered)
+rcpp_get_wecove <- function(x, type, normalization) {
+    .Call(`_comat_rcpp_get_wecove`, x, type, normalization)
 }
 
-rcpp_get_cove <- function(x, ordered) {
-    .Call(`_comat_rcpp_get_cove`, x, ordered)
+rcpp_get_cove <- function(x, type, normalization) {
+    .Call(`_comat_rcpp_get_cove`, x, type, normalization)
 }
 
-rcpp_get_cocove <- function(x, ordered) {
-    .Call(`_comat_rcpp_get_cocove`, x, ordered)
+rcpp_get_cocove <- function(x, type, normalization) {
+    .Call(`_comat_rcpp_get_cocove`, x, type, normalization)
 }
 
 is_cross_mat <- function(n_layers) {

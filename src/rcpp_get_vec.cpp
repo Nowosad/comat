@@ -45,6 +45,20 @@ NumericVector rcpp_get_wecove(NumericMatrix x,
 }
 
 // [[Rcpp::export]]
+NumericVector rcpp_get_cove(IntegerMatrix x,
+                            bool ordered) {
+
+    return rcpp_get_vec(wrap(x), ordered);
+}
+
+// [[Rcpp::export]]
+NumericVector rcpp_get_cocove(IntegerMatrix x,
+                              bool ordered) {
+
+    return rcpp_get_vec(wrap(x), ordered);
+}
+
+// [[Rcpp::export]]
 IntegerVector is_cross_mat(int n_layers){
     IntegerVector result(pow(n_layers, 2));
     result(0) = 1;
@@ -65,7 +79,7 @@ IntegerVector is_cross_mat(int n_layers){
 
 // [[Rcpp::export]]
 NumericVector rcpp_get_incove(List x,
-                              std::string ordered,
+                              std::string type,
                               std::string normalization) {
     int x_len = x.length();
 
@@ -77,7 +91,7 @@ NumericVector rcpp_get_incove(List x,
     NumericVector result(total_length);
 
     // calculate a coocurrence matrix
-    if (ordered == "A"){
+    if (type == "ordered"){
         std::size_t index = 0;
         for (int i = 0; i < x_len; i++){
             IntegerMatrix x_i = x[i];
@@ -89,7 +103,7 @@ NumericVector rcpp_get_incove(List x,
             // Update the index
             index += x_iv.size();
         }
-    } else if (ordered == "B"){
+    } else if (type == "unordered1"){
         IntegerVector cros_mat_id = is_cross_mat(sqrt(x_len));
 
         std::size_t index = 0;
@@ -112,7 +126,7 @@ NumericVector rcpp_get_incove(List x,
 
         }
         result = result[Rcpp::Range(0, index - 1)];
-    } else if (ordered == "C"){
+    } else if (type == "unordered2"){
         IntegerVector cros_mat_id = is_cross_mat(sqrt(x_len));
 
         IntegerVector id;
@@ -161,18 +175,18 @@ l3 = raster(matrix(sample(c(8, 5, 4), size = 100, replace = TRUE), ncol = 10))
 x = stack(l1, l2)
 
 p1 = comat:::rcpp_get_incoma(lapply(as.list(x), raster::as.matrix), matrix(4))
-rcpp_get_vec(as.matrix(p1), ordered = TRUE, normalization = "none")
-rcpp_get_vec(as.matrix(p1), ordered = FALSE, normalization = "none")
+# rcpp_get_vec(as.matrix(p1), ordered = TRUE, normalization = "none")
+# rcpp_get_vec(as.matrix(p1), ordered = FALSE, normalization = "none")
 
-rcpp_get_incove(p1, ordered = "A", normalization = "none")
-rcpp_get_incove(p1, ordered = "A", normalization = "pdf")
-rcpp_get_incove(p1, ordered = "B", normalization = "none")
-rcpp_get_incove(p1, ordered = "B", normalization = "pdf")
-rcpp_get_incove(p1, ordered = "C", normalization = "none")
-rcpp_get_incove(p1, ordered = "C", normalization = "pdf")
+rcpp_get_incove(p1, type = "ordered", normalization = "none")
+rcpp_get_incove(p1, type = "ordered", normalization = "pdf")
+rcpp_get_incove(p1, type = "unordered1", normalization = "none")
+rcpp_get_incove(p1, type = "unordered1", normalization = "pdf")
+rcpp_get_incove(p1, type = "unordered2", normalization = "none")
+rcpp_get_incove(p1, type = "unordered2", normalization = "pdf")
 
 is_cross_mat(5)
 
-r1 = comat:::rcpp_get_incoma(lapply(as.list(x), raster::as.matrix), matrix(4))
-rcpp_get_incove(r1, ordered = TRUE, normalization = "none")
+# r1 = comat:::rcpp_get_incoma(lapply(as.list(x), raster::as.matrix), matrix(4))
+# rcpp_get_incove(r1, ordered = TRUE, normalization = "none")
 */

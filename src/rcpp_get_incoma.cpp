@@ -4,21 +4,23 @@
 // [[Rcpp::interfaces(r, cpp)]]
 
 // [[Rcpp::export]]
-IntegerMatrix rcpp_get_incoma(const List x,
-                                       const arma::imat directions) {
+List rcpp_get_incoma(const List x,
+                     const arma::imat directions) {
   int v1_len = x.length();
   List classes(v1_len);
   for (int i = 0; i < v1_len; i++){
     classes(i) = get_unique_values(x[i]);
   }
-  IntegerMatrix result = rcpp_get_incoma_internal(x, directions, classes);
-  return result;
+
+  List result_list = rcpp_get_incoma_list(x, directions, classes);
+  // IntegerMatrix result = rcpp_get_incoma_matrix(result_list);
+  return result_list;
 }
 
 // [[Rcpp::export]]
-IntegerMatrix rcpp_get_incoma_internal(const List x,
-                     const arma::imat directions,
-                     List classes) {
+List rcpp_get_incoma_list(const List x,
+                          const arma::imat directions,
+                          List classes) {
 
   int v1_len = x.length();
   List mat_list(v1_len * v1_len);
@@ -38,12 +40,20 @@ IntegerMatrix rcpp_get_incoma_internal(const List x,
     }
   }
 
+  return mat_list;
+}
+
+// [[Rcpp::export]]
+IntegerMatrix rcpp_get_incoma_matrix(const List x){
+
   int mat_len = 0;
+  int v1_len = sqrt(x.length());
   CharacterVector classes_xy;
   for (int k = 0; k < v1_len; k++){
-    IntegerMatrix mat_list_k = mat_list[k];
-    mat_len = mat_len + mat_list_k.ncol();
-    CharacterVector col_names_k = colnames(mat_list_k);
+    IntegerMatrix x_k = x[k];
+    int x_k_ncol = x_k.ncol();
+    mat_len = mat_len + x_k_ncol;
+    CharacterVector col_names_k = colnames(x_k);
     for (int kka = 0; kka < col_names_k.length(); kka++){
       classes_xy.push_back(col_names_k(kka));
     }
@@ -52,10 +62,10 @@ IntegerMatrix rcpp_get_incoma_internal(const List x,
   arma::imat result(0, mat_len);
   int o = 0;
   for (int ii = 0; ii < v1_len; ii++){
-    arma::imat x_o = as<arma::imat>(mat_list[o]);
+    arma::imat x_o = as<arma::imat>(x[o]);
     arma::imat m(x_o.n_rows, 0);
     for (int jj = 0; jj < v1_len; jj++){
-      m = arma::join_rows(m, as<arma::imat>(mat_list(o)));
+      m = arma::join_rows(m, as<arma::imat>(x(o)));
       o = o + 1;
     }
     result = arma::join_cols(result, m);
@@ -67,7 +77,6 @@ IntegerMatrix rcpp_get_incoma_internal(const List x,
   result_r.attr("dimnames") = u_names;
   return result_r;
 }
-
 
 
 /*** R

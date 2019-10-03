@@ -272,7 +272,7 @@ RcppExport SEXP _comat_rcpp_get_coma_internal(SEXP xSEXP, SEXP directionsSEXP, S
     return rcpp_result_gen;
 }
 // rcpp_get_incoma
-IntegerMatrix rcpp_get_incoma(const List x, const arma::imat directions);
+List rcpp_get_incoma(const List x, const arma::imat directions);
 static SEXP _comat_rcpp_get_incoma_try(SEXP xSEXP, SEXP directionsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -306,23 +306,57 @@ RcppExport SEXP _comat_rcpp_get_incoma(SEXP xSEXP, SEXP directionsSEXP) {
     UNPROTECT(1);
     return rcpp_result_gen;
 }
-// rcpp_get_incoma_internal
-IntegerMatrix rcpp_get_incoma_internal(const List x, const arma::imat directions, List classes);
-static SEXP _comat_rcpp_get_incoma_internal_try(SEXP xSEXP, SEXP directionsSEXP, SEXP classesSEXP) {
+// rcpp_get_incoma_list
+List rcpp_get_incoma_list(const List x, const arma::imat directions, List classes);
+static SEXP _comat_rcpp_get_incoma_list_try(SEXP xSEXP, SEXP directionsSEXP, SEXP classesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< const List >::type x(xSEXP);
     Rcpp::traits::input_parameter< const arma::imat >::type directions(directionsSEXP);
     Rcpp::traits::input_parameter< List >::type classes(classesSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_get_incoma_internal(x, directions, classes));
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_incoma_list(x, directions, classes));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _comat_rcpp_get_incoma_internal(SEXP xSEXP, SEXP directionsSEXP, SEXP classesSEXP) {
+RcppExport SEXP _comat_rcpp_get_incoma_list(SEXP xSEXP, SEXP directionsSEXP, SEXP classesSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_comat_rcpp_get_incoma_internal_try(xSEXP, directionsSEXP, classesSEXP));
+        rcpp_result_gen = PROTECT(_comat_rcpp_get_incoma_list_try(xSEXP, directionsSEXP, classesSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// rcpp_get_incoma_matrix
+IntegerMatrix rcpp_get_incoma_matrix(const List x);
+static SEXP _comat_rcpp_get_incoma_matrix_try(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const List >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_incoma_matrix(x));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _comat_rcpp_get_incoma_matrix(SEXP xSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_comat_rcpp_get_incoma_matrix_try(xSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -394,6 +428,76 @@ RcppExport SEXP _comat_rcpp_get_wecove(SEXP xSEXP, SEXP orderedSEXP) {
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
         rcpp_result_gen = PROTECT(_comat_rcpp_get_wecove_try(xSEXP, orderedSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// is_cross_mat
+IntegerVector is_cross_mat(int n_layers);
+static SEXP _comat_is_cross_mat_try(SEXP n_layersSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< int >::type n_layers(n_layersSEXP);
+    rcpp_result_gen = Rcpp::wrap(is_cross_mat(n_layers));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _comat_is_cross_mat(SEXP n_layersSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_comat_is_cross_mat_try(n_layersSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// rcpp_get_incove
+NumericVector rcpp_get_incove(List x, std::string ordered, std::string normalization);
+static SEXP _comat_rcpp_get_incove_try(SEXP xSEXP, SEXP orderedSEXP, SEXP normalizationSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< List >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type ordered(orderedSEXP);
+    Rcpp::traits::input_parameter< std::string >::type normalization(normalizationSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_incove(x, ordered, normalization));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _comat_rcpp_get_incove(SEXP xSEXP, SEXP orderedSEXP, SEXP normalizationSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_comat_rcpp_get_incove_try(xSEXP, orderedSEXP, normalizationSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -513,10 +617,13 @@ static int _comat_RcppExport_validate(const char* sig) {
         signatures.insert("IntegerMatrix(*rcpp_get_cocoma_internal)(const IntegerMatrix,const IntegerMatrix,const arma::imat,std::vector<int>,std::vector<int>)");
         signatures.insert("IntegerMatrix(*rcpp_get_coma)(const IntegerMatrix,const arma::imat)");
         signatures.insert("IntegerMatrix(*rcpp_get_coma_internal)(const IntegerMatrix,const arma::imat,std::vector<int>)");
-        signatures.insert("IntegerMatrix(*rcpp_get_incoma)(const List,const arma::imat)");
-        signatures.insert("IntegerMatrix(*rcpp_get_incoma_internal)(const List,const arma::imat,List)");
+        signatures.insert("List(*rcpp_get_incoma)(const List,const arma::imat)");
+        signatures.insert("List(*rcpp_get_incoma_list)(const List,const arma::imat,List)");
+        signatures.insert("IntegerMatrix(*rcpp_get_incoma_matrix)(const List)");
         signatures.insert("NumericVector(*rcpp_get_vec)(NumericMatrix,bool,std::string)");
         signatures.insert("NumericVector(*rcpp_get_wecove)(NumericMatrix,bool)");
+        signatures.insert("IntegerVector(*is_cross_mat)(int)");
+        signatures.insert("NumericVector(*rcpp_get_incove)(List,std::string,std::string)");
         signatures.insert("NumericMatrix(*rcpp_get_wecoma)(const IntegerMatrix,const NumericMatrix,const arma::imat,const std::string,const std::string)");
         signatures.insert("NumericMatrix(*rcpp_get_wecoma_internal)(const IntegerMatrix,const NumericMatrix,const arma::imat,std::vector<int>,const std::string,const std::string)");
     }
@@ -532,9 +639,12 @@ RcppExport SEXP _comat_RcppExport_registerCCallable() {
     R_RegisterCCallable("comat", "_comat_rcpp_get_coma", (DL_FUNC)_comat_rcpp_get_coma_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_coma_internal", (DL_FUNC)_comat_rcpp_get_coma_internal_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_incoma", (DL_FUNC)_comat_rcpp_get_incoma_try);
-    R_RegisterCCallable("comat", "_comat_rcpp_get_incoma_internal", (DL_FUNC)_comat_rcpp_get_incoma_internal_try);
+    R_RegisterCCallable("comat", "_comat_rcpp_get_incoma_list", (DL_FUNC)_comat_rcpp_get_incoma_list_try);
+    R_RegisterCCallable("comat", "_comat_rcpp_get_incoma_matrix", (DL_FUNC)_comat_rcpp_get_incoma_matrix_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_vec", (DL_FUNC)_comat_rcpp_get_vec_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_wecove", (DL_FUNC)_comat_rcpp_get_wecove_try);
+    R_RegisterCCallable("comat", "_comat_is_cross_mat", (DL_FUNC)_comat_is_cross_mat_try);
+    R_RegisterCCallable("comat", "_comat_rcpp_get_incove", (DL_FUNC)_comat_rcpp_get_incove_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_wecoma", (DL_FUNC)_comat_rcpp_get_wecoma_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_wecoma_internal", (DL_FUNC)_comat_rcpp_get_wecoma_internal_try);
     R_RegisterCCallable("comat", "_comat_RcppExport_validate", (DL_FUNC)_comat_RcppExport_validate);
@@ -553,9 +663,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"_comat_rcpp_get_coma", (DL_FUNC) &_comat_rcpp_get_coma, 2},
     {"_comat_rcpp_get_coma_internal", (DL_FUNC) &_comat_rcpp_get_coma_internal, 3},
     {"_comat_rcpp_get_incoma", (DL_FUNC) &_comat_rcpp_get_incoma, 2},
-    {"_comat_rcpp_get_incoma_internal", (DL_FUNC) &_comat_rcpp_get_incoma_internal, 3},
+    {"_comat_rcpp_get_incoma_list", (DL_FUNC) &_comat_rcpp_get_incoma_list, 3},
+    {"_comat_rcpp_get_incoma_matrix", (DL_FUNC) &_comat_rcpp_get_incoma_matrix, 1},
     {"_comat_rcpp_get_vec", (DL_FUNC) &_comat_rcpp_get_vec, 3},
     {"_comat_rcpp_get_wecove", (DL_FUNC) &_comat_rcpp_get_wecove, 2},
+    {"_comat_is_cross_mat", (DL_FUNC) &_comat_is_cross_mat, 1},
+    {"_comat_rcpp_get_incove", (DL_FUNC) &_comat_rcpp_get_incove, 3},
     {"_comat_rcpp_get_wecoma", (DL_FUNC) &_comat_rcpp_get_wecoma, 5},
     {"_comat_rcpp_get_wecoma_internal", (DL_FUNC) &_comat_rcpp_get_wecoma_internal, 6},
     {"_comat_triangular_index", (DL_FUNC) &_comat_triangular_index, 2},

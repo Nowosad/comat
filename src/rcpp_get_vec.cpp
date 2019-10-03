@@ -121,13 +121,9 @@ NumericVector rcpp_get_incove(List x,
                 id.push_back(((i + 1) * (j + 1)) - 1);
             }
         }
-        Rcout << "The value of id : " << id << "\n";
-        // std::vector<int> id2 = get_unique_values(id);
-        // IntegerVector id3 = wrap(id2);
-        // Rcout << "The value of id2 : " << id2 << "\n";
+        // Rcout << "The value of id : " << id << "\n";
         id = sort_unique(id);
-        Rcout << "The value of id : " << id << "\n";
-
+        // Rcout << "The value of id : " << id << "\n";
 
         x = x[id];
         cros_mat_id = cros_mat_id[id];
@@ -164,7 +160,7 @@ l3 = raster(matrix(sample(c(8, 5, 4), size = 100, replace = TRUE), ncol = 10))
 
 x = stack(l1, l2)
 
-p1 = rcpp_get_incoma(lapply(as.list(x), raster::as.matrix), matrix(4))
+p1 = comat:::rcpp_get_incoma(lapply(as.list(x), raster::as.matrix), matrix(4))
 rcpp_get_vec(as.matrix(p1), ordered = TRUE, normalization = "none")
 rcpp_get_vec(as.matrix(p1), ordered = FALSE, normalization = "none")
 

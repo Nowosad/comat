@@ -72,8 +72,12 @@ rcpp_get_incoma <- function(x, directions) {
     .Call(`_comat_rcpp_get_incoma`, x, directions)
 }
 
-rcpp_get_incoma_internal <- function(x, directions, classes) {
-    .Call(`_comat_rcpp_get_incoma_internal`, x, directions, classes)
+rcpp_get_incoma_list <- function(x, directions, classes) {
+    .Call(`_comat_rcpp_get_incoma_list`, x, directions, classes)
+}
+
+rcpp_get_incoma_matrix <- function(x) {
+    .Call(`_comat_rcpp_get_incoma_matrix`, x)
 }
 
 rcpp_get_vec <- function(x, ordered, normalization) {
@@ -82,6 +86,14 @@ rcpp_get_vec <- function(x, ordered, normalization) {
 
 rcpp_get_wecove <- function(x, ordered) {
     .Call(`_comat_rcpp_get_wecove`, x, ordered)
+}
+
+is_cross_mat <- function(n_layers) {
+    .Call(`_comat_is_cross_mat`, n_layers)
+}
+
+rcpp_get_incove <- function(x, ordered, normalization) {
+    .Call(`_comat_rcpp_get_incove`, x, ordered, normalization)
 }
 
 rcpp_get_wecoma <- function(x, w, directions, fun, na_action) {

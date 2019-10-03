@@ -10,3 +10,7 @@ int triangular_index(int r, int c) {
     return (c - 1) * c / 2 + r - 1;
   }
 }
+
+/***R
+triangular_index(2, 2)
+*/

@@ -7,11 +7,13 @@
 using namespace Rcpp;
 //[[Rcpp::interfaces(r, cpp)]]
 
-Rcpp::IntegerMatrix rcpp_get_incoma(const Rcpp::List x,
+Rcpp::List rcpp_get_incoma(const Rcpp::List x,
                                     const arma::imat directions) ;
 
-Rcpp::IntegerMatrix rcpp_get_incoma_internal(const Rcpp::List x,
-                                    const arma::imat directions,
-                                    Rcpp::List classes) ;
+Rcpp::List rcpp_get_incoma_list(const Rcpp::List x,
+                                const arma::imat directions,
+                                Rcpp::List classes) ;
+
+Rcpp::IntegerMatrix rcpp_get_incoma_matrix(const Rcpp::List x) ;
 
 #endif // RCPP_GET_INCOMA_H

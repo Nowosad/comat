@@ -40,12 +40,7 @@ NumericVector rcpp_get_vec(NumericMatrix x,
 NumericVector rcpp_get_wecove(NumericMatrix x,
                               bool ordered,
                               std::string normalization) {
-    // bool ordered;
-    // if (type == "ordered"){
-    //     ordered = true;
-    // } else if (type == "unordered"){
-    //     ordered = false;
-    // }
+
     return rcpp_get_vec(x, ordered, normalization);
 }
 
@@ -53,12 +48,7 @@ NumericVector rcpp_get_wecove(NumericMatrix x,
 NumericVector rcpp_get_cove(IntegerMatrix x,
                             bool ordered,
                             std::string normalization) {
-    // bool ordered;
-    // if (type == "ordered"){
-    //     ordered = true;
-    // } else if (type == "unordered"){
-    //     ordered = false;
-    // }
+
     return rcpp_get_vec(wrap(x), ordered, normalization);
 }
 
@@ -66,12 +56,7 @@ NumericVector rcpp_get_cove(IntegerMatrix x,
 NumericVector rcpp_get_cocove(IntegerMatrix x,
                               bool ordered,
                               std::string normalization) {
-    // bool ordered;
-    // if (type == "ordered"){
-    //     ordered = true;
-    // } else if (type == "unordered"){
-    //     ordered = false;
-    // }
+
     return rcpp_get_vec(wrap(x), ordered, normalization);
 }
 
@@ -93,6 +78,7 @@ IntegerVector is_cross_mat(int n_layers){
     }
     return result;
 }
+
 
 // [[Rcpp::export]]
 NumericVector rcpp_get_incove(List x,

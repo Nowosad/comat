@@ -148,10 +148,10 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>comat</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>raster</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>x</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"comat"</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>w</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"comat"</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/raster/man/plot.html'>plot</a></span>(<span class='no'>x</span>)</div><div class='img'><img src='get_wecoma-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/raster/man/plot.html'>plot</a></span>(<span class='no'>w</span>)</div><div class='img'><img src='get_wecoma-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>wom</span> <span class='kw'>=</span> <span class='fu'>get_wecoma</span>(<span class='fu'><a href='https://rdrr.io/pkg/raster/man/as.matrix.html'>as.matrix</a></span>(<span class='no'>x</span>), <span class='fu'><a href='https://rdrr.io/pkg/raster/man/as.matrix.html'>as.matrix</a></span>(<span class='no'>w</span>))
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>raster_x</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"comat"</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>raster_w</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"comat"</span>)
+
+<span class='no'>wom</span> <span class='kw'>=</span> <span class='fu'>get_wecoma</span>(<span class='no'>raster_x</span>, <span class='no'>raster_w</span>)
 <span class='no'>wom</span></div><div class='output co'>#&gt;      1    2    3
 #&gt; 1 12.0  5.0 13.5
 #&gt; 2  5.0 12.0 14.5

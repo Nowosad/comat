@@ -114,7 +114,8 @@ an integrated co-occurrence vector (wecove)" />
 an integrated co-occurrence vector (wecove)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_incove</span>(<span class='no'>x</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"ordered"</span>, <span class='kw'>normalization</span> <span class='kw'>=</span> <span class='st'>"none"</span>)</pre>
+    <pre class="usage"><span class='fu'>get_incove</span>(<span class='no'>x</span>, <span class='kw'>ordered</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>repeated</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>normalization</span> <span class='kw'>=</span> <span class='st'>"none"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -124,10 +125,16 @@ an integrated co-occurrence vector (wecove)</p>
       <td><p>A matrix - an output of the <code><a href='get_incoma.html'>get_incoma()</a></code> function</p></td>
     </tr>
     <tr>
-      <th>type</th>
+      <th>ordered</th>
       <td><p>The type of pairs considered.
-Either "ordered" or "unordered".
-The default is "ordered".</p></td>
+Either "ordered" (TRUE) or "unordered" (FALSE).
+The default is TRUE.</p></td>
+    </tr>
+    <tr>
+      <th>repeated</th>
+      <td><p>Should the repeated co-located co-occurrence matrices be used?
+Either "ordered" (TRUE) or "unordered" (FALSE).
+The default is TRUE.</p></td>
     </tr>
     <tr>
       <th>normalization</th>
@@ -203,7 +210,7 @@ The default is "none".</p></td>
 <span class='no'>incov1</span></div><div class='output co'>#&gt;  [1] 100  94  94  72  44  50  77  52  73  64 100  94  94  72  44  77  73  50  52
 #&gt; [20]  64  18  37  39  37  38  54  39  54  44  44  77  73  50  52  64 100  94  94
 #&gt; [39]  72  44  50  77  52  73  64 100  94  94  72</div><div class='input'>
-<span class='no'>incov2</span> <span class='kw'>=</span> <span class='fu'>get_incove</span>(<span class='no'>incom</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"unordered"</span>)
+<span class='no'>incov2</span> <span class='kw'>=</span> <span class='fu'>get_incove</span>(<span class='no'>incom</span>, <span class='kw'>ordered</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='no'>incov2</span></div><div class='output co'>#&gt;  [1]  50  94  36  44  50  77  52  73  64 100  94  94  72  44  77  73  50  52  64
 #&gt; [20]   9  37  19  39  54  22  44  77  73  50  52  64 100  94  94  72  44  50  77
 #&gt; [39]  52  73  64  50  94  36</div></pre>

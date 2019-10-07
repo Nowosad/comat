@@ -157,66 +157,20 @@ The default is "none".</p></td>
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>raster_x</span>, <span class='no'>raster_w</span>, <span class='no'>raster_x</span>)
 
 <span class='no'>incom</span> <span class='kw'>=</span> <span class='fu'><a href='get_incoma.html'>get_incoma</a></span>(<span class='no'>x</span>)
-<span class='no'>incom</span></div><div class='output co'>#&gt; [[1]]
-#&gt;   1 2 3
-#&gt; 1 4 1 3
-#&gt; 2 1 2 2
-#&gt; 3 3 2 6
-#&gt; 
-#&gt; [[2]]
-#&gt;   2 4 6 8 9
-#&gt; 1 3 3 1 0 1
-#&gt; 2 0 2 1 1 1
-#&gt; 3 2 1 1 2 5
-#&gt; 
-#&gt; [[3]]
-#&gt;   1 2 3
-#&gt; 1 4 1 3
-#&gt; 2 1 2 2
-#&gt; 3 3 2 6
-#&gt; 
-#&gt; [[4]]
-#&gt;   1 2 3
-#&gt; 2 3 0 2
-#&gt; 4 3 2 1
-#&gt; 6 1 1 1
-#&gt; 8 0 1 2
-#&gt; 9 1 1 5
-#&gt; 
-#&gt; [[5]]
-#&gt;   2 4 6 8 9
-#&gt; 2 2 1 1 0 1
-#&gt; 4 1 0 2 2 1
-#&gt; 6 1 2 0 0 0
-#&gt; 8 0 2 0 0 1
-#&gt; 9 1 1 0 1 4
-#&gt; 
-#&gt; [[6]]
-#&gt;   1 2 3
-#&gt; 2 3 0 2
-#&gt; 4 3 2 1
-#&gt; 6 1 1 1
-#&gt; 8 0 1 2
-#&gt; 9 1 1 5
-#&gt; 
-#&gt; [[7]]
-#&gt;   1 2 3
-#&gt; 1 4 1 3
-#&gt; 2 1 2 2
-#&gt; 3 3 2 6
-#&gt; 
-#&gt; [[8]]
-#&gt;   2 4 6 8 9
-#&gt; 1 3 3 1 0 1
-#&gt; 2 0 2 1 1 1
-#&gt; 3 2 1 1 2 5
-#&gt; 
-#&gt; [[9]]
-#&gt;   1 2 3
-#&gt; 1 4 1 3
-#&gt; 2 1 2 2
-#&gt; 3 3 2 6
-#&gt; </div><div class='input'>
+<span class='no'>incom</span></div><div class='output co'>#&gt;   1 2 3 2 4 6 8 9 1 2 3
+#&gt; 1 4 1 3 3 3 1 0 1 4 1 3
+#&gt; 2 1 2 2 0 2 1 1 1 1 2 2
+#&gt; 3 3 2 6 2 1 1 2 5 3 2 6
+#&gt; 2 3 0 2 2 1 1 0 1 3 0 2
+#&gt; 4 3 2 1 1 0 2 2 1 3 2 1
+#&gt; 6 1 1 1 1 2 0 0 0 1 1 1
+#&gt; 8 0 1 2 0 2 0 0 1 0 1 2
+#&gt; 9 1 1 5 1 1 0 1 4 1 1 5
+#&gt; 1 4 1 3 3 3 1 0 1 4 1 3
+#&gt; 2 1 2 2 0 2 1 1 1 1 2 2
+#&gt; 3 3 2 6 2 1 1 2 5 3 2 6
+#&gt; attr(,"no_unique")
+#&gt; [1] 3 5 3</div><div class='input'>
 <span class='no'>incov1</span> <span class='kw'>=</span> <span class='fu'>get_incove</span>(<span class='no'>incom</span>)
 <span class='no'>incov1</span></div><div class='output co'>#&gt;   [1] 4 1 3 1 2 2 3 2 6 3 0 2 3 2 1 1 1 1 0 1 2 1 1 5 4 1 3 1 2 2 3 2 6 3 3 1 0
 #&gt;  [38] 1 0 2 1 1 1 2 1 1 2 5 2 1 1 0 1 1 0 2 2 1 1 2 0 0 0 0 2 0 0 1 1 1 0 1 4 3

@@ -32,7 +32,6 @@ an integrated co-occurrence vector (wecove)
 }
 \examples{
 library(comat)
-library(raster)
 
 data(raster_x, package = "comat")
 data(raster_w, package = "comat")

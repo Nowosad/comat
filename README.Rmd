@@ -38,25 +38,24 @@ remotes::install_github("Nowosad/comat")
 ```
 ## Example
 
-This is a basic example which shows you how to create a weighted co-occurrence matrix (*wecoma*) based on two simple rasters. 
-The first one `x` represents some categories, and the second one `w` represents weights.
+This is a basic example which shows you how to create a weighted co-occurrence matrix (*wecoma*) based on two simple rasters (for simplicity presented as matrices). 
+The first one `raster_x` represents some categories, and the second one `raster_w` represents weights.
 
 ```{r}
 library(comat)
 library(raster)
-data(x, package = "comat")
-data(w, package = "comat")
-par(mfcol = c(1, 2))
-plot(x, main = "Categories")
-plot(w, main = "Weights")
+data(raster_x, package = "comat")
+data(raster_w, package = "comat")
+raster_x
+raster_w
 ```
 
 The `get_wecoma()` function can be next used to create a weighted co-occurrence matrix.
 
 ```{r}
 get_wecoma(
-  as.matrix(x),
-  as.matrix(w),
+  raster_x,
+  raster_w,
   neighbourhood = 4
 )
 ```
@@ -65,8 +64,8 @@ This function allows for some parametrization using additional arguments, e.g.:
 
 ```{r}
 get_wecoma(
-  as.matrix(x),
-  as.matrix(w),
+  raster_x,
+  raster_w,
   neighbourhood = 4,
   fun = "focal",
   na_action = "keep"

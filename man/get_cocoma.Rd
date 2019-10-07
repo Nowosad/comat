@@ -22,7 +22,6 @@ Create a co-located co-occurrence matrix (cocoma)
 }
 \examples{
 library(comat)
-library(raster)
 data(raster_x, package = "comat")
 data(raster_x_na, package = "comat")
 

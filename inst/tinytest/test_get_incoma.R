@@ -1,10 +1,8 @@
-library(raster)
 set.seed(2019-08-23)
-l1 = raster(matrix(sample(1:2, size = 100, replace = TRUE), ncol = 10))
-l2 = raster(matrix(sample(c(9, 6, 3), size = 100, replace = TRUE), ncol = 10))
-x = stack(l1, l2, l1)
+l1 = matrix(sample(1:2, size = 100, replace = TRUE), ncol = 10)
+l2 = matrix(sample(c(9, 6, 3), size = 100, replace = TRUE), ncol = 10)
 
-r1 = comat:::rcpp_get_incoma(lapply(as.list(x), raster::as.matrix), matrix(4))
+r1 = comat:::rcpp_get_incoma(list(l1, l2, l1), matrix(4))
 
 t1 = list(
   structure(

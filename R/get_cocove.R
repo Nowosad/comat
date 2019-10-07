@@ -17,7 +17,6 @@
 #'
 #' @examples
 #' library(comat)
-#' library(raster)
 #' data(raster_x, package = "comat")
 #' data(raster_x_na, package = "comat")
 #'

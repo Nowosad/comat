@@ -19,8 +19,6 @@ An integrated co-occurrence matrix (in form of a list of matrices)
 Create an integrated co-occurrence matrix (wecoma)
 }
 \examples{
-library(raster)
-
 data(raster_x, package = "comat")
 data(raster_w, package = "comat")
 x = list(raster_x, raster_w, raster_x)

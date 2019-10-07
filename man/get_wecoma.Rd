@@ -27,7 +27,6 @@ Create a weighted co-occurrence matrix (wecoma)
 }
 \examples{
 library(comat)
-library(raster)
 data(raster_x, package = "comat")
 data(raster_w, package = "comat")
 

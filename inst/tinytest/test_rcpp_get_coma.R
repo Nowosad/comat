@@ -1,4 +1,3 @@
-library(raster)
 data(raster_x, package = "comat")
 
 r1 = comat:::rcpp_get_coma(raster_x, as.matrix(4))

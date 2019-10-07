@@ -9,7 +9,6 @@
 #'
 #' @examples
 #' library(comat)
-#' library(raster)
 #' data(raster_x, package = "comat")
 #'
 #' com = get_coma(raster_x)

@@ -4,7 +4,7 @@
 \name{comat-package}
 \alias{comat}
 \alias{comat-package}
-\title{comat: Creates Co-Occurrence Matrices for Spatial Data}
+\title{comat: Creates Co-Occurrence Matrices of Spatial Data}
 \description{
 Builds co-occurrence matrices based on spatial raster data.
     It includes creation of weighted co-occurrence matrices (wecoma) and 

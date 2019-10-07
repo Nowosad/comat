@@ -8,8 +8,6 @@
 #' @export
 #'
 #' @examples
-#' library(raster)
-#'
 #' data(raster_x, package = "comat")
 #' data(raster_w, package = "comat")
 #' x = list(raster_x, raster_w, raster_x)

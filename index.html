@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">comat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -70,7 +70,7 @@
 <a href="#comat" class="anchor"></a>comat</h1></div>
 <!-- badges: start -->
 
-<p>The goal of <strong>comat</strong> is to create co-occurrence matrices based on spatial data, including a weighted co-ocurrence matrix (<em>wecoma</em>) and an integrated co-occurrence matrix (<em>incoma</em>).</p>
+<p>The goal of <strong>comat</strong> is to create co-occurrence matrices based on spatial data, including a weighted co-occurrence matrix (<em>wecoma</em>) and an integrated co-occurrence matrix (<em>incoma</em>).</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -93,24 +93,28 @@
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span>(x, <span class="dt">main =</span> <span class="st">"Categories"</span>)</a>
 <a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span>(w, <span class="dt">main =</span> <span class="st">"Weights"</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="100%"></p>
-<p>The <code>comat:::rcpp_get_wecoma()</code> function can be next used to create a weighted co-occurrence matrix.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">comat<span class="op">:::</span><span class="kw">rcpp_get_wecoma</span>(<span class="kw"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span>(x), <span class="kw"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span>(w), </a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">                        <span class="dt">directions =</span> <span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="dv">4</span>),</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">                        <span class="dt">fun =</span> <span class="st">"mean"</span>,</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">                        <span class="dt">na_action =</span> <span class="st">"replace"</span>)</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt;      1    2    3</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; 1 12.0  5.0 13.5</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; 2  5.0 12.0 14.5</span></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; 3 13.5 14.5 49.0</span></a></code></pre></div>
+<p>The <code><a href="reference/get_wecoma.html">get_wecoma()</a></code> function can be next used to create a weighted co-occurrence matrix.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="reference/get_wecoma.html">get_wecoma</a></span>(</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="kw"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span>(x),</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="kw"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span>(w),</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="dt">neighbourhood =</span> <span class="dv">4</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt;      1    2    3</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; 1 12.0  5.0 13.5</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; 2  5.0 12.0 14.5</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; 3 13.5 14.5 49.0</span></a></code></pre></div>
 <p>This function allows for some parametrization using additional arguments, e.g.:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">comat<span class="op">:::</span><span class="kw">rcpp_get_wecoma</span>(<span class="kw"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span>(x), <span class="kw"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span>(w), </a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">                        <span class="dt">directions =</span> <span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="dv">4</span>),</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">                        <span class="dt">fun =</span> <span class="st">"focal"</span>,</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">                        <span class="dt">na_action =</span> <span class="st">"keep"</span>)</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt;    1  2  3</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; 1 12  6 10</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; 2  4 12 16</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 3 17 13 49</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/get_wecoma.html">get_wecoma</a></span>(</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="kw"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span>(x),</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="kw"><a href="https://rdrr.io/pkg/raster/man/as.matrix.html">as.matrix</a></span>(w),</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">neighbourhood =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">fun =</span> <span class="st">"focal"</span>,</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">na_action =</span> <span class="st">"keep"</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt;    1  2  3</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; 1 12  6 10</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; 2  4 12 16</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; 3 17 13 49</span></a></code></pre></div>
 </div>
 <div id="contribution" class="section level2">
 <h2 class="hasAnchor">

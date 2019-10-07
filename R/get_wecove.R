@@ -4,9 +4,9 @@
 #' a weighted co-occurrence vector (wecove)
 #'
 #' @param x A matrix - an output of the [get_wecoma()] function
-#' @param type The type of pairs considered.
-#' Either "ordered" or "unordered".
-#' The default is "ordered".
+#' @param ordered The type of pairs considered.
+#' Either "ordered" (TRUE) or "unordered" (FALSE).
+#' The default is TRUE.
 #' @param normalization Should the output vector be normalized?
 #' Either "none" or "pdf".
 #' The "pdf" option normalizes a vector to sum to one.
@@ -26,6 +26,6 @@
 #'
 #' wov = get_wecove(wom)
 #' wov
-get_wecove = function(x, type = "ordered", normalization = "none"){
-  rcpp_get_wecove(x, type, normalization)
+get_wecove = function(x, ordered = TRUE, normalization = "none"){
+  rcpp_get_wecove(x, ordered, normalization)
 }

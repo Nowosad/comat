@@ -84,24 +84,24 @@ rcpp_get_vec <- function(x, ordered, normalization) {
     .Call(`_comat_rcpp_get_vec`, x, ordered, normalization)
 }
 
-rcpp_get_wecove <- function(x, type, normalization) {
-    .Call(`_comat_rcpp_get_wecove`, x, type, normalization)
+rcpp_get_wecove <- function(x, ordered, normalization) {
+    .Call(`_comat_rcpp_get_wecove`, x, ordered, normalization)
 }
 
-rcpp_get_cove <- function(x, type, normalization) {
-    .Call(`_comat_rcpp_get_cove`, x, type, normalization)
+rcpp_get_cove <- function(x, ordered, normalization) {
+    .Call(`_comat_rcpp_get_cove`, x, ordered, normalization)
 }
 
-rcpp_get_cocove <- function(x, type, normalization) {
-    .Call(`_comat_rcpp_get_cocove`, x, type, normalization)
+rcpp_get_cocove <- function(x, ordered, normalization) {
+    .Call(`_comat_rcpp_get_cocove`, x, ordered, normalization)
 }
 
 is_cross_mat <- function(n_layers) {
     .Call(`_comat_is_cross_mat`, n_layers)
 }
 
-rcpp_get_incove <- function(x, type, normalization) {
-    .Call(`_comat_rcpp_get_incove`, x, type, normalization)
+rcpp_get_incove <- function(x, ordered, repeated, normalization) {
+    .Call(`_comat_rcpp_get_incove`, x, ordered, repeated, normalization)
 }
 
 rcpp_get_wecoma <- function(x, w, directions, fun, na_action) {

@@ -4,14 +4,14 @@
 \alias{get_wecove}
 \title{Create a weighted co-occurrence vector (wecove)}
 \usage{
-get_wecove(x, type = "ordered", normalization = "none")
+get_wecove(x, ordered = TRUE, normalization = "none")
 }
 \arguments{
 \item{x}{A matrix - an output of the \code{\link[=get_wecoma]{get_wecoma()}} function}
 
-\item{type}{The type of pairs considered.
-Either "ordered" or "unordered".
-The default is "ordered".}
+\item{ordered}{The type of pairs considered.
+Either "ordered" (TRUE) or "unordered" (FALSE).
+The default is TRUE.}
 
 \item{normalization}{Should the output vector be normalized?
 Either "none" or "pdf".

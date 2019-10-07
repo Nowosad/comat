@@ -4,14 +4,19 @@
 \alias{get_incove}
 \title{Create an integrated co-occurrence vector (wecove)}
 \usage{
-get_incove(x, type = "ordered", normalization = "none")
+get_incove(x, ordered = TRUE, repeated = TRUE,
+  normalization = "none")
 }
 \arguments{
 \item{x}{A matrix - an output of the \code{\link[=get_incoma]{get_incoma()}} function}
 
-\item{type}{The type of pairs considered.
-Either "ordered" or "unordered".
-The default is "ordered".}
+\item{ordered}{The type of pairs considered.
+Either "ordered" (TRUE) or "unordered" (FALSE).
+The default is TRUE.}
+
+\item{repeated}{Should the repeated co-located co-occurrence matrices be used?
+Either "ordered" (TRUE) or "unordered" (FALSE).
+The default is TRUE.}
 
 \item{normalization}{Should the output vector be normalized?
 Either "none" or "pdf".
@@ -39,6 +44,6 @@ incom
 incov1 = get_incove(incom)
 incov1
 
-incov2 = get_incove(incom, type = "unordered")
+incov2 = get_incove(incom, ordered = FALSE)
 incov2
 }

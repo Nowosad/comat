@@ -4,14 +4,14 @@
 \alias{get_cocove}
 \title{Create a co-located co-occurrence vector (cocove)}
 \usage{
-get_cocove(x, type = "ordered", normalization = "none")
+get_cocove(x, ordered = TRUE, normalization = "none")
 }
 \arguments{
 \item{x}{A matrix - an output of the \code{\link[=get_cocoma]{get_cocoma()}} function}
 
-\item{type}{The type of pairs considered.
-Either "ordered" or "unordered".
-The default is "ordered".}
+\item{ordered}{The type of pairs considered.
+Either "ordered" (TRUE) or "unordered" (FALSE).
+The default is TRUE.}
 
 \item{normalization}{Should the output vector be normalized?
 Either "none" or "pdf".

@@ -4,14 +4,14 @@
 \alias{get_cove}
 \title{Create a co-occurrence vector (wecove)}
 \usage{
-get_cove(x, type = "ordered", normalization = "none")
+get_cove(x, ordered = TRUE, normalization = "none")
 }
 \arguments{
 \item{x}{A matrix - an output of the \code{\link[=get_coma]{get_coma()}} function}
 
-\item{type}{The type of pairs considered.
-Either "ordered" or "unordered".
-The default is "ordered".}
+\item{ordered}{The type of pairs considered.
+Either "ordered" (TRUE) or "unordered" (FALSE).
+The default is TRUE.}
 
 \item{normalization}{Should the output vector be normalized?
 Either "none" or "pdf".

@@ -4,9 +4,12 @@
 #' an integrated co-occurrence vector (wecove)
 #'
 #' @param x A matrix - an output of the [get_incoma()] function
-#' @param type The type of pairs considered.
-#' Either "ordered" or "unordered".
-#' The default is "ordered".
+#' @param ordered The type of pairs considered.
+#' Either "ordered" (TRUE) or "unordered" (FALSE).
+#' The default is TRUE.
+#' @param repeated Should the repeated co-located co-occurrence matrices be used?
+#' Either "ordered" (TRUE) or "unordered" (FALSE).
+#' The default is TRUE.
 #' @param normalization Should the output vector be normalized?
 #' Either "none" or "pdf".
 #' The "pdf" option normalizes a vector to sum to one.
@@ -29,9 +32,9 @@
 #' incov1 = get_incove(incom)
 #' incov1
 #'
-#' incov2 = get_incove(incom, type = "unordered")
+#' incov2 = get_incove(incom, ordered = FALSE)
 #' incov2
-get_incove = function(x, type = "ordered", normalization = "none"){
-  rcpp_get_incove(x, type, normalization)
+get_incove = function(x, ordered = TRUE, repeated = TRUE, normalization = "none"){
+  rcpp_get_incove(x, ordered, repeated, normalization)
 }
 

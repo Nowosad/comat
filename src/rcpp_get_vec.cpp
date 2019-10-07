@@ -38,40 +38,40 @@ NumericVector rcpp_get_vec(NumericMatrix x,
 
 // [[Rcpp::export]]
 NumericVector rcpp_get_wecove(NumericMatrix x,
-                              std::string type,
-                           std::string normalization) {
-    bool ordered;
-    if (type == "ordered"){
-        ordered = true;
-    } else if (type == "unordered"){
-        ordered = false;
-    }
+                              bool ordered,
+                              std::string normalization) {
+    // bool ordered;
+    // if (type == "ordered"){
+    //     ordered = true;
+    // } else if (type == "unordered"){
+    //     ordered = false;
+    // }
     return rcpp_get_vec(x, ordered, normalization);
 }
 
 // [[Rcpp::export]]
 NumericVector rcpp_get_cove(IntegerMatrix x,
-                            std::string type,
+                            bool ordered,
                             std::string normalization) {
-    bool ordered;
-    if (type == "ordered"){
-        ordered = true;
-    } else if (type == "unordered"){
-        ordered = false;
-    }
+    // bool ordered;
+    // if (type == "ordered"){
+    //     ordered = true;
+    // } else if (type == "unordered"){
+    //     ordered = false;
+    // }
     return rcpp_get_vec(wrap(x), ordered, normalization);
 }
 
 // [[Rcpp::export]]
 NumericVector rcpp_get_cocove(IntegerMatrix x,
-                              std::string type,
+                              bool ordered,
                               std::string normalization) {
-    bool ordered;
-    if (type == "ordered"){
-        ordered = true;
-    } else if (type == "unordered"){
-        ordered = false;
-    }
+    // bool ordered;
+    // if (type == "ordered"){
+    //     ordered = true;
+    // } else if (type == "unordered"){
+    //     ordered = false;
+    // }
     return rcpp_get_vec(wrap(x), ordered, normalization);
 }
 
@@ -96,7 +96,8 @@ IntegerVector is_cross_mat(int n_layers){
 
 // [[Rcpp::export]]
 NumericVector rcpp_get_incove(List x,
-                              std::string type,
+                              bool ordered,
+                              bool repeated,
                               std::string normalization) {
     int x_len = x.length();
 
@@ -108,72 +109,101 @@ NumericVector rcpp_get_incove(List x,
     NumericVector result(total_length);
 
     // calculate a coocurrence matrix
-    if (type == "ordered"){
-        std::size_t index = 0;
-        for (int i = 0; i < x_len; i++){
-            IntegerMatrix x_i = x[i];
-            // NumericVector x_iv = as<NumericVector>(wrap(x_i));
-            NumericMatrix x_iv1 = as<NumericMatrix>(x_i);
+    if (ordered){
+        if (repeated){
+            std::size_t index = 0;
+            for (int i = 0; i < x_len; i++){
+                IntegerMatrix x_i = x[i];
+                // NumericVector x_iv = as<NumericVector>(wrap(x_i));
+                NumericMatrix x_iv1 = as<NumericMatrix>(x_i);
 
-            NumericVector x_iv = rcpp_get_vec(x_iv1, true, normalization);
-            std::copy(x_iv.begin(), x_iv.end(), result.begin() + index);
-            // Update the index
-            index += x_iv.size();
-        }
-    } else if (type == "unordered"){
-        IntegerVector cros_mat_id = is_cross_mat(sqrt(x_len));
-
-        std::size_t index = 0;
-        for (int i = 0; i < x_len; i++){
-            IntegerMatrix x_i = x[i];
-            // NumericVector x_iv = as<NumericVector>(wrap(x_i));
-            NumericMatrix x_iv1 = as<NumericMatrix>(x_i);
-            NumericVector x_iv;
-            if(cros_mat_id(i) == 1){
-                x_iv = rcpp_get_vec(x_iv1, false, normalization);
-            } else {
-                x_iv = rcpp_get_vec(x_iv1, true, normalization);
+                NumericVector x_iv = rcpp_get_vec(x_iv1, true, normalization);
+                std::copy(x_iv.begin(), x_iv.end(), result.begin() + index);
+                // Update the index
+                index += x_iv.size();
             }
-            // Rcout << "The value of x_iv : " << x_iv << "\n";
+        } else {
+            IntegerVector cros_mat_id = is_cross_mat(sqrt(x_len));
 
-            std::copy(x_iv.begin(), x_iv.end(), result.begin() + index);
-            // Update the index
-            index += x_iv.size();
-            // Rcout << "The value of index : " << index << "\n";
-
-        }
-        result = result[Rcpp::Range(0, index - 1)];
-    } else if (type == "unordered2"){
-        IntegerVector cros_mat_id = is_cross_mat(sqrt(x_len));
-
-        IntegerVector id;
-        for (int i = 0; i < sqrt(x_len); i++){
-            for (int j = 0; j < sqrt(x_len); j++){
-                id.push_back(((i + 1) * (j + 1)) - 1);
+            IntegerVector id;
+            for (int i = 0; i < sqrt(x_len); i++){
+                for (int j = 0; j < sqrt(x_len); j++){
+                    id.push_back(((i + 1) * (j + 1)) - 1);
+                }
             }
-        }
-        // Rcout << "The value of id : " << id << "\n";
-        id = sort_unique(id);
-        // Rcout << "The value of id : " << id << "\n";
+            id = sort_unique(id);
+            x = x[id];
+            cros_mat_id = cros_mat_id[id];
+            x_len = x.length();
+            std::size_t index = 0;
 
-        x = x[id];
-        cros_mat_id = cros_mat_id[id];
-        x_len = x.length();
-        std::size_t index = 0;
-        for (int i = 0; i < x_len; i++){
-            IntegerMatrix x_i = x[i];
-            NumericMatrix x_iv1 = as<NumericMatrix>(x_i);
-            NumericVector x_iv;
-            if(cros_mat_id(i) == 1){
-                x_iv = rcpp_get_vec(x_iv1, false, normalization);
-            } else {
-                x_iv = rcpp_get_vec(x_iv1, true, normalization);
+            for (int i = 0; i < x_len; i++){
+                IntegerMatrix x_i = x[i];
+                // NumericVector x_iv = as<NumericVector>(wrap(x_i));
+                NumericMatrix x_iv1 = as<NumericMatrix>(x_i);
+
+                NumericVector x_iv = rcpp_get_vec(x_iv1, true, normalization);
+                std::copy(x_iv.begin(), x_iv.end(), result.begin() + index);
+                // Update the index
+                index += x_iv.size();
             }
-            std::copy(x_iv.begin(), x_iv.end(), result.begin() + index);
-            // Update the index
-            index += x_iv.size();
+            result = result[Rcpp::Range(0, index - 1)];
         }
-        result = result[Rcpp::Range(0, index - 1)];
+    } else {
+        if (repeated){
+            IntegerVector cros_mat_id = is_cross_mat(sqrt(x_len));
+
+            std::size_t index = 0;
+            for (int i = 0; i < x_len; i++){
+                IntegerMatrix x_i = x[i];
+                NumericMatrix x_iv1 = as<NumericMatrix>(x_i);
+                NumericVector x_iv;
+                if(cros_mat_id(i) == 1){
+                    x_iv = rcpp_get_vec(x_iv1, false, normalization);
+                } else {
+                    x_iv = rcpp_get_vec(x_iv1, true, normalization);
+                }
+                // Rcout << "The value of x_iv : " << x_iv << "\n";
+
+                std::copy(x_iv.begin(), x_iv.end(), result.begin() + index);
+                // Update the index
+                index += x_iv.size();
+                // Rcout << "The value of index : " << index << "\n";
+
+            }
+            result = result[Rcpp::Range(0, index - 1)];
+        } else {
+            IntegerVector cros_mat_id = is_cross_mat(sqrt(x_len));
+
+            IntegerVector id;
+            for (int i = 0; i < sqrt(x_len); i++){
+                for (int j = 0; j < sqrt(x_len); j++){
+                    id.push_back(((i + 1) * (j + 1)) - 1);
+                }
+            }
+            // Rcout << "The value of id : " << id << "\n";
+            id = sort_unique(id);
+            // Rcout << "The value of id : " << id << "\n";
+
+            x = x[id];
+            cros_mat_id = cros_mat_id[id];
+            x_len = x.length();
+            std::size_t index = 0;
+            for (int i = 0; i < x_len; i++){
+                IntegerMatrix x_i = x[i];
+                NumericMatrix x_iv1 = as<NumericMatrix>(x_i);
+                NumericVector x_iv;
+                if(cros_mat_id(i) == 1){
+                    x_iv = rcpp_get_vec(x_iv1, false, normalization);
+                } else {
+                    x_iv = rcpp_get_vec(x_iv1, true, normalization);
+                }
+                std::copy(x_iv.begin(), x_iv.end(), result.begin() + index);
+                // Update the index
+                index += x_iv.size();
+            }
+            result = result[Rcpp::Range(0, index - 1)];
+        }
     }
 
     // remove a dim attribute
@@ -195,10 +225,16 @@ p1 = comat:::rcpp_get_incoma(lapply(as.list(x), raster::as.matrix), matrix(4))
 # rcpp_get_vec(as.matrix(p1), ordered = TRUE, normalization = "none")
 # rcpp_get_vec(as.matrix(p1), ordered = FALSE, normalization = "none")
 
-rcpp_get_incove(p1, type = "ordered", normalization = "none")
+rcpp_get_incove(p1, ordered = TRUE, repeated = TRUE, normalization = "none")
+rcpp_get_incove(p1, ordered = TRUE, repeated = FALSE, normalization = "none")
+rcpp_get_incove(p1, ordered = FALSE, repeated = TRUE, normalization = "none")
+rcpp_get_incove(p1, ordered = FALSE, repeated = FALSE, normalization = "none")
+
+
+
 rcpp_get_incove(p1, type = "ordered", normalization = "pdf")
-rcpp_get_incove(p1, type = "unordered1", normalization = "none")
-rcpp_get_incove(p1, type = "unordered1", normalization = "pdf")
+rcpp_get_incove(p1, type = "unordered", normalization = "none")
+rcpp_get_incove(p1, type = "unordered", normalization = "pdf")
 rcpp_get_incove(p1, type = "unordered2", normalization = "none")
 rcpp_get_incove(p1, type = "unordered2", normalization = "pdf")
 

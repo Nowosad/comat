@@ -12,15 +12,16 @@ using namespace Rcpp;
 NumericVector rcpp_get_vec(NumericMatrix x, bool ordered = true,
                            std::string normalization = "none");
 
-NumericVector rcpp_get_wecove(NumericMatrix x, std::string type = "ordered",
+NumericVector rcpp_get_wecove(NumericMatrix x, bool ordered = true,
                               std::string normalization = "none");
 
-NumericVector rcpp_get_cove(IntegerMatrix x, std::string type = "ordered",
+NumericVector rcpp_get_cove(IntegerMatrix x, bool ordered = true,
                               std::string normalization = "none");
 
-NumericVector rcpp_get_cocove(IntegerMatrix x, std::string type = "ordered",
+NumericVector rcpp_get_cocove(IntegerMatrix x, bool ordered = true,
                               std::string normalization = "none");
 
-NumericVector rcpp_get_incove(List x, std::string type = "ordered",
+NumericVector rcpp_get_incove(List x, bool ordered = true,
+                              bool repeated = true,
                               std::string normalization = "none");
 #endif // GET_VEC_H

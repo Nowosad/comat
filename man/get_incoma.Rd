@@ -13,7 +13,7 @@ get_incoma(x, neighbourhood = 4)
 4 (rook's case) or 8 (queen's case). The default is 4.}
 }
 \value{
-An integrated co-occurrence matrix (in form of a list of matrices)
+An integrated co-occurrence matrix
 }
 \description{
 Create an integrated co-occurrence matrix (wecoma)
@@ -23,6 +23,5 @@ data(raster_x, package = "comat")
 data(raster_w, package = "comat")
 x = list(raster_x, raster_w, raster_x)
 
-get_incoma(x)
 
 }

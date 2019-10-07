@@ -49,9 +49,11 @@ IntegerMatrix rcpp_get_incoma_matrix(const List x){
   int mat_len = 0;
   int v1_len = sqrt(x.length());
   CharacterVector classes_xy;
+  NumericVector no_unique(v1_len);
   for (int k = 0; k < v1_len; k++){
     IntegerMatrix x_k = x[k];
     int x_k_ncol = x_k.ncol();
+    no_unique(k) = x_k_ncol;
     mat_len = mat_len + x_k_ncol;
     CharacterVector col_names_k = colnames(x_k);
     for (int kka = 0; kka < col_names_k.length(); kka++){
@@ -75,9 +77,33 @@ IntegerMatrix rcpp_get_incoma_matrix(const List x){
   List u_names = List::create(classes_xy, classes_xy);
   IntegerMatrix result_r = as<IntegerMatrix>(wrap(result));
   result_r.attr("dimnames") = u_names;
+  result_r.attr("no_unique") = no_unique;
   return result_r;
 }
 
+// [[Rcpp::export]]
+List rcpp_get_incoma_matrix_to_list(IntegerMatrix x){
+  IntegerVector no_unique = x.attr("no_unique");
+  int no_unique_len = no_unique.length();
+  int max_x = 0;
+  int min_x = 0;
+  List result(pow(no_unique_len, 2));
+  int n = 0;
+  for (int i = 0; i < no_unique_len; i++){
+    min_x = max_x;
+    max_x = max_x + no_unique(i);
+    int max_y = 0;
+    int min_y = 0;
+    for (int j = 0; j < no_unique_len; j++){
+      min_y = max_y;
+      max_y = max_y + no_unique(j);
+      result(n) = x(Range(min_x, max_x - 1), Range(min_y, max_y - 1));
+
+      n++;
+    }
+  }
+  return(result);
+}
 
 /*** R
 library(raster)

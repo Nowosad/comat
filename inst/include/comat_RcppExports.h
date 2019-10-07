@@ -214,6 +214,27 @@ namespace comat {
         return Rcpp::as<IntegerMatrix >(rcpp_result_gen);
     }
 
+    inline List rcpp_get_incoma_matrix_to_list(IntegerMatrix x) {
+        typedef SEXP(*Ptr_rcpp_get_incoma_matrix_to_list)(SEXP);
+        static Ptr_rcpp_get_incoma_matrix_to_list p_rcpp_get_incoma_matrix_to_list = NULL;
+        if (p_rcpp_get_incoma_matrix_to_list == NULL) {
+            validateSignature("List(*rcpp_get_incoma_matrix_to_list)(IntegerMatrix)");
+            p_rcpp_get_incoma_matrix_to_list = (Ptr_rcpp_get_incoma_matrix_to_list)R_GetCCallable("comat", "_comat_rcpp_get_incoma_matrix_to_list");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_rcpp_get_incoma_matrix_to_list(Shield<SEXP>(Rcpp::wrap(x)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<List >(rcpp_result_gen);
+    }
+
     inline NumericVector rcpp_get_vec(NumericMatrix x, bool ordered, std::string normalization) {
         typedef SEXP(*Ptr_rcpp_get_vec)(SEXP,SEXP,SEXP);
         static Ptr_rcpp_get_vec p_rcpp_get_vec = NULL;

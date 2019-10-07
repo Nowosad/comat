@@ -80,6 +80,10 @@ rcpp_get_incoma_matrix <- function(x) {
     .Call(`_comat_rcpp_get_incoma_matrix`, x)
 }
 
+rcpp_get_incoma_matrix_to_list <- function(x) {
+    .Call(`_comat_rcpp_get_incoma_matrix_to_list`, x)
+}
+
 rcpp_get_vec <- function(x, ordered, normalization) {
     .Call(`_comat_rcpp_get_vec`, x, ordered, normalization)
 }

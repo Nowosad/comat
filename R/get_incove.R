@@ -34,6 +34,7 @@
 #' incov2 = get_incove(incom, ordered = FALSE)
 #' incov2
 get_incove = function(x, ordered = TRUE, repeated = TRUE, normalization = "none"){
+  x = rcpp_get_incoma_matrix_to_list(x)
   rcpp_get_incove(x, ordered, repeated, normalization)
 }
 

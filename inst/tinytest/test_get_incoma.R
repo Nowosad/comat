@@ -54,8 +54,6 @@ t1 = list(
   )
 )
 
-
-
 expect_equivalent(r1, t1)
 
 r2 = comat:::rcpp_get_incoma_matrix(r1)

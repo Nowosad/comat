@@ -21,10 +21,9 @@ Create a co-occurrence matrix (coma)
 \examples{
 library(comat)
 library(raster)
-data(x, package = "comat")
-plot(x)
+data(raster_x, package = "comat")
 
-com = get_coma(as.matrix(x))
+com = get_coma(raster_x)
 com
 
 }

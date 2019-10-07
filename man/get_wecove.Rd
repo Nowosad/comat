@@ -28,10 +28,10 @@ a weighted co-occurrence vector (wecove)
 \examples{
 library(comat)
 library(raster)
-data(x, package = "comat")
-data(w, package = "comat")
+data(raster_x, package = "comat")
+data(raster_w, package = "comat")
 
-wom = get_wecoma(as.matrix(x), as.matrix(w))
+wom = get_wecoma(raster_x, raster_w)
 wom
 
 wov = get_wecove(wom)

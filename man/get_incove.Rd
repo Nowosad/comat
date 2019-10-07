@@ -34,9 +34,9 @@ an integrated co-occurrence vector (wecove)
 library(comat)
 library(raster)
 
-l1 = matrix(sample(1:2, size = 100, replace = TRUE), ncol = 10)
-l2 = matrix(sample(c(9, 6, 3), size = 100, replace = TRUE), ncol = 10)
-x = list(l1, l2, l1)
+data(raster_x, package = "comat")
+data(raster_w, package = "comat")
+x = list(raster_x, raster_w, raster_x)
 
 incom = get_incoma(x)
 incom

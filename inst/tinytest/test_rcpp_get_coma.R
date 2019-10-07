@@ -1,7 +1,7 @@
 library(raster)
-data(x, package = "comat")
+data(raster_x, package = "comat")
 
-r1 = comat:::rcpp_get_coma(as.matrix(x), as.matrix(4))
+r1 = comat:::rcpp_get_coma(raster_x, as.matrix(4))
 t1 = structure(c(4L, 1L, 3L, 1L, 2L, 2L, 3L, 2L, 6L),
                .Dim = c(3L, 3L),
                .Dimnames = list(c("1", "2", "3"), c("1", "2", "3")))

@@ -18,9 +18,9 @@
 #' @examples
 #' library(comat)
 #' library(raster)
-#' data(x, package = "comat")
+#' data(raster_x, package = "comat")
 #'
-#' com = get_coma(as.matrix(x))
+#' com = get_coma(raster_x)
 #' com
 #'
 #' cov = get_cove(com)

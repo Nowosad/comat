@@ -18,12 +18,10 @@
 #' @examples
 #' library(comat)
 #' library(raster)
-#' data(x, package = "comat")
-#' data(x_na, package = "comat")
-#' plot(x)
-#' plot(x_na)
+#' data(raster_x, package = "comat")
+#' data(raster_x_na, package = "comat")
 #'
-#' coom = get_cocoma(as.matrix(x), as.matrix(x_na))
+#' coom = get_cocoma(raster_x, raster_x_na)
 #' coom
 #'
 #' coov = get_cocove(coom)

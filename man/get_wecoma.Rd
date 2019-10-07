@@ -28,12 +28,10 @@ Create a weighted co-occurrence matrix (wecoma)
 \examples{
 library(comat)
 library(raster)
-data(x, package = "comat")
-data(w, package = "comat")
-plot(x)
-plot(w)
+data(raster_x, package = "comat")
+data(raster_w, package = "comat")
 
-wom = get_wecoma(as.matrix(x), as.matrix(w))
+wom = get_wecoma(raster_x, raster_w)
 wom
 
 }

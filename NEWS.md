@@ -1,3 +1,7 @@
+# comat 0.6.0
+
+* Adds normalization
+
 # comat 0.5.0
 
 * Rewrites `get_incove()` internals into rcpp (`rcpp_get_incove()`)

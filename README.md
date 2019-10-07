@@ -14,8 +14,8 @@ status](https://www.r-pkg.org/badges/version/comat)](https://CRAN.R-project.org/
 <!-- badges: end -->
 
 The goal of **comat** is to create co-occurrence matrices based on
-spatial data, including a weighted co-ocurrence matrix (*wecoma*) and an
-integrated co-occurrence matrix (*incoma*).
+spatial data, including a weighted co-occurrence matrix (*wecoma*) and
+an integrated co-occurrence matrix (*incoma*).
 
 ## Installation
 
@@ -54,14 +54,15 @@ plot(w, main = "Weights")
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
-The `comat:::rcpp_get_wecoma()` function can be next used to create a
-weighted co-occurrence matrix.
+The `get_wecoma()` function can be next used to create a weighted
+co-occurrence matrix.
 
 ``` r
-comat:::rcpp_get_wecoma(as.matrix(x), as.matrix(w), 
-                        directions = matrix(4),
-                        fun = "mean",
-                        na_action = "replace")
+get_wecoma(
+  as.matrix(x),
+  as.matrix(w),
+  neighbourhood = 4
+)
 #>      1    2    3
 #> 1 12.0  5.0 13.5
 #> 2  5.0 12.0 14.5
@@ -72,10 +73,13 @@ This function allows for some parametrization using additional
 arguments, e.g.:
 
 ``` r
-comat:::rcpp_get_wecoma(as.matrix(x), as.matrix(w), 
-                        directions = matrix(4),
-                        fun = "focal",
-                        na_action = "keep")
+get_wecoma(
+  as.matrix(x),
+  as.matrix(w),
+  neighbourhood = 4,
+  fun = "focal",
+  na_action = "keep"
+)
 #>    1  2  3
 #> 1 12  6 10
 #> 2  4 12 16

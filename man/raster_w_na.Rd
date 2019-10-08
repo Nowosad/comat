@@ -6,7 +6,7 @@
 \title{A matrix with weights and missing values}
 \format{A matrix}
 \usage{
-raster_w_na
+data(raster_w_na)
 }
 \description{
 A matrix with weights and missing values

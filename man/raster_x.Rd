@@ -6,7 +6,7 @@
 \title{A matrix with categories}
 \format{A matrix}
 \usage{
-raster_x
+data(raster_x)
 }
 \description{
 A matrix with categories

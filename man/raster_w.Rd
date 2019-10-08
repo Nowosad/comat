@@ -6,7 +6,7 @@
 \title{A matrix with weights}
 \format{A matrix}
 \usage{
-raster_w
+data(raster_w)
 }
 \description{
 A matrix with weights

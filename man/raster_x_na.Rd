@@ -6,7 +6,7 @@
 \title{A matrix with categories and missing values}
 \format{A matrix}
 \usage{
-raster_x_na
+data(raster_x_na)
 }
 \description{
 A matrix with categories and missing values

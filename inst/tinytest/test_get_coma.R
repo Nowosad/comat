@@ -27,7 +27,7 @@ t4 = structure(c(2L, 0L, 2L, 0L, 2L, 1L, 2L, 1L, 0L),
 expect_equivalent(r4, t4)
 
 r5 = get_coma(raster_x, 8)
-t5 = structure(c(4L, 1L, 3L, 1L, 2L, 2L, 3L, 2L, 6L),
+t5 = structure(c(6L, 2L, 5L, 2L, 2L, 4L, 5L, 4L, 10L),
                .Dim = c(3L, 3L),
                .Dimnames = list(c("1", "2", "3"), c("1", "2", "3")))
 

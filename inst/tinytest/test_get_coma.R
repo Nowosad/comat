@@ -26,6 +26,13 @@ t4 = structure(c(2L, 0L, 2L, 0L, 2L, 1L, 2L, 1L, 0L),
 
 expect_equivalent(r4, t4)
 
+r5 = get_coma(raster_x, 8)
+t5 = structure(c(4L, 1L, 3L, 1L, 2L, 2L, 3L, 2L, 6L),
+               .Dim = c(3L, 3L),
+               .Dimnames = list(c("1", "2", "3"), c("1", "2", "3")))
+
+expect_equivalent(r5, t5)
+
 # dput(landscapemetrics::get_adjacencies(x, 4)[[1]])
 # dput(landscapemetrics:::rcpp_get_coocurrence_vector(as.matrix(x), as.matrix(4)))
 # dput(landscapemetrics:::rcpp_get_coocurrence_vector(as.matrix(x), as.matrix(4), ordered = FALSE))

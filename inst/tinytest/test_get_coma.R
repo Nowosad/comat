@@ -1,6 +1,6 @@
 data(raster_x, package = "comat")
 
-r1 = get_coma(raster_x, as.matrix(4))
+r1 = get_coma(raster_x, 4)
 t1 = structure(c(4L, 1L, 3L, 1L, 2L, 2L, 3L, 2L, 6L),
                .Dim = c(3L, 3L),
                .Dimnames = list(c("1", "2", "3"), c("1", "2", "3")))
@@ -16,6 +16,15 @@ r3 = get_cove(r1, ordered = FALSE, normalization = "none")
 t3 = c(2, 1, 1, 3, 2, 3)
 
 expect_equivalent(r3, t3)
+
+data(raster_x_na, package = "comat")
+
+r4 = get_coma(raster_x_na, 4)
+t4 = structure(c(2L, 0L, 2L, 0L, 2L, 1L, 2L, 1L, 0L),
+               .Dim = c(3L, 3L),
+               .Dimnames = list(c("1", "2", "3"), c("1", "2", "3")))
+
+expect_equivalent(r4, t4)
 
 # dput(landscapemetrics::get_adjacencies(x, 4)[[1]])
 # dput(landscapemetrics:::rcpp_get_coocurrence_vector(as.matrix(x), as.matrix(4)))

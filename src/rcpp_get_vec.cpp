@@ -102,8 +102,12 @@ NumericVector rcpp_get_incove(List x,
                 IntegerMatrix x_i = x[i];
                 // NumericVector x_iv = as<NumericVector>(wrap(x_i));
                 NumericMatrix x_iv1 = as<NumericMatrix>(x_i);
-
                 NumericVector x_iv = rcpp_get_vec(x_iv1, true, normalization);
+                if (normalization != "none"){
+                    for (int e = 0; e < x_iv.length(); e++){
+                        x_iv[e] = x_iv[e] / x_len;
+                    }
+                }
                 std::copy(x_iv.begin(), x_iv.end(), result.begin() + index);
                 // Update the index
                 index += x_iv.size();
@@ -127,8 +131,12 @@ NumericVector rcpp_get_incove(List x,
                 IntegerMatrix x_i = x[i];
                 // NumericVector x_iv = as<NumericVector>(wrap(x_i));
                 NumericMatrix x_iv1 = as<NumericMatrix>(x_i);
-
                 NumericVector x_iv = rcpp_get_vec(x_iv1, true, normalization);
+                if (normalization != "none"){
+                    for (int e = 0; e < x_iv.length(); e++){
+                        x_iv[e] = x_iv[e] / x_len;
+                    }
+                }
                 std::copy(x_iv.begin(), x_iv.end(), result.begin() + index);
                 // Update the index
                 index += x_iv.size();
@@ -148,6 +156,11 @@ NumericVector rcpp_get_incove(List x,
                     x_iv = rcpp_get_vec(x_iv1, false, normalization);
                 } else {
                     x_iv = rcpp_get_vec(x_iv1, true, normalization);
+                }
+                if (normalization != "none"){
+                    for (int e = 0; e < x_iv.length(); e++){
+                        x_iv[e] = x_iv[e] / x_len;
+                    }
                 }
                 // Rcout << "The value of x_iv : " << x_iv << "\n";
 
@@ -184,6 +197,11 @@ NumericVector rcpp_get_incove(List x,
                 } else {
                     x_iv = rcpp_get_vec(x_iv1, true, normalization);
                 }
+                if (normalization != "none"){
+                    for (int e = 0; e < x_iv.length(); e++){
+                        x_iv[e] = x_iv[e] / x_len;
+                    }
+                }
                 std::copy(x_iv.begin(), x_iv.end(), result.begin() + index);
                 // Update the index
                 index += x_iv.size();
@@ -216,13 +234,10 @@ rcpp_get_incove(p1, ordered = TRUE, repeated = FALSE, normalization = "none")
 rcpp_get_incove(p1, ordered = FALSE, repeated = TRUE, normalization = "none")
 rcpp_get_incove(p1, ordered = FALSE, repeated = FALSE, normalization = "none")
 
-
-
-rcpp_get_incove(p1, type = "ordered", normalization = "pdf")
-rcpp_get_incove(p1, type = "unordered", normalization = "none")
-rcpp_get_incove(p1, type = "unordered", normalization = "pdf")
-rcpp_get_incove(p1, type = "unordered2", normalization = "none")
-rcpp_get_incove(p1, type = "unordered2", normalization = "pdf")
+rcpp_get_incove(p1, ordered = TRUE, repeated = TRUE, normalization = "pdf")
+rcpp_get_incove(p1, ordered = TRUE, repeated = FALSE, normalization = "pdf")
+rcpp_get_incove(p1, ordered = FALSE, repeated = TRUE, normalization = "pdf")
+rcpp_get_incove(p1, ordered = FALSE, repeated = FALSE, normalization = "pdf")
 
 is_cross_mat(5)
 

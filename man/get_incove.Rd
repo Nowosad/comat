@@ -45,4 +45,7 @@ incov1
 
 incov2 = get_incove(incom, ordered = FALSE)
 incov2
+
+incov3 = get_incove(incom, ordered = FALSE, normalization = "pdf")
+incov3
 }

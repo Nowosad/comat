@@ -1,3 +1,7 @@
+# comat 0.7.2
+
+* Fixes c++ conversions
+
 # comat 0.6.0
 
 * Adds normalization

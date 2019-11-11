@@ -47,7 +47,7 @@ List rcpp_get_incoma_list(const List x,
 IntegerMatrix rcpp_get_incoma_matrix(const List x){
 
   int mat_len = 0;
-  int v1_len = sqrt(x.length());
+  int v1_len = (int)sqrt((double)x.length());
   CharacterVector classes_xy;
   NumericVector no_unique(v1_len);
   for (int k = 0; k < v1_len; k++){
@@ -87,7 +87,7 @@ List rcpp_get_incoma_matrix_to_list(IntegerMatrix x){
   int no_unique_len = no_unique.length();
   int max_x = 0;
   int min_x = 0;
-  List result(pow(no_unique_len, 2));
+  List result(pow(no_unique_len, 2.0));
   int n = 0;
   for (int i = 0; i < no_unique_len; i++){
     min_x = max_x;

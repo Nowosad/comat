@@ -1,8 +1,6 @@
-set.seed(2019-08-23)
-l1 = matrix(sample(1:2, size = 100, replace = TRUE), ncol = 10)
-l2 = matrix(sample(c(9, 6, 3), size = 100, replace = TRUE), ncol = 10)
+ll = readRDS(system.file("testdata/ll.rds", package = "comat"))
 
-r1 = get_incoma(list(l1, l2, l1), neighbourhood = 4)
+r1 = get_incoma(ll, neighbourhood = 4)
 
 t1 = structure(c(76L, 93L, 61L, 68L, 40L, 76L, 93L, 93L, 98L, 62L,
                  77L, 52L, 93L, 98L, 61L, 62L, 40L, 57L, 26L, 61L, 62L, 68L, 77L,

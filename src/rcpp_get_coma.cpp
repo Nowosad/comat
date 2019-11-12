@@ -92,4 +92,13 @@ r = rcpp_get_coma(mat, four, cl)
 # lsm_p_contig(test)
 
 # get_unique_values(mat)
+
+set.seed(10100)
+mat = matrix(sample(1:2, size = 4, replace = TRUE), ncol = 2)
+four = as.matrix(4)
+r = rcpp_get_coma(mat, four)
+r
+
+library(landscapemetrics)
+landscapemetrics::get_adjacencies(mat)
 */

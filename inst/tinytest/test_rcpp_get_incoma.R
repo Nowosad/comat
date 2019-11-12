@@ -1,8 +1,6 @@
-set.seed(2019-08-23)
-l1 = matrix(sample(1:2, size = 100, replace = TRUE), ncol = 10)
-l2 = matrix(sample(c(9, 6, 3), size = 100, replace = TRUE), ncol = 10)
+ll = readRDS(system.file("testdata/ll.rds", package = "comat"))
 
-r1 = comat:::rcpp_get_incoma(list(l1, l2, l1), matrix(4))
+r1 = comat:::rcpp_get_incoma(ll, matrix(4))
 
 t1 = list(
   structure(
@@ -63,3 +61,4 @@ t2 = structure(c(76, 93, 61, 68, 40, 76, 93, 93, 98, 62, 77, 52, 93,
                                 c("1", "2", "3", "6", "9", "1", "2")))
 
 expect_equivalent(r2, t2)
+

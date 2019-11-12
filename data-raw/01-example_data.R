@@ -20,6 +20,13 @@ w_na = raster(nrows = 3, ncols = 3,
            crs = NA,
            vals = c(2, 2, NA, 6, NA, 9, 4, NA, 9))
 
+set.seed(2019-08-23)
+l1 = matrix(sample(1:2, size = 100, replace = TRUE), ncol = 10)
+l2 = matrix(sample(c(9, 6, 3), size = 100, replace = TRUE), ncol = 10)
+ll = list(l1, l2, l1)
+dir.create("inst/testdata")
+saveRDS(ll, "inst/testdata/ll.rds", version = 2)
+
 # rcpp_get_coocurrence_matrix(as.matrix(x), matrix(4))
 writeRaster(x, "data-raw/x.tif")
 writeRaster(w, "data-raw/w.tif")

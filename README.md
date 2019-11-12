@@ -11,6 +11,8 @@ status](https://travis-ci.org/Nowosad/comat.svg?branch=master)](https://travis-c
 coverage](https://codecov.io/gh/Nowosad/comat/branch/master/graph/badge.svg)](https://codecov.io/gh/Nowosad/comat?branch=master)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/comat)](https://CRAN.R-project.org/package=comat)
+[![CRAN RStudio mirror
+downloads](http://cranlogs.r-pkg.org/badges/comat)](https://cran.r-project.org/package=comat)
 <!-- badges: end -->
 
 The goal of **comat** is to create co-occurrence matrices based on

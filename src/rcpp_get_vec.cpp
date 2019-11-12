@@ -113,11 +113,11 @@ NumericVector rcpp_get_incove(List x,
                 index += x_iv.size();
             }
         } else {
-            IntegerVector cros_mat_id = is_cross_mat((int)sqrt((double)x_len));
+            IntegerVector cros_mat_id = is_cross_mat(std::sqrt(static_cast<double>(x_len)));
 
             IntegerVector id;
-            for (int i = 0; i < (int)sqrt((double)x_len); i++){
-                for (int j = 0; j < (int)sqrt((double)x_len); j++){
+            for (int i = 0; i < std::sqrt(static_cast<double>(x_len)); i++){
+                for (int j = 0; j < std::sqrt(static_cast<double>(x_len)); j++){
                     id.push_back(((i + 1) * (j + 1)) - 1);
                 }
             }
@@ -145,7 +145,7 @@ NumericVector rcpp_get_incove(List x,
         }
     } else {
         if (repeated){
-            IntegerVector cros_mat_id = is_cross_mat((int)sqrt((double)x_len));
+            IntegerVector cros_mat_id = is_cross_mat(std::sqrt(static_cast<double>(x_len)));
 
             std::size_t index = 0;
             for (int i = 0; i < x_len; i++){
@@ -172,11 +172,11 @@ NumericVector rcpp_get_incove(List x,
             }
             result = result[Rcpp::Range(0, index - 1)];
         } else {
-            IntegerVector cros_mat_id = is_cross_mat((int)sqrt((double)x_len));
+            IntegerVector cros_mat_id = is_cross_mat(std::sqrt(static_cast<double>(x_len)));
 
             IntegerVector id;
-            for (int i = 0; i < (int)sqrt((double)x_len); i++){
-                for (int j = 0; j < (int)sqrt((double)x_len); j++){
+            for (int i = 0; i < std::sqrt(static_cast<double>(x_len)); i++){
+                for (int j = 0; j < std::sqrt(static_cast<double>(x_len)); j++){
                     id.push_back(((i + 1) * (j + 1)) - 1);
                 }
             }

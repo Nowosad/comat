@@ -47,7 +47,7 @@ List rcpp_get_incoma_list(const List x,
 IntegerMatrix rcpp_get_incoma_matrix(const List x){
 
   int mat_len = 0;
-  int v1_len = (int)sqrt((double)x.length());
+  int v1_len = std::sqrt(static_cast<double>(x.length()));
   CharacterVector classes_xy;
   NumericVector no_unique(v1_len);
   for (int k = 0; k < v1_len; k++){

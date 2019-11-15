@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_cove.R
 \name{get_cove}
 \alias{get_cove}
-\title{Create a co-occurrence vector (wecove)}
+\title{Create a co-occurrence vector (cove)}
 \usage{
 get_cove(x, ordered = TRUE, normalization = "none")
 }
@@ -22,8 +22,8 @@ The default is "none".}
 A co-occurrence vector
 }
 \description{
-Converts a co-occurrence matrix (wecoma) to
-a co-occurrence vector (wecove)
+Converts a co-occurrence matrix (coma) to
+a co-occurrence vector (cove)
 }
 \examples{
 library(comat)

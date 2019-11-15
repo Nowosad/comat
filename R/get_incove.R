@@ -1,7 +1,7 @@
-#' Create an integrated co-occurrence vector (wecove)
+#' Create an integrated co-occurrence vector (incove)
 #'
-#' Converts an integrated co-occurrence matrix (wecoma) to
-#' an integrated co-occurrence vector (wecove)
+#' Converts an integrated co-occurrence matrix (incoma) to
+#' an integrated co-occurrence vector (incove)
 #'
 #' @param x A matrix - an output of the [get_incoma()] function
 #' @param ordered The type of pairs considered.

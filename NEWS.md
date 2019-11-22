@@ -1,3 +1,8 @@
+# comat 0.8
+
+* Main vector functions now returns one row matrices instead of vectors
+* Main matrix functions now accepts the classes argument
+
 # comat 0.7.2
 
 * Fixes c++ conversions

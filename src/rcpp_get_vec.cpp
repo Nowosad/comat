@@ -31,8 +31,11 @@ NumericVector rcpp_get_vec(NumericMatrix x,
     // normalize the output vector
     result = get_normalized(result, normalization);
     // remove a dim attribute
-    result.attr("dim") = R_NilValue;
+    // result.attr("dim") = R_NilValue;
     //result.attr("names")
+    // return result;
+
+    result.attr("dim") = Dimension(1, result.size());
     return result;
 }
 
@@ -41,7 +44,10 @@ NumericVector rcpp_get_wecove(NumericMatrix x,
                               bool ordered,
                               std::string normalization) {
 
-    return rcpp_get_vec(x, ordered, normalization);
+    NumericVector v = rcpp_get_vec(x, ordered, normalization);
+    v.attr("dim") = Dimension(1, v.size());
+
+    return as<NumericMatrix>(v);
 }
 
 // [[Rcpp::export]]
@@ -49,7 +55,10 @@ NumericVector rcpp_get_cove(IntegerMatrix x,
                             bool ordered,
                             std::string normalization) {
 
-    return rcpp_get_vec(wrap(x), ordered, normalization);
+    NumericVector v = rcpp_get_vec(wrap(x), ordered, normalization);
+    v.attr("dim") = Dimension(1, v.size());
+
+    return v;
 }
 
 // [[Rcpp::export]]
@@ -57,7 +66,10 @@ NumericVector rcpp_get_cocove(IntegerMatrix x,
                               bool ordered,
                               std::string normalization) {
 
-    return rcpp_get_vec(wrap(x), ordered, normalization);
+    NumericVector v = rcpp_get_vec(wrap(x), ordered, normalization);
+    v.attr("dim") = Dimension(1, v.size());
+
+    return v;
 }
 
 // [[Rcpp::export]]
@@ -210,9 +222,7 @@ NumericVector rcpp_get_incove(List x,
         }
     }
 
-    // remove a dim attribute
-    result.attr("dim") = R_NilValue;
-    //result.attr("names")
+    result.attr("dim") = Dimension(1, result.size());
     return result;
 }
 
@@ -224,6 +234,13 @@ l2 = raster(matrix(sample(c(9, 6, 3), size = 100, replace = TRUE), ncol = 10))
 l3 = raster(matrix(sample(c(8, 5, 4), size = 100, replace = TRUE), ncol = 10))
 
 x = stack(l1, l2)
+
+aa = get_coma(as.matrix(l1))
+rcpp_get_cocove(aa, ordered = TRUE, normalization = "none")
+
+rcpp_get_vec(aa, ordered = TRUE, normalization = "none")
+
+rcpp_get_cove(aa, ordered = TRUE, normalization = "none")
 
 p1 = comat:::rcpp_get_incoma(lapply(as.list(x), raster::as.matrix), matrix(4))
 # rcpp_get_vec(as.matrix(p1), ordered = TRUE, normalization = "none")

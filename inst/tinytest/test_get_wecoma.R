@@ -41,9 +41,9 @@ expect_equivalent(r7, t7)
 expect_error(get_wecoma(raster_x_na, raster_w_na, fun = "median"))
 
 r8 = get_wecove(r1, ordered = TRUE, normalization = "none")
-t8 = c(12, 5, 13.5, 5, 12, 14.5, 13.5, 14.5, 49)
+t8 = matrix(c(12, 5, 13.5, 5, 12, 14.5, 13.5, 14.5, 49), nrow = 1)
 expect_equivalent(r8, t8)
 
 r9 = comat:::rcpp_get_vec(r1, ordered = FALSE, normalization = "none")
-t9 = c(6, 5, 6, 13.5, 14.5, 24.5)
+t9 = matrix(c(6, 5, 6, 13.5, 14.5, 24.5), nrow = 1)
 expect_equivalent(r9, t9)

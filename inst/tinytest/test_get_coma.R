@@ -8,12 +8,12 @@ t1 = structure(c(4L, 1L, 3L, 1L, 2L, 2L, 3L, 2L, 6L),
 expect_equivalent(r1, t1)
 
 r2 = get_cove(r1, ordered = TRUE, normalization = "none")
-t2 = c(4, 1, 3, 1, 2, 2, 3, 2, 6)
+t2 = matrix(c(4, 1, 3, 1, 2, 2, 3, 2, 6), nrow = 1)
 
 expect_equivalent(r2, t2)
 
 r3 = get_cove(r1, ordered = FALSE, normalization = "none")
-t3 = c(2, 1, 1, 3, 2, 3)
+t3 = matrix(c(2, 1, 1, 3, 2, 3), nrow = 1)
 
 expect_equivalent(r3, t3)
 

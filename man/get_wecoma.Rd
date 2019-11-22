@@ -4,8 +4,14 @@
 \alias{get_wecoma}
 \title{Create a weighted co-occurrence matrix (wecoma)}
 \usage{
-get_wecoma(x, w, neighbourhood = 4, fun = "mean",
-  na_action = "replace")
+get_wecoma(
+  x,
+  w,
+  neighbourhood = 4,
+  classes = NULL,
+  fun = "mean",
+  na_action = "replace"
+)
 }
 \arguments{
 \item{x}{A matrix with categories}
@@ -33,4 +39,5 @@ data(raster_w, package = "comat")
 wom = get_wecoma(raster_x, raster_w)
 wom
 
+get_wecoma(raster_x, raster_w, classes = c(1, 3))
 }

@@ -21,21 +21,14 @@ IntegerMatrix rcpp_get_cocoma_internal(const IntegerMatrix x,
                               std::vector<int> classes_x,
                               std::vector<int> classes_y) {
 
-    const int na = NA_INTEGER;
     const unsigned ncols = x.ncol();
     const unsigned nrows = x.nrow();
 
-    // std::vector<int> classes_x = get_unique_values(x);
-    std::map<int, unsigned> class_index_x = get_class_index_map(classes_x);
+    const std::map<int, unsigned> class_index_x = get_class_index_map(classes_x);
     unsigned n_classes_x = class_index_x.size();
-    // NAs need an index, otherwise they are counted as neighbors of class[0]
-    class_index_x.insert(std::make_pair(na, n_classes_x));
 
-    // std::vector<int> classes_y = get_unique_values(y);
-    std::map<int, unsigned> class_index_y = get_class_index_map(classes_y);
+    const std::map<int, unsigned> class_index_y = get_class_index_map(classes_y);
     unsigned n_classes_y = class_index_y.size();
-    // NAs need an index, otherwise they are counted as neighbors of class[0]
-    class_index_y.insert(std::make_pair(na, n_classes_y));
 
     IntegerMatrix result(n_classes_x, n_classes_y);
 
@@ -52,9 +45,9 @@ IntegerMatrix rcpp_get_cocoma_internal(const IntegerMatrix x,
     for (unsigned col = 0; col < ncols; col++) {
         for (unsigned row = 0; row < nrows; row++) {
             const int focal_x = x[col * nrows + row];
-            if (focal_x == na)
+            if (class_index_x.count(focal_x) == 0)
                 continue;
-            unsigned focal_class = class_index_x[focal_x];
+            unsigned focal_class = class_index_x.at(focal_x);
             //const int focal_y = y[col * nrows + row];
             //if (focal_y == na)
             //    continue;
@@ -66,9 +59,9 @@ IntegerMatrix rcpp_get_cocoma_internal(const IntegerMatrix x,
                     neig_col < ncols &&
                     neig_row < nrows) {
                     const int neig_y = y[neig_col * nrows + neig_row];
-                    if (neig_y == na)
+                    if (class_index_y.count(neig_y) == 0)
                         continue;
-                    unsigned neig_class = class_index_y[neig_y];
+                    unsigned neig_class = class_index_y.at(neig_y);
 
                     result(focal_class,neig_class)++;
                 }

@@ -4,8 +4,7 @@
 \alias{get_incove}
 \title{Create an integrated co-occurrence vector (incove)}
 \usage{
-get_incove(x, ordered = TRUE, repeated = TRUE,
-  normalization = "none")
+get_incove(x, ordered = TRUE, repeated = TRUE, normalization = "none")
 }
 \arguments{
 \item{x}{A matrix - an output of the \code{\link[=get_incoma]{get_incoma()}} function}

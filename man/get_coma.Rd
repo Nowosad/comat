@@ -4,13 +4,15 @@
 \alias{get_coma}
 \title{Create a co-occurrence matrix (coma)}
 \usage{
-get_coma(x, neighbourhood = 4)
+get_coma(x, neighbourhood = 4, classes = NULL)
 }
 \arguments{
 \item{x}{A matrix with categories}
 
 \item{neighbourhood}{The number of directions in which cell adjacencies are considered as neighbours:
 4 (rook's case) or 8 (queen's case). The default is 4.}
+
+\item{classes}{}
 }
 \value{
 A co-occurrence matrix
@@ -19,10 +21,16 @@ A co-occurrence matrix
 Create a co-occurrence matrix (coma)
 }
 \examples{
-library(comat)
+#library(comat)
 data(raster_x, package = "comat")
 
 com = get_coma(raster_x)
 com
 
+com2 = get_coma(raster_x, classes = c(1, 3))
+com2
+
+data(raster_x_na, package = "comat")
+com3 = get_coma(raster_x_na, classes = c(0:3, NA))
+com3
 }

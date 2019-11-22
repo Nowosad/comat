@@ -201,11 +201,11 @@ RcppExport SEXP _comat_rcpp_get_cocoma_internal(SEXP xSEXP, SEXP ySEXP, SEXP dir
     return rcpp_result_gen;
 }
 // rcpp_get_coma
-IntegerMatrix rcpp_get_coma(const IntegerMatrix x, const arma::imat directions);
+IntegerMatrix rcpp_get_coma(const IntegerMatrix& x, const arma::imat directions);
 static SEXP _comat_rcpp_get_coma_try(SEXP xSEXP, SEXP directionsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const IntegerMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const IntegerMatrix& >::type x(xSEXP);
     Rcpp::traits::input_parameter< const arma::imat >::type directions(directionsSEXP);
     rcpp_result_gen = Rcpp::wrap(rcpp_get_coma(x, directions));
     return rcpp_result_gen;
@@ -236,11 +236,11 @@ RcppExport SEXP _comat_rcpp_get_coma(SEXP xSEXP, SEXP directionsSEXP) {
     return rcpp_result_gen;
 }
 // rcpp_get_coma_internal
-IntegerMatrix rcpp_get_coma_internal(const IntegerMatrix x, const arma::imat directions, std::vector<int> classes);
+IntegerMatrix rcpp_get_coma_internal(const IntegerMatrix& x, const arma::imat directions, std::vector<int> classes);
 static SEXP _comat_rcpp_get_coma_internal_try(SEXP xSEXP, SEXP directionsSEXP, SEXP classesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const IntegerMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const IntegerMatrix& >::type x(xSEXP);
     Rcpp::traits::input_parameter< const arma::imat >::type directions(directionsSEXP);
     Rcpp::traits::input_parameter< std::vector<int> >::type classes(classesSEXP);
     rcpp_result_gen = Rcpp::wrap(rcpp_get_coma_internal(x, directions, classes));
@@ -723,8 +723,8 @@ static int _comat_RcppExport_validate(const char* sig) {
         signatures.insert("std::vector<int>(*get_unique_values)(const Rcpp::IntegerVector&,bool)");
         signatures.insert("IntegerMatrix(*rcpp_get_cocoma)(const IntegerMatrix,const IntegerMatrix,const arma::imat)");
         signatures.insert("IntegerMatrix(*rcpp_get_cocoma_internal)(const IntegerMatrix,const IntegerMatrix,const arma::imat,std::vector<int>,std::vector<int>)");
-        signatures.insert("IntegerMatrix(*rcpp_get_coma)(const IntegerMatrix,const arma::imat)");
-        signatures.insert("IntegerMatrix(*rcpp_get_coma_internal)(const IntegerMatrix,const arma::imat,std::vector<int>)");
+        signatures.insert("IntegerMatrix(*rcpp_get_coma)(const IntegerMatrix&,const arma::imat)");
+        signatures.insert("IntegerMatrix(*rcpp_get_coma_internal)(const IntegerMatrix&,const arma::imat,std::vector<int>)");
         signatures.insert("List(*rcpp_get_incoma)(const List,const arma::imat)");
         signatures.insert("List(*rcpp_get_incoma_list)(const List,const arma::imat,List)");
         signatures.insert("IntegerMatrix(*rcpp_get_incoma_matrix)(const List)");

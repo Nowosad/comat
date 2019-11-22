@@ -25,13 +25,11 @@ NumericMatrix rcpp_get_wecoma_internal(const IntegerMatrix x,
                               std::vector<int> classes,
                               const std::string fun,
                               const std::string na_action) {
-    const int na = NA_INTEGER;
+
     const unsigned ncols = x.ncol();
     const unsigned nrows = x.nrow();
 
-    // std::vector<int> classes = get_unique_values(x);
-    std::map<int, unsigned> class_index = get_class_index_map(classes);
-
+    const std::map<int, unsigned> class_index = get_class_index_map(classes);
     unsigned n_classes = class_index.size();
     // std::vector<std::vector<unsigned> > cooc_mat(n_classes, std::vector<unsigned>(n_classes));
     // NumericMatrix cooc_mat(n_classes, n_classes);
@@ -46,17 +44,13 @@ NumericMatrix rcpp_get_wecoma_internal(const IntegerMatrix x,
         std::vector<int> b(a.begin(), a.end());
         neig_coords.push_back(b);
     }
-    // Rcout << "The value of w : " << w << "\n";
-
-    // NAs need an index, otherwise they are counted as neighbors of class[0]
-    class_index.insert(std::make_pair(na, n_classes));
 
     for (unsigned col = 0; col < ncols; col++) {
         for (unsigned row = 0; row < nrows; row++) {
             const int focal_x = x[col * nrows + row];
-            if (focal_x == na)
+            if (class_index.count(focal_x) == 0)
                 continue;
-            unsigned focal_class = class_index[focal_x];
+            unsigned focal_class = class_index.at(focal_x);
             double focal_w = w[col * nrows + row];
             if (na_action != "keep" && !arma::is_finite(focal_w)){
                 if (na_action == "replace"){
@@ -73,9 +67,9 @@ NumericMatrix rcpp_get_wecoma_internal(const IntegerMatrix x,
                         neig_col < ncols &&
                         neig_row < nrows) {
                     const int neig_x = x[neig_col * nrows + neig_row];
-                    if (neig_x == na)
+                    if (class_index.count(neig_x) == 0)
                         continue;
-                    unsigned neig_class = class_index[neig_x];
+                    unsigned neig_class = class_index.at(neig_x);
                     double neig_w = w[neig_col * nrows + neig_row];
 
                     if (na_action != "keep" && !arma::is_finite(neig_w)){

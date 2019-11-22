@@ -29,11 +29,8 @@ List rcpp_get_incoma_list(const List x,
   for (int i = 0; i < v1_len; i++){
     for (int j = 0; j < v1_len; j++){
       if (i == j){
-        // std::vector<int> classes = get_unique_values(x[i]);
         mat_list[loop] = rcpp_get_coma_internal(x[i], directions, classes[i]);
       } else {
-        // std::vector<int> classes_x = get_unique_values(x[i]);
-        // std::vector<int> classes_y = get_unique_values(x[j]);
         mat_list[loop] = rcpp_get_cocoma_internal(x[i], x[j], directions, classes[i], classes[j]);
       }
       loop ++;

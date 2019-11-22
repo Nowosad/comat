@@ -10,7 +10,7 @@ t1 = structure(c(3L, 0L, 2L, 3L, 2L, 1L, 1L, 1L, 1L, 0L, 1L, 2L, 1L, 1L, 5L),
 expect_equivalent(r1, t1)
 
 r2 = get_cocove(r1, ordered = TRUE, normalization = "none")
-t2 = c(3, 0, 2, 3, 2, 1, 1, 1, 1, 0, 1, 2, 1, 1, 5)
+t2 = matrix(c(3, 0, 2, 3, 2, 1, 1, 1, 1, 0, 1, 2, 1, 1, 5), nrow = 1)
 
 expect_equivalent(r2, t2)
 

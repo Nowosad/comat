@@ -17,7 +17,7 @@
 #' coom = get_cocoma(raster_x, raster_x_na)
 #' coom
 #'
-#' get_cocoma(raster_x, raster_x_na, classes = list(1, 3))
+#' get_cocoma(raster_x, raster_x_na, classes = list(c(1, 2), 3))
 get_cocoma = function(x, y, neighbourhood = 4, classes = NULL){
 
   if (is.null(classes)){

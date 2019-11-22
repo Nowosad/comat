@@ -19,14 +19,17 @@
 #' wom = get_wecoma(raster_x, raster_w)
 #' wom
 #'
-#' get_wecoma(raster_x, raster_w, classes = c(1, 3))
+#' get_wecoma(raster_x, raster_w, classes = list(c(1, 3)))
 get_wecoma = function(x, w, neighbourhood = 4, classes = NULL, fun = "mean", na_action = "replace"){
 
   if (is.null(classes)){
     classes = get_unique_values(x, TRUE)
   }
+  if (inherits(classes, "integer")){
+    classes = list(classes)
+  }
 
   directions = as.matrix(neighbourhood)
 
-  rcpp_get_wecoma_internal(x, w, directions, classes, fun, na_action)
+  rcpp_get_wecoma_internal(x, w, directions, classes[[1]], fun, na_action)
 }

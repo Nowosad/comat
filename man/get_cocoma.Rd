@@ -30,5 +30,5 @@ data(raster_x_na, package = "comat")
 coom = get_cocoma(raster_x, raster_x_na)
 coom
 
-get_cocoma(raster_x, raster_x_na, classes = list(1, 3))
+get_cocoma(raster_x, raster_x_na, classes = list(c(1, 2), 3))
 }

@@ -39,5 +39,5 @@ data(raster_w, package = "comat")
 wom = get_wecoma(raster_x, raster_w)
 wom
 
-get_wecoma(raster_x, raster_w, classes = c(1, 3))
+get_wecoma(raster_x, raster_w, classes = list(c(1, 3)))
 }

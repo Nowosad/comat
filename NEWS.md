@@ -1,7 +1,7 @@
 # comat 0.8
 
-* Main vector functions now returns one row matrices instead of vectors
-* Main matrix functions now accepts the classes argument
+* Main vector functions now return matrices with one row instead of vectors
+* Main matrix functions now accept the classes argument
 
 # comat 0.7.2
 

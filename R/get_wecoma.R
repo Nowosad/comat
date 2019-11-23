@@ -4,7 +4,8 @@
 #' @param w A matrix with weights
 #' @param neighbourhood The number of directions in which cell adjacencies are considered as neighbours:
 #' 4 (rook's case) or 8 (queen's case). The default is 4.
-#' @param classes
+#' @param classes A vector or a list with the values of selected classes from the `x` object.
+#' It is used to calculate wecoma only for selected classes.
 #' @param fun "mean", "geometric_mean", or "focal". The default is "mean".
 #' @param na_action "replace", "omit", or "keep". The default is "replace".
 #'

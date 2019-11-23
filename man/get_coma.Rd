@@ -12,7 +12,8 @@ get_coma(x, neighbourhood = 4, classes = NULL)
 \item{neighbourhood}{The number of directions in which cell adjacencies are considered as neighbours:
 4 (rook's case) or 8 (queen's case). The default is 4.}
 
-\item{classes}{}
+\item{classes}{A vector or a list with the values of selected classes from the \code{x} object.
+It is used to calculate coma only for selected classes.}
 }
 \value{
 A co-occurrence matrix

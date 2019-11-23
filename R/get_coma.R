@@ -3,7 +3,8 @@
 #' @param x A matrix with categories
 #' @param neighbourhood The number of directions in which cell adjacencies are considered as neighbours:
 #' 4 (rook's case) or 8 (queen's case). The default is 4.
-#' @param classes
+#' @param classes A vector or a list with the values of selected classes from the `x` object.
+#' It is used to calculate coma only for selected classes.
 #'
 #' @return A co-occurrence matrix
 #' @export

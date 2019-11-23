@@ -1,9 +1,10 @@
-#' Create an integrated co-occurrence matrix (wecoma)
+#' Create an integrated co-occurrence matrix (incoma)
 #'
 #' @param x A list object containing categorical matrices with categories
 #' @param neighbourhood The number of directions in which cell adjacencies are considered as neighbours:
 #' 4 (rook's case) or 8 (queen's case). The default is 4.
-#' @param classes
+#' @param classes A list of the same length as `x` with the values of selected classes from all of the objects in `x`.
+#' It is used to calculate incoma only for selected classes.
 #'
 #' @return An integrated co-occurrence matrix
 #' @export

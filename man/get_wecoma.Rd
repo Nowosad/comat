@@ -21,6 +21,9 @@ get_wecoma(
 \item{neighbourhood}{The number of directions in which cell adjacencies are considered as neighbours:
 4 (rook's case) or 8 (queen's case). The default is 4.}
 
+\item{classes}{A vector or a list with the values of selected classes from the \code{x} object.
+It is used to calculate wecoma only for selected classes.}
+
 \item{fun}{"mean", "geometric_mean", or "focal". The default is "mean".}
 
 \item{na_action}{"replace", "omit", or "keep". The default is "replace".}

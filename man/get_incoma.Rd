@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_incoma.R
 \name{get_incoma}
 \alias{get_incoma}
-\title{Create an integrated co-occurrence matrix (wecoma)}
+\title{Create an integrated co-occurrence matrix (incoma)}
 \usage{
 get_incoma(x, neighbourhood = 4, classes = NULL)
 }
@@ -12,13 +12,14 @@ get_incoma(x, neighbourhood = 4, classes = NULL)
 \item{neighbourhood}{The number of directions in which cell adjacencies are considered as neighbours:
 4 (rook's case) or 8 (queen's case). The default is 4.}
 
-\item{classes}{}
+\item{classes}{A list of the same length as \code{x} with the values of selected classes from all of the objects in \code{x}.
+It is used to calculate incoma only for selected classes.}
 }
 \value{
 An integrated co-occurrence matrix
 }
 \description{
-Create an integrated co-occurrence matrix (wecoma)
+Create an integrated co-occurrence matrix (incoma)
 }
 \examples{
 data(raster_x, package = "comat")

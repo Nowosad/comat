@@ -14,7 +14,8 @@ get_cocoma(x, y, neighbourhood = 4, classes = NULL)
 \item{neighbourhood}{The number of directions in which cell adjacencies are considered as neighbours:
 4 (rook's case) or 8 (queen's case). The default is 4.}
 
-\item{classes}{}
+\item{classes}{A list of length 2 with the values of selected classes from the \code{x} and \code{y} objects.
+It is used to calculate cocoma only for selected classes.}
 }
 \value{
 A co-located co-occurrence matrix

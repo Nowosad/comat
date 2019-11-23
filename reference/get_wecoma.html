@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">comat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -112,8 +112,14 @@
     <p>Create a weighted co-occurrence matrix (wecoma)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_wecoma</span>(<span class='no'>x</span>, <span class='no'>w</span>, <span class='kw'>neighbourhood</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
-  <span class='kw'>na_action</span> <span class='kw'>=</span> <span class='st'>"replace"</span>)</pre>
+    <pre class="usage"><span class='fu'>get_wecoma</span>(
+  <span class='no'>x</span>,
+  <span class='no'>w</span>,
+  <span class='kw'>neighbourhood</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+  <span class='kw'>classes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
+  <span class='kw'>na_action</span> <span class='kw'>=</span> <span class='st'>"replace"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -130,6 +136,11 @@
       <th>neighbourhood</th>
       <td><p>The number of directions in which cell adjacencies are considered as neighbours:
 4 (rook's case) or 8 (queen's case). The default is 4.</p></td>
+    </tr>
+    <tr>
+      <th>classes</th>
+      <td><p>A vector or a list with the values of selected classes from the <code>x</code> object.
+It is used to calculate wecoma only for selected classes.</p></td>
     </tr>
     <tr>
       <th>fun</th>
@@ -155,7 +166,9 @@
 #&gt; 1 12.0  5.0 13.5
 #&gt; 2  5.0 12.0 14.5
 #&gt; 3 13.5 14.5 49.0</div><div class='input'>
-</div></pre>
+<span class='fu'>get_wecoma</span>(<span class='no'>raster_x</span>, <span class='no'>raster_w</span>, <span class='kw'>classes</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>)))</div><div class='output co'>#&gt;      1    3
+#&gt; 1 12.0 13.5
+#&gt; 3 13.5 49.0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

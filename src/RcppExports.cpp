@@ -44,6 +44,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// get_class_index_map
+std::map<int, unsigned> get_class_index_map(const std::vector<int>& classes);
+RcppExport SEXP _comat_get_class_index_map(SEXP classesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const std::vector<int>& >::type classes(classesSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_class_index_map(classes));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_get_entropy
 double rcpp_get_entropy(NumericVector x, std::string base);
 static SEXP _comat_rcpp_get_entropy_try(SEXP xSEXP, SEXP baseSEXP) {
@@ -769,6 +780,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_comat_rcpp_xy_from_matrix", (DL_FUNC) &_comat_rcpp_xy_from_matrix, 2},
     {"_comat_rcpp_cell_from_xy", (DL_FUNC) &_comat_rcpp_cell_from_xy, 2},
     {"_comat_create_neighborhood", (DL_FUNC) &_comat_create_neighborhood, 1},
+    {"_comat_get_class_index_map", (DL_FUNC) &_comat_get_class_index_map, 1},
     {"_comat_rcpp_get_entropy", (DL_FUNC) &_comat_rcpp_get_entropy, 2},
     {"_comat_get_normalized", (DL_FUNC) &_comat_get_normalized, 2},
     {"_comat_get_unique_values", (DL_FUNC) &_comat_get_unique_values, 2},

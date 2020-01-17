@@ -40,10 +40,6 @@ create_neighborhood <- function(directions) {
     .Call(`_comat_create_neighborhood`, directions)
 }
 
-get_class_index_map <- function(classes) {
-    .Call(`_comat_get_class_index_map`, classes)
-}
-
 rcpp_get_entropy <- function(x, base = "log2") {
     .Call(`_comat_rcpp_get_entropy`, x, base)
 }

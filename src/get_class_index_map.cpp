@@ -1,6 +1,5 @@
 #include "get_class_index_map.h"
 
-// [[Rcpp::export]]
 std::map<int, unsigned> get_class_index_map(const std::vector<int> &classes)
 {
     std::map<int, unsigned> class_index;

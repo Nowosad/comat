@@ -34,4 +34,7 @@ com
 
 cov = get_cove(com)
 cov
+
+cov = get_cove(com, normalization = "pdf")
+cov
 }

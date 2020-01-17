@@ -24,6 +24,9 @@
 #'
 #' cov = get_cove(com)
 #' cov
+#'
+#' cov = get_cove(com, normalization = "pdf")
+#' cov
 get_cove = function(x, ordered = TRUE, normalization = "none"){
   rcpp_get_cove(x, ordered, normalization)
 }

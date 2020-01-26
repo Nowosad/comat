@@ -14,7 +14,7 @@ Either "ordered" (TRUE) or "unordered" (FALSE).
 The default is TRUE.}
 
 \item{repeated}{Should the repeated co-located co-occurrence matrices be used?
-Either "ordered" (TRUE) or "unordered" (FALSE).
+Either "repeated" (TRUE) or "unrepeated" (FALSE).
 The default is TRUE.}
 
 \item{normalization}{Should the output vector be normalized?

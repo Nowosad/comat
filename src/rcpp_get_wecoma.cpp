@@ -8,9 +8,9 @@
 // [[Rcpp::interfaces(r, cpp)]]
 
 // [[Rcpp::export]]
-NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
-                              const NumericMatrix w,
-                              const arma::imat directions,
+NumericMatrix rcpp_get_wecoma(const IntegerMatrix& x,
+                              const NumericMatrix& w,
+                              const arma::imat& directions,
                               const std::string fun,
                               const std::string na_action) {
     std::vector<int> classes = get_unique_values(x);
@@ -19,9 +19,9 @@ NumericMatrix rcpp_get_wecoma(const IntegerMatrix x,
 }
 
 // [[Rcpp::export]]
-NumericMatrix rcpp_get_wecoma_internal(const IntegerMatrix x,
-                              const NumericMatrix w,
-                              const arma::imat directions,
+NumericMatrix rcpp_get_wecoma_internal(const IntegerMatrix& x,
+                                       const NumericMatrix& w,
+                              const arma::imat& directions,
                               std::vector<int> classes,
                               const std::string fun,
                               const std::string na_action) {

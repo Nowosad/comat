@@ -626,13 +626,13 @@ RcppExport SEXP _comat_rcpp_get_incove(SEXP xSEXP, SEXP orderedSEXP, SEXP repeat
     return rcpp_result_gen;
 }
 // rcpp_get_wecoma
-NumericMatrix rcpp_get_wecoma(const IntegerMatrix x, const NumericMatrix w, const arma::imat directions, const std::string fun, const std::string na_action);
+NumericMatrix rcpp_get_wecoma(const IntegerMatrix& x, const NumericMatrix& w, const arma::imat& directions, const std::string fun, const std::string na_action);
 static SEXP _comat_rcpp_get_wecoma_try(SEXP xSEXP, SEXP wSEXP, SEXP directionsSEXP, SEXP funSEXP, SEXP na_actionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const IntegerMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< const NumericMatrix >::type w(wSEXP);
-    Rcpp::traits::input_parameter< const arma::imat >::type directions(directionsSEXP);
+    Rcpp::traits::input_parameter< const IntegerMatrix& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type w(wSEXP);
+    Rcpp::traits::input_parameter< const arma::imat& >::type directions(directionsSEXP);
     Rcpp::traits::input_parameter< const std::string >::type fun(funSEXP);
     Rcpp::traits::input_parameter< const std::string >::type na_action(na_actionSEXP);
     rcpp_result_gen = Rcpp::wrap(rcpp_get_wecoma(x, w, directions, fun, na_action));
@@ -664,13 +664,13 @@ RcppExport SEXP _comat_rcpp_get_wecoma(SEXP xSEXP, SEXP wSEXP, SEXP directionsSE
     return rcpp_result_gen;
 }
 // rcpp_get_wecoma_internal
-NumericMatrix rcpp_get_wecoma_internal(const IntegerMatrix x, const NumericMatrix w, const arma::imat directions, std::vector<int> classes, const std::string fun, const std::string na_action);
+NumericMatrix rcpp_get_wecoma_internal(const IntegerMatrix& x, const NumericMatrix& w, const arma::imat& directions, std::vector<int> classes, const std::string fun, const std::string na_action);
 static SEXP _comat_rcpp_get_wecoma_internal_try(SEXP xSEXP, SEXP wSEXP, SEXP directionsSEXP, SEXP classesSEXP, SEXP funSEXP, SEXP na_actionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const IntegerMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< const NumericMatrix >::type w(wSEXP);
-    Rcpp::traits::input_parameter< const arma::imat >::type directions(directionsSEXP);
+    Rcpp::traits::input_parameter< const IntegerMatrix& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type w(wSEXP);
+    Rcpp::traits::input_parameter< const arma::imat& >::type directions(directionsSEXP);
     Rcpp::traits::input_parameter< std::vector<int> >::type classes(classesSEXP);
     Rcpp::traits::input_parameter< const std::string >::type fun(funSEXP);
     Rcpp::traits::input_parameter< const std::string >::type na_action(na_actionSEXP);
@@ -735,8 +735,8 @@ static int _comat_RcppExport_validate(const char* sig) {
         signatures.insert("NumericVector(*rcpp_get_cocove)(IntegerMatrix,bool,std::string)");
         signatures.insert("IntegerVector(*is_cross_mat)(int)");
         signatures.insert("NumericVector(*rcpp_get_incove)(List,bool,bool,std::string)");
-        signatures.insert("NumericMatrix(*rcpp_get_wecoma)(const IntegerMatrix,const NumericMatrix,const arma::imat,const std::string,const std::string)");
-        signatures.insert("NumericMatrix(*rcpp_get_wecoma_internal)(const IntegerMatrix,const NumericMatrix,const arma::imat,std::vector<int>,const std::string,const std::string)");
+        signatures.insert("NumericMatrix(*rcpp_get_wecoma)(const IntegerMatrix&,const NumericMatrix&,const arma::imat&,const std::string,const std::string)");
+        signatures.insert("NumericMatrix(*rcpp_get_wecoma_internal)(const IntegerMatrix&,const NumericMatrix&,const arma::imat&,std::vector<int>,const std::string,const std::string)");
     }
     return signatures.find(sig) != signatures.end();
 }

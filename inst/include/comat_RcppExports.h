@@ -361,11 +361,11 @@ namespace comat {
         return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
-    inline NumericMatrix rcpp_get_wecoma(const IntegerMatrix x, const NumericMatrix w, const arma::imat directions, const std::string fun, const std::string na_action) {
+    inline NumericMatrix rcpp_get_wecoma(const IntegerMatrix& x, const NumericMatrix& w, const arma::imat& directions, const std::string fun, const std::string na_action) {
         typedef SEXP(*Ptr_rcpp_get_wecoma)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_rcpp_get_wecoma p_rcpp_get_wecoma = NULL;
         if (p_rcpp_get_wecoma == NULL) {
-            validateSignature("NumericMatrix(*rcpp_get_wecoma)(const IntegerMatrix,const NumericMatrix,const arma::imat,const std::string,const std::string)");
+            validateSignature("NumericMatrix(*rcpp_get_wecoma)(const IntegerMatrix&,const NumericMatrix&,const arma::imat&,const std::string,const std::string)");
             p_rcpp_get_wecoma = (Ptr_rcpp_get_wecoma)R_GetCCallable("comat", "_comat_rcpp_get_wecoma");
         }
         RObject rcpp_result_gen;
@@ -382,11 +382,11 @@ namespace comat {
         return Rcpp::as<NumericMatrix >(rcpp_result_gen);
     }
 
-    inline NumericMatrix rcpp_get_wecoma_internal(const IntegerMatrix x, const NumericMatrix w, const arma::imat directions, std::vector<int> classes, const std::string fun, const std::string na_action) {
+    inline NumericMatrix rcpp_get_wecoma_internal(const IntegerMatrix& x, const NumericMatrix& w, const arma::imat& directions, std::vector<int> classes, const std::string fun, const std::string na_action) {
         typedef SEXP(*Ptr_rcpp_get_wecoma_internal)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_rcpp_get_wecoma_internal p_rcpp_get_wecoma_internal = NULL;
         if (p_rcpp_get_wecoma_internal == NULL) {
-            validateSignature("NumericMatrix(*rcpp_get_wecoma_internal)(const IntegerMatrix,const NumericMatrix,const arma::imat,std::vector<int>,const std::string,const std::string)");
+            validateSignature("NumericMatrix(*rcpp_get_wecoma_internal)(const IntegerMatrix&,const NumericMatrix&,const arma::imat&,std::vector<int>,const std::string,const std::string)");
             p_rcpp_get_wecoma_internal = (Ptr_rcpp_get_wecoma_internal)R_GetCCallable("comat", "_comat_rcpp_get_wecoma_internal");
         }
         RObject rcpp_result_gen;

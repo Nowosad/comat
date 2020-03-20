@@ -91,3 +91,5 @@ get_cove(my_coma, normalization = "pdf")
 ```
 
 This representation can be useful to compare many areas with each other using measures of the similarity between two probability distributions, such as Jensen–Shannon divergence.
+
+To learn more about the co-occurrence matrix (*coma*) representation, you can read two blog posts: [Pattern-based Spatial Analysis - core ideas](https://nowosad.github.io/post/pattern-based-spatial-analysis-core-ideas/) and [Information theory provides a consistent framework for the analysis of spatial patterns](https://nowosad.github.io/post/ent-bp1/).

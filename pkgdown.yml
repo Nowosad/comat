@@ -3,4 +3,5 @@ pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
   coma: coma.html
+  wecoma: wecoma.html
 

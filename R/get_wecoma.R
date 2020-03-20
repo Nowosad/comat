@@ -26,7 +26,7 @@ get_wecoma = function(x, w, neighbourhood = 4, classes = NULL, fun = "mean", na_
   if (is.null(classes)){
     classes = get_unique_values(x, TRUE)
   }
-  if (inherits(classes, "integer")){
+  if (inherits(classes, c("integer", "numeric"))){
     classes = list(classes)
   }
 

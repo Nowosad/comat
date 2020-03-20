@@ -1,6 +1,6 @@
 Package: comat
 Title: Creates Co-Occurrence Matrices of Spatial Data
-Version: 0.8.2
+Version: 0.8.3
 Authors@R: c(person(given = "Jakub", family = "Nowosad", role = c("aut", "cre"), email =
              "nowosad.jakub@gmail.com", comment = c(ORCID = "0000-0002-1057-3721")),
              person("Maximillian H.K.", "Hesselbarth",
@@ -40,3 +40,4 @@ Suggests:
 SystemRequirements: C++11
 URL: https://nowosad.github.io/comat/
 BugReports: https://github.com/Nowosad/comat/issues
+VignetteBuilder: knitr

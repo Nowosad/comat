@@ -27,11 +27,12 @@ get_coma = function(x, neighbourhood = 4, classes = NULL){
   if (is.null(classes)){
     classes = get_unique_values(x, TRUE)
   }
-  if (inherits(classes, "integer")){
+  if (inherits(classes, c("integer", "numeric"))){
     classes = list(classes)
   }
 
   directions = as.matrix(neighbourhood)
 
-  rcpp_get_coma_internal(x, directions, classes[[1]])
+  coma = rcpp_get_coma_internal(x, directions, classes[[1]])
+  return(coma)
 }

@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> • comat</title>
+<title>A weighted co-occurrence matrix (coma) representation • comat</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="">
+<script src="../pkgdown.js"></script><meta property="og:title" content="A weighted co-occurrence matrix (coma) representation">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -57,7 +57,7 @@
       <a href="../articles/coma.html">A co-occurrence matrix (coma) representation</a>
     </li>
     <li>
-      <a href="../articles/wecoma.html">UNKNOWN TITLE</a>
+      <a href="../articles/wecoma.html">A weighted co-occurrence matrix (coma) representation</a>
     </li>
   </ul>
 </li>
@@ -78,8 +78,10 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1></h1>
+      <h1>A weighted co-occurrence matrix (coma) representation</h1>
+                        <h4 class="author">Jakub Nowosad</h4>
             
+            <h4 class="date">2020-03-20</h4>
       
       
       <div class="hidden name"><code>wecoma.Rmd</code></div>
@@ -93,42 +95,42 @@
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(raster_x, <span class="dt">package =</span> <span class="st">"comat"</span>)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(raster_w, <span class="dt">package =</span> <span class="st">"comat"</span>)</a></code></pre></div>
 <p>The <code>raster_x</code> object is a matrix with three rows and columns with values of 1, 2, and 3.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">raster_x</a></code></pre></div>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    1    1    3
-## [2,]    1    3    3
-## [3,]    2    2    3</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">raster_x</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt;      [,1] [,2] [,3]</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; [1,]    1    1    3</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; [2,]    1    3    3</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; [3,]    2    2    3</span></a></code></pre></div>
 <p>We can imagine that the value of 1 (blueish color) represents population A, the value of 2 (dark green) is population B, and the value of 3 (light green) represents population C.</p>
-<p><img src="wecoma_files/figure-html/unnamed-chunk-2-1.png" width="384"></p>
+<p><img src="wecoma_files/figure-html/unnamed-chunk-3-1.png" width="384"></p>
 <p>The <code>raster_w</code> object is also a matrix of the same dimensions. It has values between 2 and 9.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">raster_w</a></code></pre></div>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    2    2    9
-## [2,]    6    4    9
-## [3,]    4    8    9</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">raster_w</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt;      [,1] [,2] [,3]</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; [1,]    2    2    9</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; [2,]    6    4    9</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; [3,]    4    8    9</span></a></code></pre></div>
 <p>This object is different from the first one, as it does not represent categories. Its role is to provide some weights to the previous raster. We can think of it as a number of occurrences in each population.</p>
-<p><img src="wecoma_files/figure-html/unnamed-chunk-4-1.png" width="384"></p>
+<p><img src="wecoma_files/figure-html/unnamed-chunk-5-1.png" width="384"></p>
 <p>The weighted co-occurrence matrix (<em>wecoma</em>) representation is a modification of the co-occurrence matrix (<em>coma</em>). In the co-occurrence matrix, each adjacency contributes to the output with the constant value 1. In the weighted co-occurrence matrix, on the other hand, each adjacency contributes to the output based on the values from the weight matrix. The contributed value is calculated as the average of the weights in the two adjacent cells.</p>
 <p>We can use the <code><a href="../reference/get_wecoma.html">get_wecoma()</a></code> function to calculate this weighted co-occurrence matrix (<em>wecoma</em>) representation:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="../reference/get_wecoma.html">get_wecoma</a></span>(raster_x, raster_w)</a></code></pre></div>
-<pre><code>##      1    2    3
-## 1 12.0  5.0 13.5
-## 2  5.0 12.0 14.5
-## 3 13.5 14.5 49.0</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/get_wecoma.html">get_wecoma</a></span>(raster_x, raster_w)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt;      1    2    3</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; 1 12.0  5.0 13.5</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; 2  5.0 12.0 14.5</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; 3 13.5 14.5 49.0</span></a></code></pre></div>
 <p>In this representation, we do not count the neighbors but sum the contributed values from the weight matrix. The smallest value (5) represents the relation between the adjacent cells between the first and the second category. This is due to the relatively small values of the neighborhooding cells of these classes, but also because there is only one case of adjacent cells of these classes. Central left cell (blueish, category 1) has a value of 6, and the bottom left cell (dark green, category 2) has a value of 4. The output value, 5, is an average of the two adjacent weights. On the other hand, a light green region has the largest values in the weight matrix. Therefore, the output of the <code><a href="../reference/get_wecoma.html">get_wecoma()</a></code> function has the largest value (49) for the relation between the adjacent cells of the third category.</p>
 <p>This function allows for some parametrization using additional arguments - <code>fun</code> and <code>na_action</code>. The <code>fun</code> argument selects the function to calculate values from adjacent cells to contribute to the output matrix. It has three possible options: <code>"mean"</code> - calculate average values from adjacent cells of the weight matrix, <code>"geometric_mean"</code> - calculate geometric mean values from adjacent cells of the weight matrix, or <code>"focal"</code> assign a value from the focal cell. The <code>na_action</code> argument decides on how to behave in the presence of missing values in the weight matrix. The default, <code>"replace"</code>, replaces missing values with 0, <code>"omit"</code> does not use cells with missing values, and <code>"keep"</code> keeps missing values.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="../reference/get_wecoma.html">get_wecoma</a></span>(raster_x, raster_w, <span class="dt">fun =</span> <span class="st">"focal"</span>, <span class="dt">na_action =</span> <span class="st">"omit"</span>)</a></code></pre></div>
-<pre><code>##    1  2  3
-## 1 12  6 10
-## 2  4 12 16
-## 3 17 13 49</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/get_wecoma.html">get_wecoma</a></span>(raster_x, raster_w, <span class="dt">fun =</span> <span class="st">"focal"</span>, <span class="dt">na_action =</span> <span class="st">"omit"</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt;    1  2  3</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; 1 12  6 10</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; 2  4 12 16</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; 3 17 13 49</span></a></code></pre></div>
 <p>Similarly to the co-occurrence matrix (<em>coma</em>), it is possible to convert <em>wecoma</em> to its 1D representation. This new form is called a weighted co-occurrence vector (<em>wecove</em>), and can be created using the <code><a href="../reference/get_wecove.html">get_wecove()</a></code> function, which accepts an output of <code><a href="../reference/get_wecoma.html">get_wecoma()</a></code>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">my_wecoma =<span class="st"> </span><span class="kw"><a href="../reference/get_wecoma.html">get_wecoma</a></span>(raster_x, raster_w)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw"><a href="../reference/get_wecove.html">get_wecove</a></span>(my_wecoma, <span class="dt">normalization =</span> <span class="st">"pdf"</span>)</a></code></pre></div>
-<pre><code>##            [,1]       [,2]      [,3]       [,4]       [,5]      [,6]      [,7]
-## [1,] 0.08633094 0.03597122 0.0971223 0.03597122 0.08633094 0.1043165 0.0971223
-##           [,8]     [,9]
-## [1,] 0.1043165 0.352518</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">my_wecoma =<span class="st"> </span><span class="kw"><a href="../reference/get_wecoma.html">get_wecoma</a></span>(raster_x, raster_w)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="../reference/get_wecove.html">get_wecove</a></span>(my_wecoma, <span class="dt">normalization =</span> <span class="st">"pdf"</span>)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt;            [,1]       [,2]      [,3]       [,4]       [,5]      [,6]      [,7]</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; [1,] 0.08633094 0.03597122 0.0971223 0.03597122 0.08633094 0.1043165 0.0971223</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt;           [,8]     [,9]</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; [1,] 0.1043165 0.352518</span></a></code></pre></div>
 <p>You can see the weighted co-occurrence matrix (<em>wecoma</em>) concept, there described as an <em>exposure matrix</em>, in action in the vignettes of the <strong>raceland</strong> package (Nowosad, Dmowska, and Stepinski, 2020):</p>
 <ol style="list-style-type: decimal">
 <li><a href="https://nowosad.github.io/raceland/articles/raceland-intro1.html">raceland: R package for a pattern-based, zoneless method for analysis and visualization of racial topography</a></li>

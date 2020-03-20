@@ -1,3 +1,20 @@
+---
+title: "A weighted co-occurrence matrix (coma) representation"
+author: "Jakub Nowosad"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{(2) A weighted co-occurrence matrix (coma) representation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
 This vignette explains what a weighted co-occurrence matrix (*wecoma*) representation is and how to calculate it using the **comat** package. 
 If you do not know what a co-occurrence matrix is, it could be worth to read [the first package vignette](coma.html) first.

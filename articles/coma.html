@@ -118,6 +118,15 @@
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt;   1 2</span></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; 1 4 1</span></a>
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; 2 1 2</span></a></code></pre></div>
+<p>The co-occurrence matrix (<em>coma</em>) representation is two-dimensional, with values of categories in row and columns. It can be also converted into a one-dimensional representation called a co-occurrence vector (<em>cove</em>) using the <code><a href="../reference/get_cove.html">get_cove()</a></code> function. This function takes the output of <code><a href="../reference/get_coma.html">get_coma()</a></code> and restructure it into one row with many columns. It also makes it possible to normalize the output to sum to one (<code>normalization = "pdf"</code>).</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">my_coma =<span class="st"> </span><span class="kw"><a href="../reference/get_coma.html">get_coma</a></span>(raster_x)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="../reference/get_cove.html">get_cove</a></span>(my_coma, <span class="dt">normalization =</span> <span class="st">"pdf"</span>)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt;           [,1]       [,2]  [,3]       [,4]       [,5]       [,6]  [,7]</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; [1,] 0.1666667 0.04166667 0.125 0.04166667 0.08333333 0.08333333 0.125</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt;            [,8] [,9]</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; [1,] 0.08333333 0.25</span></a></code></pre></div>
+<p>This representation can be useful to compare many areas with each other using measures of the similarity between two probability distributions, such as Jensen–Shannon divergence.</p>
+<p>To learn more about the co-occurrence matrix (<em>coma</em>) representation, you can read two blog posts: <a href="https://nowosad.github.io/post/pattern-based-spatial-analysis-core-ideas/">Pattern-based Spatial Analysis - core ideas</a> and <a href="https://nowosad.github.io/post/ent-bp1/">Information theory provides a consistent framework for the analysis of spatial patterns</a>.</p>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

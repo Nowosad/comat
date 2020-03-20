@@ -79,3 +79,15 @@ Then we can adjust the `classes` argument in `get_coma()`:
 ```{r}
 get_coma(raster_x, classes = c(1, 2))
 ```
+
+The co-occurrence matrix (*coma*) representation is two-dimensional, with values of categories in row and columns.
+It can be also converted into a one-dimensional representation called a co-occurrence vector (*cove*) using the `get_cove()` function. 
+This function takes the output of `get_coma()` and restructure it into one row with many columns. 
+It also makes it possible to normalize the output to sum to one (`normalization = "pdf"`).
+
+```{r}
+my_coma = get_coma(raster_x)
+get_cove(my_coma, normalization = "pdf")
+```
+
+This representation can be useful to compare many areas with each other using measures of the similarity between two probability distributions, such as Jensen–Shannon divergence.

@@ -81,7 +81,7 @@
       <h1>A co-occurrence matrix (coma) representation</h1>
                         <h4 class="author">Jakub Nowosad</h4>
             
-            <h4 class="date">2020-03-20</h4>
+            <h4 class="date">2020-03-21</h4>
       
       
       <div class="hidden name"><code>coma.Rmd</code></div>
@@ -110,7 +110,8 @@
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; 2 1 2 2</span></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; 3 3 2 6</span></a></code></pre></div>
 <p>This output shows that cells of the first category are four times adjacent to other cells of this category, two times cells of the second category are adjacent to other cells of this category, and six times cells of the third category are adjacent to cells of the third category. We can also see that one time cell of the first category is adjacent to any other cells of the second category, and so on. This way, we can compactly describe spatial relationships between categories, but also if we just count values in rows (or columns), we can see proportions of each category. Therefore, this representation describes both the composition and spatial configuration of the values.</p>
-<p>By default, the <code><a href="../reference/get_coma.html">get_coma()</a></code> function uses 4-neighborhood, composed of a central cell and its four adjacent cells (they share a border). However, it is also possible to use 8-neighborhood, where adjacent cells with just shared points are also used:</p>
+<p>An orthogonal neighbour means that connectivity is determined by having a shared side and are thus not simply joined via a corner.</p>
+<p>By default, the <code><a href="../reference/get_coma.html">get_coma()</a></code> function uses 4-neighborhood, composed of a central cell and its four adjacent cells (they share a border/side). However, it is also possible to use 8-neighborhood, where adjacent cells with shared corners are also used:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/get_coma.html">get_coma</a></span>(raster_x, <span class="dt">neighbourhood =</span> <span class="dv">8</span>)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt;   1 2  3</span></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; 1 6 2  5</span></a>

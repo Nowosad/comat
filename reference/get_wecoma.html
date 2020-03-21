@@ -159,11 +159,11 @@ It is used to calculate wecoma only for selected classes.</p></td>
     </tr>
     <tr>
       <th>fun</th>
-      <td><p>"mean", "geometric_mean", or "focal". The default is "mean".</p></td>
+      <td><p>Function to calculate values from adjacent cells to contribute to output matrix, <code>"mean"</code> - calculate average values from adjacent cells of weight matrix, <code>"geometric_mean"</code> - calculate geometric mean values from adjacent cells of weight matrix, or <code>"focal"</code> assign value from the focal cell.</p></td>
     </tr>
     <tr>
       <th>na_action</th>
-      <td><p>"replace", "omit", or "keep". The default is "replace".</p></td>
+      <td><p>Decides on how to behave in the presence of missing values in <code>w</code>. Possible options are <code>"replace"</code>, <code>"omit"</code>, <code>"keep"</code>. The default, <code>"replace"</code>, replaces missing values with 0, <code>"omit"</code> does not use cells with missing values, and <code>"keep"</code> keeps missing values.</p></td>
     </tr>
     </table>
 

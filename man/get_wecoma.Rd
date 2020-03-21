@@ -24,9 +24,9 @@ get_wecoma(
 \item{classes}{A vector or a list with the values of selected classes from the \code{x} object.
 It is used to calculate wecoma only for selected classes.}
 
-\item{fun}{"mean", "geometric_mean", or "focal". The default is "mean".}
+\item{fun}{Function to calculate values from adjacent cells to contribute to output matrix, \code{"mean"} - calculate average values from adjacent cells of weight matrix, \code{"geometric_mean"} - calculate geometric mean values from adjacent cells of weight matrix, or \code{"focal"} assign value from the focal cell.}
 
-\item{na_action}{"replace", "omit", or "keep". The default is "replace".}
+\item{na_action}{Decides on how to behave in the presence of missing values in \code{w}. Possible options are \code{"replace"}, \code{"omit"}, \code{"keep"}. The default, \code{"replace"}, replaces missing values with 0, \code{"omit"} does not use cells with missing values, and \code{"keep"} keeps missing values.}
 }
 \value{
 A weighted co-occurrence matrix

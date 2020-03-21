@@ -65,8 +65,11 @@ We can also see that one time cell of the first category is adjacent to any othe
 This way, we can compactly describe spatial relationships between categories, but also if we just count values in rows (or columns), we can see proportions of each category.
 Therefore, this representation describes both the composition and spatial configuration of the values.
 
-By default, the `get_coma()` function uses 4-neighborhood, composed of a central cell and its four adjacent cells (they share a border).
-However, it is also possible to use 8-neighborhood, where adjacent cells with just shared points are also used:
+An orthogonal neighbour means that connectivity is determined by having
+a shared side and are thus not simply joined via a corner.
+
+By default, the `get_coma()` function uses 4-neighborhood, composed of a central cell and its four adjacent cells (they share a border/side).
+However, it is also possible to use 8-neighborhood, where adjacent cells with shared corners are also used:
 
 ```{r}
 get_coma(raster_x, neighbourhood = 8)

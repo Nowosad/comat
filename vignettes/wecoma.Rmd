@@ -4,7 +4,7 @@ author: "Jakub Nowosad"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{(2) A weighted co-occurrence matrix (coma) representation}
+  %\VignetteIndexEntry{(2) A weighted co-occurrence matrix (wecoma) representation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

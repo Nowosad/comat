@@ -6,19 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A co-occurrence matrix (coma) representation • comat</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="A co-occurrence matrix (coma) representation">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="comat">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -65,7 +65,14 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/Nowosad/comat/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -78,12 +85,12 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>A co-occurrence matrix (coma) representation</h1>
+      <h1 data-toc-skip>A co-occurrence matrix (coma) representation</h1>
                         <h4 class="author">Jakub Nowosad</h4>
             
-            <h4 class="date">2020-03-21</h4>
+            <h4 class="date">2020-03-30</h4>
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/Nowosad/comat/blob/master/vignettes/coma.Rmd"><code>vignettes/coma.Rmd</code></a></small>
       <div class="hidden name"><code>coma.Rmd</code></div>
 
     </div>
@@ -91,8 +98,8 @@
     
     
 <p>This vignette explains what a co-occurrence matrix (<em>coma</em>) representation is and how to calculate it using the <strong>comat</strong> package. The examples below assume the <strong>comat</strong> package is attached, and the <code>raster_x</code> dataset is loaded:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(comat)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(raster_x, <span class="dt">package =</span> <span class="st">"comat"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">comat</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">raster_x</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"comat"</span>)</pre></body></html></div>
 <p>Categorical raster data is used to store and analyze the spatial distribution of some distinct classes, such as land cover categories or soil classes. A simple example can be seen below:</p>
 <p><img src="coma_files/figure-html/unnamed-chunk-2-1.png" width="384"></p>
 <p>We can imagine that yellow color represents agriculture, green is forest, and blue represents water. However, this data is not stored as a set of colors, but rather as a matrix, where each value can be connected to some color:</p>
@@ -104,36 +111,36 @@
 <p>This example is tiny, with just nine different square areas/cells (a grid of three by three cells). However, categorical rasters used in standard analyses are usually many times larger, with grids of millions or even billions of cells. It is not possible to concisely describe these large datasets using the same approach as above.</p>
 <p>This is exactly a role for a co-occurrence matrix (<em>coma</em>) representation. It goes to each cell, looks at its value, looks at the values of its neighbors (either four or eight direct neighbors, see below), and count how many neighbors of each class our central cell has.</p>
 <p>We can use the <code><a href="../reference/get_coma.html">get_coma()</a></code> function to calculate this co-occurrence matrix (<em>coma</em>) representation for our small raster:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="../reference/get_coma.html">get_coma</a></span>(raster_x)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt;   1 2 3</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; 1 4 1 3</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; 2 1 2 2</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; 3 3 2 6</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/get_coma.html">get_coma</a></span>(<span class="no">raster_x</span>)
+<span class="co">#&gt;   1 2 3</span>
+<span class="co">#&gt; 1 4 1 3</span>
+<span class="co">#&gt; 2 1 2 2</span>
+<span class="co">#&gt; 3 3 2 6</span></pre></body></html></div>
 <p>This output shows that cells of the first category are four times adjacent to other cells of this category, two times cells of the second category are adjacent to other cells of this category, and six times cells of the third category are adjacent to cells of the third category. We can also see that one time cell of the first category is adjacent to any other cells of the second category, and so on. This way, we can compactly describe spatial relationships between categories, but also if we just count values in rows (or columns), we can see proportions of each category. Therefore, this representation describes both the composition and spatial configuration of the values.</p>
 <p>An orthogonal neighbour means that connectivity is determined by having a shared side and are thus not simply joined via a corner.</p>
 <p>By default, the <code><a href="../reference/get_coma.html">get_coma()</a></code> function uses 4-neighborhood, composed of a central cell and its four adjacent cells (they share a border/side). However, it is also possible to use 8-neighborhood, where adjacent cells with shared corners are also used:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/get_coma.html">get_coma</a></span>(raster_x, <span class="dt">neighbourhood =</span> <span class="dv">8</span>)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt;   1 2  3</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; 1 6 2  5</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; 2 2 2  4</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; 3 5 4 10</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/get_coma.html">get_coma</a></span>(<span class="no">raster_x</span>, <span class="kw">neighbourhood</span> <span class="kw">=</span> <span class="fl">8</span>)
+<span class="co">#&gt;   1 2  3</span>
+<span class="co">#&gt; 1 6 2  5</span>
+<span class="co">#&gt; 2 2 2  4</span>
+<span class="co">#&gt; 3 5 4 10</span></pre></body></html></div>
 <p>Finally, we are sometimes not interested in some spatial relationships. For example, we just want to know the relationship between agriculture and forest. Then we can adjust the <code>classes</code> argument in <code><a href="../reference/get_coma.html">get_coma()</a></code>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/get_coma.html">get_coma</a></span>(raster_x, <span class="dt">classes =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt;   1 2</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; 1 4 1</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; 2 1 2</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/get_coma.html">get_coma</a></span>(<span class="no">raster_x</span>, <span class="kw">classes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>))
+<span class="co">#&gt;   1 2</span>
+<span class="co">#&gt; 1 4 1</span>
+<span class="co">#&gt; 2 1 2</span></pre></body></html></div>
 <p>The co-occurrence matrix (<em>coma</em>) representation is two-dimensional, with values of categories in row and columns. It can be also converted into a one-dimensional representation called a co-occurrence vector (<em>cove</em>) using the <code><a href="../reference/get_cove.html">get_cove()</a></code> function. This function takes the output of <code><a href="../reference/get_coma.html">get_coma()</a></code> and restructure it into one row with many columns. It also makes it possible to normalize the output to sum to one (<code>normalization = "pdf"</code>).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">my_coma =<span class="st"> </span><span class="kw"><a href="../reference/get_coma.html">get_coma</a></span>(raster_x)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="../reference/get_cove.html">get_cove</a></span>(my_coma, <span class="dt">normalization =</span> <span class="st">"pdf"</span>)</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt;           [,1]       [,2]  [,3]       [,4]       [,5]       [,6]  [,7]</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; [1,] 0.1666667 0.04166667 0.125 0.04166667 0.08333333 0.08333333 0.125</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt;            [,8] [,9]</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; [1,] 0.08333333 0.25</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">my_coma</span> <span class="kw">=</span> <span class="fu"><a href="../reference/get_coma.html">get_coma</a></span>(<span class="no">raster_x</span>)
+<span class="fu"><a href="../reference/get_cove.html">get_cove</a></span>(<span class="no">my_coma</span>, <span class="kw">normalization</span> <span class="kw">=</span> <span class="st">"pdf"</span>)
+<span class="co">#&gt;           [,1]       [,2]  [,3]       [,4]       [,5]       [,6]  [,7]</span>
+<span class="co">#&gt; [1,] 0.1666667 0.04166667 0.125 0.04166667 0.08333333 0.08333333 0.125</span>
+<span class="co">#&gt;            [,8] [,9]</span>
+<span class="co">#&gt; [1,] 0.08333333 0.25</span></pre></body></html></div>
 <p>This representation can be useful to compare many areas with each other using measures of the similarity between two probability distributions, such as Jensen–Shannon divergence.</p>
 <p>To learn more about the co-occurrence matrix (<em>coma</em>) representation, you can read two blog posts: <a href="https://nowosad.github.io/post/pattern-based-spatial-analysis-core-ideas/">Pattern-based Spatial Analysis - core ideas</a> and <a href="https://nowosad.github.io/post/ent-bp1/">Information theory provides a consistent framework for the analysis of spatial patterns</a>.</p>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
       </div>
 
@@ -146,7 +153,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
 </div>
 
       </footer>

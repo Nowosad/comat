@@ -1,7 +1,8 @@
 pandoc: '2.2'
-pkgdown: 1.4.1
-pkgdown_sha: ~
+pkgdown: 1.5.0.9000
+pkgdown_sha: 2bdebb7e4010d1b936558c79ad0b7ebf1e23f420
 articles:
   coma: coma.html
   wecoma: wecoma.html
+last_built: 2020-03-30T14:33Z
 

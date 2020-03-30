@@ -7,9 +7,11 @@
 #' @param ordered The type of pairs considered.
 #' Either "ordered" (TRUE) or "unordered" (FALSE).
 #' The default is TRUE.
+#' See details for more explanation.
 #' @param repeated Should the repeated co-located co-occurrence matrices be used?
 #' Either "repeated" (TRUE) or "unrepeated" (FALSE).
 #' The default is TRUE.
+#' See details for more explanation.
 #' @param normalization Should the output vector be normalized?
 #' Either "none" or "pdf".
 #' The "pdf" option normalizes a vector to sum to one.
@@ -17,6 +19,11 @@
 #'
 #' @return An integrated co-occurrence vector
 #' @export
+#'
+#' @details All values are kept when `ordered = TRUE` and `repeated = TRUE`.
+#' When `ordered = TRUE` and `repeated = FALSE` all values from cocoma (but only one cocoma for each pair) and all coma values are kept.
+#' `ordered = FALSE` and `repeated = TRUE` keeps all values from cocoma, but divides coma values by 2.
+#' `ordered = FALSE` and `repeated = FALSE` keeps all values from cocoma (but only one cocoma for each pair), and divides coma values by 2.
 #'
 #' @examples
 #' library(comat)

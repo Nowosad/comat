@@ -11,11 +11,13 @@ get_incove(x, ordered = TRUE, repeated = TRUE, normalization = "none")
 
 \item{ordered}{The type of pairs considered.
 Either "ordered" (TRUE) or "unordered" (FALSE).
-The default is TRUE.}
+The default is TRUE.
+See details for more explanation.}
 
 \item{repeated}{Should the repeated co-located co-occurrence matrices be used?
 Either "repeated" (TRUE) or "unrepeated" (FALSE).
-The default is TRUE.}
+The default is TRUE.
+See details for more explanation.}
 
 \item{normalization}{Should the output vector be normalized?
 Either "none" or "pdf".
@@ -28,6 +30,12 @@ An integrated co-occurrence vector
 \description{
 Converts an integrated co-occurrence matrix (incoma) to
 an integrated co-occurrence vector (incove)
+}
+\details{
+All values are kept when \code{ordered = TRUE} and \code{repeated = TRUE}.
+When \code{ordered = TRUE} and \code{repeated = FALSE} all values from cocoma (but only one cocoma for each pair) and all coma values are kept.
+\code{ordered = FALSE} and \code{repeated = TRUE} keeps all values from cocoma, but divides coma values by 2.
+\code{ordered = FALSE} and \code{repeated = FALSE} keeps all values from cocoma (but only one cocoma for each pair), and divides coma values by 2.
 }
 \examples{
 library(comat)

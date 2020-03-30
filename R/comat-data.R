@@ -3,6 +3,11 @@
 #' @format A matrix
 "raster_x"
 
+#' A matrix with categories
+#' @usage data(raster_y)
+#' @format A matrix
+"raster_y"
+
 #' A matrix with weights
 #' @usage data(raster_w)
 #' @format A matrix

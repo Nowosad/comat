@@ -4,7 +4,9 @@
 \name{raster_x_na}
 \alias{raster_x_na}
 \title{A matrix with categories and missing values}
-\format{A matrix}
+\format{
+A matrix
+}
 \usage{
 data(raster_x_na)
 }

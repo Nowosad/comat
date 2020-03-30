@@ -4,7 +4,9 @@
 \name{raster_w}
 \alias{raster_w}
 \title{A matrix with weights}
-\format{A matrix}
+\format{
+A matrix
+}
 \usage{
 data(raster_w)
 }

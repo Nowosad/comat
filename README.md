@@ -93,6 +93,17 @@ get_wecoma(
 #> 3 17 13 49
 ```
 
+## Documentation
+
+For more examples see the package’s vignettes:
+
+1.  [A co-occurrence matrix (coma)
+    representation](https://nowosad.github.io/comat/articles/coma.html)
+2.  [A weighted co-occurrence matrix (wecoma)
+    representation](https://nowosad.github.io/comat/articles/wecoma.html)
+3.  [An integrated co-occurrence matrix (incoma)
+    representation](https://nowosad.github.io/comat/articles/incoma.html)
+
 ## Contribution
 
 Contributions to this package are welcome. The preferred method of

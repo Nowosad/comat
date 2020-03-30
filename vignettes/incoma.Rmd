@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 This vignette explains what an integrated co-occurrence matrix (*incoma*) representation is and how to calculate it using the **comat** package. 
 If you do not know what a co-occurrence matrix is, it could be worth to read [the first package vignette](coma.html) first.
-This representation is inspired by work of Vadivel et al. (2007).
+This representation is inspired by the work of Vadivel et al. (2007).
 The examples below assume the **comat** package is attached, and the `raster_x` and `raster_y` datasets are loaded:
 
 ```{r setup}
@@ -33,7 +33,7 @@ The `raster_x` object is a matrix with three rows and columns with values of 1, 
 raster_x
 ```
 
-We can imagine that yellow color represents agriculture, green is forest, and orange color represents grassland.
+We can imagine that the yellow color represents agriculture, green is forest, and orange color represents grassland.
 
 ```{r, echo=FALSE, fig.width=4, fig.height=4}
 op = par(mar = rep(0, 4))
@@ -51,7 +51,7 @@ It has values 5 and 6.
 raster_y
 ```
 
-We can imagine that ligth yellow color represents flat plains and brown color represents mountains.
+We can imagine that light yellow color represents flat plains and brown color represents mountains.
 
 ```{r, echo=FALSE, fig.width=4, fig.height=4}
 op = par(mar = rep(0, 4))
@@ -63,8 +63,8 @@ par(op)
 ```
 
 The integrated co-occurrence matrix (*incoma*) representation consists of co-occurrence matrices (*coma*) and co-located co-occurrence matrices (*cocoma*).
-In the co-occurrence matrix, we only use one matrix, and count adjacent categories of each cell.
-Co-located co-occurrence matrix uses two matrices and counts neighbors in the second matrix for each cell in the first matrix.
+In the co-occurrence matrix, we only use one matrix and count adjacent categories of each cell.
+The co-located co-occurrence matrix uses two matrices and counts neighbors in the second matrix for each cell in the first matrix.
 
 We can use the `get_incoma()` function to calculate this integrated co-occurrence matrix (*incoma*) representation.
 It requires a list of two or more matrices of the same dimensions.
@@ -76,16 +76,16 @@ get_incoma(list(raster_x, raster_y))
 The *incoma* representation, for two matrices, consists of four sectors:
 
 1. A co-occurrence matrix for the first matrix.
-It is between the first and third column, and first and third row.
+It is between the first and third column and the first and third row.
 2. A co-located co-occurrence matrix between the first matrix and the second matrix.
-It is between the first and third column, and third and fourth row.
+It is between the first and third column and the third and fourth row.
 3. A co-located co-occurrence matrix between the second and the first matrix. 
-It is between the fourth and fifth column, and third and fourth row.
+It is between the fourth and fifth column and the third and fourth row.
 4. A co-occurrence matrix for the second matrix.
-It is between the fourth and fifth column, and fourth and fifth row.
+It is between the fourth and fifth column and the fourth and fifth row.
 
-For example, there are four times a cell of class 1 in the first matrix is adjecent to another cell of class 1 in the second matrix (*agriculture next to agriculture*).
-Also five times an agriculture is adjacent to flat plains, etc.
+For example, there are four times a cell of class 1 in the first matrix is adjacent to another cell of class 1 in the second matrix (*agriculture next to agriculture*).
+Also, five times agriculture is adjacent to flat plains, etc.
 
 Similarly to the co-occurrence matrix (*coma*), it is possible to convert *incoma* to its 1D representation.
 This new form is called an integrated co-occurrence vector (*incove*), and can be created using the `get_incove()` function, which accepts an output of `get_incoma()`:

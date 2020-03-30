@@ -153,13 +153,15 @@ an integrated co-occurrence vector (incove)</p>
       <th>ordered</th>
       <td><p>The type of pairs considered.
 Either "ordered" (TRUE) or "unordered" (FALSE).
-The default is TRUE.</p></td>
+The default is TRUE.
+See details for more explanation.</p></td>
     </tr>
     <tr>
       <th>repeated</th>
       <td><p>Should the repeated co-located co-occurrence matrices be used?
 Either "repeated" (TRUE) or "unrepeated" (FALSE).
-The default is TRUE.</p></td>
+The default is TRUE.
+See details for more explanation.</p></td>
     </tr>
     <tr>
       <th>normalization</th>
@@ -173,6 +175,12 @@ The default is "none".</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An integrated co-occurrence vector</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>All values are kept when <code>ordered = TRUE</code> and <code>repeated = TRUE</code>.
+When <code>ordered = TRUE</code> and <code>repeated = FALSE</code> all values from cocoma (but only one cocoma for each pair) and all coma values are kept.
+<code>ordered = FALSE</code> and <code>repeated = TRUE</code> keeps all values from cocoma, but divides coma values by 2.
+<code>ordered = FALSE</code> and <code>repeated = FALSE</code> keeps all values from cocoma (but only one cocoma for each pair), and divides coma values by 2.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>comat</span>)

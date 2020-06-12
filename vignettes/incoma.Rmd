@@ -1,6 +1,5 @@
 ---
 title: "An integrated co-occurrence matrix (incoma) representation"
-author: "Jakub Nowosad"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >

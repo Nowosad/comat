@@ -1,6 +1,5 @@
 ---
 title: "A weighted co-occurrence matrix (wecoma) representation"
-author: "Jakub Nowosad"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >

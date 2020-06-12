@@ -11,26 +11,8 @@ Builds co-occurrence matrices based on spatial raster data.
     integrated co-occurrence matrices 
     (incoma; Vadivel et al. (2007) <doi:10.1016/j.patrec.2007.01.004>).
 }
-\seealso{
-Useful links:
-\itemize{
-  \item \url{https://nowosad.github.io/comat/}
-  \item Report bugs at \url{https://github.com/Nowosad/comat/issues}
-}
-
-}
 \author{
-\strong{Maintainer}: Jakub Nowosad \email{nowosad.jakub@gmail.com} (\href{https://orcid.org/0000-0002-1057-3721}{ORCID})
-
-Other contributors:
-\itemize{
-  \item Maximillian H.K. Hesselbarth \email{maximilian.hesselbarth@uni-goettingen.de} (Co-author of underlying C++ code for get_class_index_map(), 
-             get_unique_values(), and rcpp_get_coma() functions) [contributor]
-  \item Marco Sciaini \email{sciaini.marco@gmail.com} (Co-author of underlying C++ code for get_class_index_map(), 
-             get_unique_values(), and rcpp_get_coma() functions) [contributor]
-  \item Sebastian Hanss (Co-author of underlying C++ code for get_class_index_map(), 
-             get_unique_values(), and rcpp_get_coma() functions) [contributor]
-}
+\strong{Maintainer}: Anoni Mize \email{anoni@mi.ze}
 
 }
 \keyword{internal}

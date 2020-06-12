@@ -1,22 +1,8 @@
 Package: comat
 Title: Creates Co-Occurrence Matrices of Spatial Data
 Version: 0.8.4
-Authors@R: c(person(given = "Jakub", family = "Nowosad", role = c("aut", "cre"), email =
-             "nowosad.jakub@gmail.com", comment = c(ORCID = "0000-0002-1057-3721")),
-             person("Maximillian H.K.", "Hesselbarth",
-             role = c("ctb"),
-             email = "maximilian.hesselbarth@uni-goettingen.de",
-             comment = "Co-author of underlying C++ code for get_class_index_map(), 
-             get_unique_values(), and rcpp_get_coma() functions"),
-             person("Marco", "Sciaini",
-             role = "ctb",
-             email = "sciaini.marco@gmail.com",
-             comment = "Co-author of underlying C++ code for get_class_index_map(), 
-             get_unique_values(), and rcpp_get_coma() functions"),
-             person("Sebastian", "Hanss", 
-             role = "ctb", 
-             comment = "Co-author of underlying C++ code for get_class_index_map(), 
-             get_unique_values(), and rcpp_get_coma() functions"))
+Authors@R: c(person(given = "Anoni", family = "Mize", role = c("aut", "cre"), email =
+             "anoni@mi.ze"))
 Description: Builds co-occurrence matrices based on spatial raster data.
     It includes creation of weighted co-occurrence matrices (wecoma) and 
     integrated co-occurrence matrices 
@@ -38,6 +24,4 @@ Suggests:
     knitr,
     rmarkdown
 SystemRequirements: C++11
-URL: https://nowosad.github.io/comat/
-BugReports: https://github.com/Nowosad/comat/issues
 VignetteBuilder: knitr

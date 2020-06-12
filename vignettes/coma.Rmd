@@ -1,6 +1,5 @@
 ---
 title: "A co-occurrence matrix (coma) representation"
-author: "Jakub Nowosad"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >

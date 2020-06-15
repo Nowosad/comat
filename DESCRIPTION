@@ -1,8 +1,8 @@
 Package: comat
 Title: Creates Co-Occurrence Matrices of Spatial Data
 Version: 0.8.4
-Authors@R: c(person(given = "Anoni", family = "Mize", role = c("aut", "cre"), email =
-             "anoni@mi.ze"))
+Authors@R: c(person(given = "First", family = "Second", role = c("aut", "cre"), email =
+             "first@second"))
 Description: Builds co-occurrence matrices based on spatial raster data.
     It includes creation of weighted co-occurrence matrices (wecoma) and 
     integrated co-occurrence matrices 

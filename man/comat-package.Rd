@@ -12,7 +12,7 @@ Builds co-occurrence matrices based on spatial raster data.
     (incoma; Vadivel et al. (2007) <doi:10.1016/j.patrec.2007.01.004>).
 }
 \author{
-\strong{Maintainer}: Anoni Mize \email{anoni@mi.ze}
+\strong{Maintainer}: First Second \email{first@second}
 
 }
 \keyword{internal}

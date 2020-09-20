@@ -23,4 +23,9 @@ double rcpp_mutinf(const Rcpp::NumericMatrix x,
                    std::string base = "log2",
                    bool ordered = true);
 
+// [[Rcpp::export]]
+double rcpp_relmutinf(const NumericMatrix x,
+                      std::string base = "log2",
+                      bool ordered = true);
+
 #endif // IT_METRICS_H

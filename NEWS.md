@@ -1,3 +1,7 @@
+# comat 0.9
+
+* Adds C++ code for calculating five IT-metrics (Nowosad and Stepinski, 2019, Landscape Ecology)
+
 # comat 0.8
 
 * Main vector functions now return matrices with one row instead of vectors

@@ -269,6 +269,42 @@ RcppExport SEXP _comat_rcpp_mutinf(SEXP xSEXP, SEXP baseSEXP, SEXP orderedSEXP) 
     UNPROTECT(1);
     return rcpp_result_gen;
 }
+// rcpp_relmutinf
+double rcpp_relmutinf(const NumericMatrix x, std::string base, bool ordered);
+static SEXP _comat_rcpp_relmutinf_try(SEXP xSEXP, SEXP baseSEXP, SEXP orderedSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type base(baseSEXP);
+    Rcpp::traits::input_parameter< bool >::type ordered(orderedSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_relmutinf(x, base, ordered));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _comat_rcpp_relmutinf(SEXP xSEXP, SEXP baseSEXP, SEXP orderedSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_comat_rcpp_relmutinf_try(xSEXP, baseSEXP, orderedSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
 // rcpp_get_cocoma
 IntegerMatrix rcpp_get_cocoma(const IntegerMatrix x, const IntegerMatrix y, const arma::imat directions);
 static SEXP _comat_rcpp_get_cocoma_try(SEXP xSEXP, SEXP ySEXP, SEXP directionsSEXP) {
@@ -868,6 +904,7 @@ static int _comat_RcppExport_validate(const char* sig) {
         signatures.insert("double(*rcpp_joinent)(const Rcpp::NumericMatrix,std::string,bool)");
         signatures.insert("double(*rcpp_condent)(const Rcpp::NumericMatrix,std::string,bool)");
         signatures.insert("double(*rcpp_mutinf)(const Rcpp::NumericMatrix,std::string,bool)");
+        signatures.insert("double(*rcpp_relmutinf)(const NumericMatrix,std::string,bool)");
         signatures.insert("IntegerMatrix(*rcpp_get_cocoma)(const IntegerMatrix,const IntegerMatrix,const arma::imat)");
         signatures.insert("IntegerMatrix(*rcpp_get_cocoma_internal)(const IntegerMatrix,const IntegerMatrix,const arma::imat,std::vector<int>,std::vector<int>)");
         signatures.insert("IntegerMatrix(*rcpp_get_coma)(const IntegerMatrix&,const arma::imat)");
@@ -896,6 +933,7 @@ RcppExport SEXP _comat_RcppExport_registerCCallable() {
     R_RegisterCCallable("comat", "_comat_rcpp_joinent", (DL_FUNC)_comat_rcpp_joinent_try);
     R_RegisterCCallable("comat", "_comat_rcpp_condent", (DL_FUNC)_comat_rcpp_condent_try);
     R_RegisterCCallable("comat", "_comat_rcpp_mutinf", (DL_FUNC)_comat_rcpp_mutinf_try);
+    R_RegisterCCallable("comat", "_comat_rcpp_relmutinf", (DL_FUNC)_comat_rcpp_relmutinf_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_cocoma", (DL_FUNC)_comat_rcpp_get_cocoma_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_cocoma_internal", (DL_FUNC)_comat_rcpp_get_cocoma_internal_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_coma", (DL_FUNC)_comat_rcpp_get_coma_try);
@@ -927,6 +965,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_comat_rcpp_joinent", (DL_FUNC) &_comat_rcpp_joinent, 3},
     {"_comat_rcpp_condent", (DL_FUNC) &_comat_rcpp_condent, 3},
     {"_comat_rcpp_mutinf", (DL_FUNC) &_comat_rcpp_mutinf, 3},
+    {"_comat_rcpp_relmutinf", (DL_FUNC) &_comat_rcpp_relmutinf, 3},
     {"_comat_rcpp_get_cocoma", (DL_FUNC) &_comat_rcpp_get_cocoma, 3},
     {"_comat_rcpp_get_cocoma_internal", (DL_FUNC) &_comat_rcpp_get_cocoma_internal, 5},
     {"_comat_rcpp_get_coma", (DL_FUNC) &_comat_rcpp_get_coma, 2},

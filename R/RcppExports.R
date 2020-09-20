@@ -68,6 +68,10 @@ rcpp_mutinf <- function(x, base = "log2", ordered = TRUE) {
     .Call(`_comat_rcpp_mutinf`, x, base, ordered)
 }
 
+rcpp_relmutinf <- function(x, base = "log2", ordered = TRUE) {
+    .Call(`_comat_rcpp_relmutinf`, x, base, ordered)
+}
+
 rcpp_get_cocoma <- function(x, y, directions) {
     .Call(`_comat_rcpp_get_cocoma`, x, y, directions)
 }

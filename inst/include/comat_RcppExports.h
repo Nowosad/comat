@@ -25,11 +25,11 @@ namespace comat {
         }
     }
 
-    inline double rcpp_get_entropy(NumericVector x, std::string base = "log2") {
+    inline double rcpp_get_entropy(const Rcpp::NumericVector x, std::string base = "log2") {
         typedef SEXP(*Ptr_rcpp_get_entropy)(SEXP,SEXP);
         static Ptr_rcpp_get_entropy p_rcpp_get_entropy = NULL;
         if (p_rcpp_get_entropy == NULL) {
-            validateSignature("double(*rcpp_get_entropy)(NumericVector,std::string)");
+            validateSignature("double(*rcpp_get_entropy)(const Rcpp::NumericVector,std::string)");
             p_rcpp_get_entropy = (Ptr_rcpp_get_entropy)R_GetCCallable("comat", "_comat_rcpp_get_entropy");
         }
         RObject rcpp_result_gen;
@@ -65,6 +65,90 @@ namespace comat {
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
         return Rcpp::as<std::vector<int> >(rcpp_result_gen);
+    }
+
+    inline double rcpp_ent(const Rcpp::NumericMatrix x, std::string base = "log2") {
+        typedef SEXP(*Ptr_rcpp_ent)(SEXP,SEXP);
+        static Ptr_rcpp_ent p_rcpp_ent = NULL;
+        if (p_rcpp_ent == NULL) {
+            validateSignature("double(*rcpp_ent)(const Rcpp::NumericMatrix,std::string)");
+            p_rcpp_ent = (Ptr_rcpp_ent)R_GetCCallable("comat", "_comat_rcpp_ent");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_rcpp_ent(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(base)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<double >(rcpp_result_gen);
+    }
+
+    inline double rcpp_joinent(const Rcpp::NumericMatrix x, std::string base = "log2", bool ordered = true) {
+        typedef SEXP(*Ptr_rcpp_joinent)(SEXP,SEXP,SEXP);
+        static Ptr_rcpp_joinent p_rcpp_joinent = NULL;
+        if (p_rcpp_joinent == NULL) {
+            validateSignature("double(*rcpp_joinent)(const Rcpp::NumericMatrix,std::string,bool)");
+            p_rcpp_joinent = (Ptr_rcpp_joinent)R_GetCCallable("comat", "_comat_rcpp_joinent");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_rcpp_joinent(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(base)), Shield<SEXP>(Rcpp::wrap(ordered)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<double >(rcpp_result_gen);
+    }
+
+    inline double rcpp_condent(const Rcpp::NumericMatrix x, std::string base = "log2", bool ordered = true) {
+        typedef SEXP(*Ptr_rcpp_condent)(SEXP,SEXP,SEXP);
+        static Ptr_rcpp_condent p_rcpp_condent = NULL;
+        if (p_rcpp_condent == NULL) {
+            validateSignature("double(*rcpp_condent)(const Rcpp::NumericMatrix,std::string,bool)");
+            p_rcpp_condent = (Ptr_rcpp_condent)R_GetCCallable("comat", "_comat_rcpp_condent");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_rcpp_condent(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(base)), Shield<SEXP>(Rcpp::wrap(ordered)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<double >(rcpp_result_gen);
+    }
+
+    inline double rcpp_mutinf(const Rcpp::NumericMatrix x, std::string base = "log2", bool ordered = true) {
+        typedef SEXP(*Ptr_rcpp_mutinf)(SEXP,SEXP,SEXP);
+        static Ptr_rcpp_mutinf p_rcpp_mutinf = NULL;
+        if (p_rcpp_mutinf == NULL) {
+            validateSignature("double(*rcpp_mutinf)(const Rcpp::NumericMatrix,std::string,bool)");
+            p_rcpp_mutinf = (Ptr_rcpp_mutinf)R_GetCCallable("comat", "_comat_rcpp_mutinf");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_rcpp_mutinf(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(base)), Shield<SEXP>(Rcpp::wrap(ordered)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<double >(rcpp_result_gen);
     }
 
     inline IntegerMatrix rcpp_get_cocoma(const IntegerMatrix x, const IntegerMatrix y, const arma::imat directions) {

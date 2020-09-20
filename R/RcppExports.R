@@ -52,6 +52,22 @@ get_unique_values <- function(x, na_omit) {
     .Call(`_comat_get_unique_values`, x, na_omit)
 }
 
+rcpp_ent <- function(x, base = "log2") {
+    .Call(`_comat_rcpp_ent`, x, base)
+}
+
+rcpp_joinent <- function(x, base = "log2", ordered = TRUE) {
+    .Call(`_comat_rcpp_joinent`, x, base, ordered)
+}
+
+rcpp_condent <- function(x, base = "log2", ordered = TRUE) {
+    .Call(`_comat_rcpp_condent`, x, base, ordered)
+}
+
+rcpp_mutinf <- function(x, base = "log2", ordered = TRUE) {
+    .Call(`_comat_rcpp_mutinf`, x, base, ordered)
+}
+
 rcpp_get_cocoma <- function(x, y, directions) {
     .Call(`_comat_rcpp_get_cocoma`, x, y, directions)
 }

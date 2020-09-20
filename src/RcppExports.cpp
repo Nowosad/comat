@@ -45,11 +45,11 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_get_entropy
-double rcpp_get_entropy(NumericVector x, std::string base);
+double rcpp_get_entropy(const Rcpp::NumericVector x, std::string base);
 static SEXP _comat_rcpp_get_entropy_try(SEXP xSEXP, SEXP baseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const Rcpp::NumericVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< std::string >::type base(baseSEXP);
     rcpp_result_gen = Rcpp::wrap(rcpp_get_entropy(x, base));
     return rcpp_result_gen;
@@ -107,6 +107,149 @@ RcppExport SEXP _comat_get_unique_values(SEXP xSEXP, SEXP na_omitSEXP) {
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
         rcpp_result_gen = PROTECT(_comat_get_unique_values_try(xSEXP, na_omitSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// rcpp_ent
+double rcpp_ent(const Rcpp::NumericMatrix x, std::string base);
+static SEXP _comat_rcpp_ent_try(SEXP xSEXP, SEXP baseSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const Rcpp::NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type base(baseSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_ent(x, base));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _comat_rcpp_ent(SEXP xSEXP, SEXP baseSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_comat_rcpp_ent_try(xSEXP, baseSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// rcpp_joinent
+double rcpp_joinent(const Rcpp::NumericMatrix x, std::string base, bool ordered);
+static SEXP _comat_rcpp_joinent_try(SEXP xSEXP, SEXP baseSEXP, SEXP orderedSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const Rcpp::NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type base(baseSEXP);
+    Rcpp::traits::input_parameter< bool >::type ordered(orderedSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_joinent(x, base, ordered));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _comat_rcpp_joinent(SEXP xSEXP, SEXP baseSEXP, SEXP orderedSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_comat_rcpp_joinent_try(xSEXP, baseSEXP, orderedSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// rcpp_condent
+double rcpp_condent(const Rcpp::NumericMatrix x, std::string base, bool ordered);
+static SEXP _comat_rcpp_condent_try(SEXP xSEXP, SEXP baseSEXP, SEXP orderedSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const Rcpp::NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type base(baseSEXP);
+    Rcpp::traits::input_parameter< bool >::type ordered(orderedSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_condent(x, base, ordered));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _comat_rcpp_condent(SEXP xSEXP, SEXP baseSEXP, SEXP orderedSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_comat_rcpp_condent_try(xSEXP, baseSEXP, orderedSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// rcpp_mutinf
+double rcpp_mutinf(const Rcpp::NumericMatrix x, std::string base, bool ordered);
+static SEXP _comat_rcpp_mutinf_try(SEXP xSEXP, SEXP baseSEXP, SEXP orderedSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const Rcpp::NumericMatrix >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type base(baseSEXP);
+    Rcpp::traits::input_parameter< bool >::type ordered(orderedSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_mutinf(x, base, ordered));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _comat_rcpp_mutinf(SEXP xSEXP, SEXP baseSEXP, SEXP orderedSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_comat_rcpp_mutinf_try(xSEXP, baseSEXP, orderedSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -719,8 +862,12 @@ END_RCPP
 static int _comat_RcppExport_validate(const char* sig) { 
     static std::set<std::string> signatures;
     if (signatures.empty()) {
-        signatures.insert("double(*rcpp_get_entropy)(NumericVector,std::string)");
+        signatures.insert("double(*rcpp_get_entropy)(const Rcpp::NumericVector,std::string)");
         signatures.insert("std::vector<int>(*get_unique_values)(const Rcpp::IntegerVector&,bool)");
+        signatures.insert("double(*rcpp_ent)(const Rcpp::NumericMatrix,std::string)");
+        signatures.insert("double(*rcpp_joinent)(const Rcpp::NumericMatrix,std::string,bool)");
+        signatures.insert("double(*rcpp_condent)(const Rcpp::NumericMatrix,std::string,bool)");
+        signatures.insert("double(*rcpp_mutinf)(const Rcpp::NumericMatrix,std::string,bool)");
         signatures.insert("IntegerMatrix(*rcpp_get_cocoma)(const IntegerMatrix,const IntegerMatrix,const arma::imat)");
         signatures.insert("IntegerMatrix(*rcpp_get_cocoma_internal)(const IntegerMatrix,const IntegerMatrix,const arma::imat,std::vector<int>,std::vector<int>)");
         signatures.insert("IntegerMatrix(*rcpp_get_coma)(const IntegerMatrix&,const arma::imat)");
@@ -745,6 +892,10 @@ static int _comat_RcppExport_validate(const char* sig) {
 RcppExport SEXP _comat_RcppExport_registerCCallable() { 
     R_RegisterCCallable("comat", "_comat_rcpp_get_entropy", (DL_FUNC)_comat_rcpp_get_entropy_try);
     R_RegisterCCallable("comat", "_comat_get_unique_values", (DL_FUNC)_comat_get_unique_values_try);
+    R_RegisterCCallable("comat", "_comat_rcpp_ent", (DL_FUNC)_comat_rcpp_ent_try);
+    R_RegisterCCallable("comat", "_comat_rcpp_joinent", (DL_FUNC)_comat_rcpp_joinent_try);
+    R_RegisterCCallable("comat", "_comat_rcpp_condent", (DL_FUNC)_comat_rcpp_condent_try);
+    R_RegisterCCallable("comat", "_comat_rcpp_mutinf", (DL_FUNC)_comat_rcpp_mutinf_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_cocoma", (DL_FUNC)_comat_rcpp_get_cocoma_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_cocoma_internal", (DL_FUNC)_comat_rcpp_get_cocoma_internal_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_coma", (DL_FUNC)_comat_rcpp_get_coma_try);
@@ -772,6 +923,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_comat_rcpp_get_entropy", (DL_FUNC) &_comat_rcpp_get_entropy, 2},
     {"_comat_get_normalized", (DL_FUNC) &_comat_get_normalized, 2},
     {"_comat_get_unique_values", (DL_FUNC) &_comat_get_unique_values, 2},
+    {"_comat_rcpp_ent", (DL_FUNC) &_comat_rcpp_ent, 2},
+    {"_comat_rcpp_joinent", (DL_FUNC) &_comat_rcpp_joinent, 3},
+    {"_comat_rcpp_condent", (DL_FUNC) &_comat_rcpp_condent, 3},
+    {"_comat_rcpp_mutinf", (DL_FUNC) &_comat_rcpp_mutinf, 3},
     {"_comat_rcpp_get_cocoma", (DL_FUNC) &_comat_rcpp_get_cocoma, 3},
     {"_comat_rcpp_get_cocoma_internal", (DL_FUNC) &_comat_rcpp_get_cocoma_internal, 5},
     {"_comat_rcpp_get_coma", (DL_FUNC) &_comat_rcpp_get_coma, 2},

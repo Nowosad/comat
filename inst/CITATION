@@ -1,10 +1,14 @@
 citHeader("To cite comat in publications, please use:")
 
-citEntry(entry = "manual",
-  author = c(person("Jakub", "Nowosad")),
-  title = "comat: Co-Occurrence Matrices of Spatial Data",
-  year = "2020",
-  note = "R package version 0.8.4",
-  url = "https://nowosad.github.io/comat/",
-  textVersion = "Nowosad, J. (2020). comat: Co-Occurrence Matrices for Spatial Data. R package version 0.8.4. https://nowosad.github.io/comat/"
+citEntry(entry = "article",
+  author = c(person("Jakub", "Nowosad"), person("Tomasz", "Stepinski")),
+  title = "Pattern-based identification and mapping of landscape types using multi-thematic data",
+  journal = "International Journal of Geographical Information Science",
+  #volume = "36",
+  #pages = "26-43",
+  year  = "2021",
+  publisher = "Taylor & Francis",
+  doi = "10.1080/13658816.2021.1893324",
+  #url = "https://doi.org/10.1016/j.apgeog.2020.102239",
+  textVersion = "Nowosad J, Stepinski TF (2021) Pattern-based identification and mapping of landscape types using multi-thematic data, International Journal of Geographical Information Science, DOI: 10.1080/13658816.2021.1893324"
 )

@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 This vignette explains what an integrated co-occurrence matrix (*incoma*) representation is and how to calculate it using the **comat** package. 
 If you do not know what a co-occurrence matrix is, it could be worth to read [the first package vignette](coma.html) first.
-This representation is inspired by the work of Vadivel et al. (2007).
+This representation is inspired by the work of Vadivel et al. (2007) and explained in details in Nowosad and Stepinski (2021).
 The examples below assume the **comat** package is attached, and the `raster_x` and `raster_y` datasets are loaded:
 
 ```{r setup}
@@ -98,4 +98,5 @@ get_wecove(my_incoma, normalization = "pdf")
 ## References
 
 - Vadivel, A., Sural, S., & Majumdar, A. K. (2007). An integrated color and intensity co-occurrence matrix. Pattern recognition letters, 28(8), 974-983.
+- Nowosad J, Stepinski TF (2021) Pattern-based identification and mapping of landscape types using multi-thematic data, International Journal of Geographical Information Science, DOI: 10.1080/13658816.2021.1893324
 

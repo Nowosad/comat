@@ -109,3 +109,17 @@ For more examples see the package’s vignettes:
 Contributions to this package are welcome. The preferred method of
 contribution is through a GitHub pull request. Feel free to contact me
 by creating [an issue](https://github.com/Nowosad/comat/issues).
+
+## Citation
+
+To cite the `comat` package in publications, please use [this
+paper](https://doi.org/10.1016/j.apgeog.2020.102239):
+
+Nowosad J, Stepinski TF (2021) Pattern-based identification and mapping
+of landscape types using multi-thematic data, International Journal of
+Geographical Information Science, DOI: 10.1080/13658816.2021.1893324
+
+LaTeX/BibTeX version can be obtained with:
+
+    library(comat)
+    citation("comat")

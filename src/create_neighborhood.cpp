@@ -1,7 +1,5 @@
-#include <RcppArmadillo.h>
-using namespace Rcpp;
-
-// [[Rcpp::depends(RcppArmadillo)]]
+#include "create_neighborhood.h"
+// [[Rcpp::interfaces(r, cpp)]]
 
 //' Coordinates from a matrix
 //'

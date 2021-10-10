@@ -9,40 +9,114 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // rcpp_xy_from_matrix
 IntegerMatrix rcpp_xy_from_matrix(arma::imat x, Rcpp::Nullable<Rcpp::IntegerVector> cell);
-RcppExport SEXP _comat_rcpp_xy_from_matrix(SEXP xSEXP, SEXP cellSEXP) {
+static SEXP _comat_rcpp_xy_from_matrix_try(SEXP xSEXP, SEXP cellSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::imat >::type x(xSEXP);
     Rcpp::traits::input_parameter< Rcpp::Nullable<Rcpp::IntegerVector> >::type cell(cellSEXP);
     rcpp_result_gen = Rcpp::wrap(rcpp_xy_from_matrix(x, cell));
     return rcpp_result_gen;
-END_RCPP
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _comat_rcpp_xy_from_matrix(SEXP xSEXP, SEXP cellSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_comat_rcpp_xy_from_matrix_try(xSEXP, cellSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
 }
 // rcpp_cell_from_xy
 IntegerVector rcpp_cell_from_xy(arma::imat x, IntegerMatrix y);
-RcppExport SEXP _comat_rcpp_cell_from_xy(SEXP xSEXP, SEXP ySEXP) {
+static SEXP _comat_rcpp_cell_from_xy_try(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::imat >::type x(xSEXP);
     Rcpp::traits::input_parameter< IntegerMatrix >::type y(ySEXP);
     rcpp_result_gen = Rcpp::wrap(rcpp_cell_from_xy(x, y));
     return rcpp_result_gen;
-END_RCPP
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _comat_rcpp_cell_from_xy(SEXP xSEXP, SEXP ySEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_comat_rcpp_cell_from_xy_try(xSEXP, ySEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
 }
 // create_neighborhood
 IntegerMatrix create_neighborhood(arma::imat directions);
-RcppExport SEXP _comat_create_neighborhood(SEXP directionsSEXP) {
+static SEXP _comat_create_neighborhood_try(SEXP directionsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::imat >::type directions(directionsSEXP);
     rcpp_result_gen = Rcpp::wrap(create_neighborhood(directions));
     return rcpp_result_gen;
-END_RCPP
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _comat_create_neighborhood(SEXP directionsSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_comat_create_neighborhood_try(directionsSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
 }
 // rcpp_get_entropy
 double rcpp_get_entropy(const Rcpp::NumericVector x, std::string base);
@@ -898,6 +972,9 @@ END_RCPP
 static int _comat_RcppExport_validate(const char* sig) { 
     static std::set<std::string> signatures;
     if (signatures.empty()) {
+        signatures.insert("IntegerMatrix(*rcpp_xy_from_matrix)(arma::imat,Rcpp::Nullable<Rcpp::IntegerVector>)");
+        signatures.insert("IntegerVector(*rcpp_cell_from_xy)(arma::imat,IntegerMatrix)");
+        signatures.insert("IntegerMatrix(*create_neighborhood)(arma::imat)");
         signatures.insert("double(*rcpp_get_entropy)(const Rcpp::NumericVector,std::string)");
         signatures.insert("std::vector<int>(*get_unique_values)(const Rcpp::IntegerVector&,bool)");
         signatures.insert("double(*rcpp_ent)(const Rcpp::NumericMatrix,std::string)");
@@ -927,6 +1004,9 @@ static int _comat_RcppExport_validate(const char* sig) {
 
 // registerCCallable (register entry points for exported C++ functions)
 RcppExport SEXP _comat_RcppExport_registerCCallable() { 
+    R_RegisterCCallable("comat", "_comat_rcpp_xy_from_matrix", (DL_FUNC)_comat_rcpp_xy_from_matrix_try);
+    R_RegisterCCallable("comat", "_comat_rcpp_cell_from_xy", (DL_FUNC)_comat_rcpp_cell_from_xy_try);
+    R_RegisterCCallable("comat", "_comat_create_neighborhood", (DL_FUNC)_comat_create_neighborhood_try);
     R_RegisterCCallable("comat", "_comat_rcpp_get_entropy", (DL_FUNC)_comat_rcpp_get_entropy_try);
     R_RegisterCCallable("comat", "_comat_get_unique_values", (DL_FUNC)_comat_get_unique_values_try);
     R_RegisterCCallable("comat", "_comat_rcpp_ent", (DL_FUNC)_comat_rcpp_ent_try);

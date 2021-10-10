@@ -25,6 +25,69 @@ namespace comat {
         }
     }
 
+    inline IntegerMatrix rcpp_xy_from_matrix(arma::imat x, Rcpp::Nullable<Rcpp::IntegerVector> cell = R_NilValue) {
+        typedef SEXP(*Ptr_rcpp_xy_from_matrix)(SEXP,SEXP);
+        static Ptr_rcpp_xy_from_matrix p_rcpp_xy_from_matrix = NULL;
+        if (p_rcpp_xy_from_matrix == NULL) {
+            validateSignature("IntegerMatrix(*rcpp_xy_from_matrix)(arma::imat,Rcpp::Nullable<Rcpp::IntegerVector>)");
+            p_rcpp_xy_from_matrix = (Ptr_rcpp_xy_from_matrix)R_GetCCallable("comat", "_comat_rcpp_xy_from_matrix");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_rcpp_xy_from_matrix(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(cell)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<IntegerMatrix >(rcpp_result_gen);
+    }
+
+    inline IntegerVector rcpp_cell_from_xy(arma::imat x, IntegerMatrix y) {
+        typedef SEXP(*Ptr_rcpp_cell_from_xy)(SEXP,SEXP);
+        static Ptr_rcpp_cell_from_xy p_rcpp_cell_from_xy = NULL;
+        if (p_rcpp_cell_from_xy == NULL) {
+            validateSignature("IntegerVector(*rcpp_cell_from_xy)(arma::imat,IntegerMatrix)");
+            p_rcpp_cell_from_xy = (Ptr_rcpp_cell_from_xy)R_GetCCallable("comat", "_comat_rcpp_cell_from_xy");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_rcpp_cell_from_xy(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(y)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<IntegerVector >(rcpp_result_gen);
+    }
+
+    inline IntegerMatrix create_neighborhood(arma::imat directions) {
+        typedef SEXP(*Ptr_create_neighborhood)(SEXP);
+        static Ptr_create_neighborhood p_create_neighborhood = NULL;
+        if (p_create_neighborhood == NULL) {
+            validateSignature("IntegerMatrix(*create_neighborhood)(arma::imat)");
+            p_create_neighborhood = (Ptr_create_neighborhood)R_GetCCallable("comat", "_comat_create_neighborhood");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_create_neighborhood(Shield<SEXP>(Rcpp::wrap(directions)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<IntegerMatrix >(rcpp_result_gen);
+    }
+
     inline double rcpp_get_entropy(const Rcpp::NumericVector x, std::string base = "log2") {
         typedef SEXP(*Ptr_rcpp_get_entropy)(SEXP,SEXP);
         static Ptr_rcpp_get_entropy p_rcpp_get_entropy = NULL;

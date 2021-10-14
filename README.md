@@ -8,7 +8,7 @@
 [![Travis build
 status](https://travis-ci.org/Nowosad/comat.svg?branch=master)](https://travis-ci.org/Nowosad/comat)
 [![Codecov test
-coverage](https://codecov.io/gh/Nowosad/comat/branch/master/graph/badge.svg)](https://codecov.io/gh/Nowosad/comat?branch=master)
+coverage](https://codecov.io/gh/Nowosad/comat/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Nowosad/comat?branch=master)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/comat)](https://CRAN.R-project.org/package=comat)
 [![CRAN RStudio mirror

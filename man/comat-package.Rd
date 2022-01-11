@@ -6,10 +6,7 @@
 \alias{comat-package}
 \title{comat: Creates Co-Occurrence Matrices of Spatial Data}
 \description{
-Builds co-occurrence matrices based on spatial raster data.
-    It includes creation of weighted co-occurrence matrices (wecoma) and 
-    integrated co-occurrence matrices 
-    (incoma; Vadivel et al. (2007) <doi:10.1016/j.patrec.2007.01.004>).
+Builds co-occurrence matrices based on spatial raster data. It includes creation of weighted co-occurrence matrices (wecoma) and integrated co-occurrence matrices (incoma; Vadivel et al. (2007) <doi:10.1016/j.patrec.2007.01.004>).
 }
 \seealso{
 Useful links:
@@ -24,12 +21,9 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item Maximillian H.K. Hesselbarth \email{maximilian.hesselbarth@uni-goettingen.de} (Co-author of underlying C++ code for get_class_index_map(), 
-             get_unique_values(), and rcpp_get_coma() functions) [contributor]
-  \item Marco Sciaini \email{sciaini.marco@gmail.com} (Co-author of underlying C++ code for get_class_index_map(), 
-             get_unique_values(), and rcpp_get_coma() functions) [contributor]
-  \item Sebastian Hanss (Co-author of underlying C++ code for get_class_index_map(), 
-             get_unique_values(), and rcpp_get_coma() functions) [contributor]
+  \item Maximillian H.K. Hesselbarth \email{maximilian.hesselbarth@uni-goettingen.de} (Co-author of underlying C++ code for get_class_index_map(), get_unique_values(), and rcpp_get_coma() functions) [contributor]
+  \item Marco Sciaini \email{sciaini.marco@gmail.com} (Co-author of underlying C++ code for get_class_index_map(), get_unique_values(), and rcpp_get_coma() functions) [contributor]
+  \item Sebastian Hanss (Co-author of underlying C++ code for get_class_index_map(), get_unique_values(), and rcpp_get_coma() functions) [contributor]
 }
 
 }

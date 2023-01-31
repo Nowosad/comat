@@ -6,12 +6,12 @@
 \alias{comat-package}
 \title{comat: Creates Co-Occurrence Matrices of Spatial Data}
 \description{
-Builds co-occurrence matrices based on spatial raster data. It includes creation of weighted co-occurrence matrices (wecoma) and integrated co-occurrence matrices (incoma; Vadivel et al. (2007) <doi:10.1016/j.patrec.2007.01.004>).
+Builds co-occurrence matrices based on spatial raster data. It includes creation of weighted co-occurrence matrices (wecoma) and integrated co-occurrence matrices (incoma; Vadivel et al. (2007) \doi{10.1016/j.patrec.2007.01.004}).
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://nowosad.github.io/comat/}
+  \item \url{https://jakubnowosad.com/comat/}
   \item Report bugs at \url{https://github.com/Nowosad/comat/issues}
 }
 

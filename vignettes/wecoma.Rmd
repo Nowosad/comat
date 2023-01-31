@@ -104,9 +104,9 @@ get_wecove(my_wecoma, normalization = "pdf")
 
 You can see the weighted co-occurrence matrix (*wecoma*) concept, there described as an *exposure matrix*, in action in the vignettes of the **raceland** package (Nowosad, Dmowska, and Stepinski, 2020):
 
-1. [raceland: R package for a pattern-based, zoneless method for analysis and visualization of racial topography](https://nowosad.github.io/raceland/articles/raceland-intro1.html)
-2. [raceland: Describing local racial patterns of racial landscapes at different spatial scales](https://nowosad.github.io/raceland/articles/raceland-intro2.html)
-3. [raceland: Describing local pattern of racial landscape using SocScape grids](https://nowosad.github.io/raceland/articles/raceland-intro3.html)
+1. [raceland: R package for a pattern-based, zoneless method for analysis and visualization of racial topography](https://jakubnowosad.com/raceland/articles/raceland-intro1.html)
+2. [raceland: Describing local racial patterns of racial landscapes at different spatial scales](https://jakubnowosad.com/raceland/articles/raceland-intro2.html)
+3. [raceland: Describing local pattern of racial landscape using SocScape grids](https://jakubnowosad.com/raceland/articles/raceland-intro3.html)
 
 ## References
 

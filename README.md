@@ -98,11 +98,11 @@ get_wecoma(
 For more examples see the package’s vignettes:
 
 1.  [A co-occurrence matrix (coma)
-    representation](https://nowosad.github.io/comat/articles/coma.html)
+    representation](https://jakubnowosad.com/comat/articles/coma.html)
 2.  [A weighted co-occurrence matrix (wecoma)
-    representation](https://nowosad.github.io/comat/articles/wecoma.html)
+    representation](https://jakubnowosad.com/comat/articles/wecoma.html)
 3.  [An integrated co-occurrence matrix (incoma)
-    representation](https://nowosad.github.io/comat/articles/incoma.html)
+    representation](https://jakubnowosad.com/comat/articles/incoma.html)
 
 ## Contribution
 

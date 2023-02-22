@@ -27,7 +27,7 @@
 #' coov
 get_cocove = function(x, ordered = TRUE, normalization = "none"){
   if (!ordered){
-    warning("`ordered = FALSE` may return incorrect results when the input matrix is not a square matrix")
+    warning("`ordered = FALSE` may return incorrect results when the input matrix is not a square matrix", call. = FALSE)
   }
   rcpp_get_cocove(x, ordered, normalization)
 }

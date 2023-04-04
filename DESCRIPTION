@@ -37,7 +37,6 @@ Suggests:
     covr,
     knitr,
     rmarkdown
-SystemRequirements: C++17
 URL: https://jakubnowosad.com/comat/
 BugReports: https://github.com/Nowosad/comat/issues
 VignetteBuilder: knitr

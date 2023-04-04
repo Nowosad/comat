@@ -1,6 +1,6 @@
 citHeader("To cite comat in publications, please use:")
 
-citEntry(entry = "article",
+bibentry(bibtype = "Article",
   author = c(person("Jakub", "Nowosad"), person("Tomasz", "Stepinski")),
   title = "Pattern-based identification and mapping of landscape types using multi-thematic data",
   journal = "International Journal of Geographical Information Science",

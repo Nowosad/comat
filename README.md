@@ -5,8 +5,6 @@
 
 <!-- badges: start -->
 
-[![Travis build
-status](https://www.travis-ci.com.svg?branch=master)](https://www.travis-ci.com)
 [![Codecov test
 coverage](https://codecov.io/gh/Nowosad/comat/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Nowosad/comat?branch=master)
 [![CRAN

@@ -1,3 +1,7 @@
+# comat 0.9.3
+
+* Cleans code and adds new warnings
+
 # comat 0.9
 
 * Adds C++ code for calculating five IT-metrics (Nowosad and Stepinski, 2019, Landscape Ecology)

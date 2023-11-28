@@ -142,5 +142,5 @@ triangular_index <- function(r, c) {
 
 # Register entry points for exported C++ functions
 methods::setLoadAction(function(ns) {
-    .Call('_comat_RcppExport_registerCCallable', PACKAGE = 'comat')
+    .Call(`_comat_RcppExport_registerCCallable`)
 })

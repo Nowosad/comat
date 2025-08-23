@@ -128,4 +128,9 @@ diagonal_matrix = matrix(c(1, NA, 1,
                             NA, 0, NA,
                             1, NA, 1), 3, 3, byrow = TRUE)
 create_neighborhood(diagonal_matrix)
+
+# larger_window = terra::focalMat(x = terra::rast(), d = 2, type = "rectangle")
+larger_window = matrix(1, 5, 5)
+larger_window[3, 3] = 0
+create_neighborhood(larger_window)
 */

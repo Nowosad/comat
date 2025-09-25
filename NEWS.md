@@ -1,3 +1,7 @@
+# comat 0.9.6
+
+* Switches from deprecated arma::is_finite to std::isfinite 
+
 # comat 0.9.3
 
 * Cleans code and adds new warnings
@@ -13,7 +17,7 @@
 
 # comat 0.7.2
 
-* Fixes c++ conversions
+* Fixes C++ conversions
 
 # comat 0.6.0
 

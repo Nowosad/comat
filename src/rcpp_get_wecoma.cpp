@@ -52,7 +52,7 @@ NumericMatrix rcpp_get_wecoma_internal(const IntegerMatrix& x,
                 continue;
             unsigned focal_class = class_index.at(focal_x);
             double focal_w = w[col * nrows + row];
-            if (na_action != "keep" && !arma::is_finite(focal_w)){
+            if (na_action != "keep" && !std::isfinite(focal_w)){
                 if (na_action == "replace"){
                     focal_w = 0.0;
                 } else if (na_action == "omit"){
@@ -72,7 +72,7 @@ NumericMatrix rcpp_get_wecoma_internal(const IntegerMatrix& x,
                     unsigned neig_class = class_index.at(neig_x);
                     double neig_w = w[neig_col * nrows + neig_row];
 
-                    if (na_action != "keep" && !arma::is_finite(neig_w)){
+                    if (na_action != "keep" && !std::isfinite(neig_w)){
                         if (na_action == "replace"){
                             neig_w = 0.0;
                         } else if (na_action == "omit"){

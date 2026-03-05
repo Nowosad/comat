@@ -1,3 +1,7 @@
+# comat 0.9.7
+
+* Updates to the current Rcpp behavior 
+
 # comat 0.9.6
 
 * Switches from deprecated arma::is_finite to std::isfinite 

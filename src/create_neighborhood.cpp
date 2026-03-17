@@ -93,7 +93,7 @@ IntegerVector rcpp_cell_from_xy(arma::imat x, IntegerMatrix y) {
 //' Cells with other values (e.g. NA) are ignored.
 //' @keywords internal
 // [[Rcpp::export]]
-IntegerMatrix create_neighborhood(arma::imat directions){
+IntegerMatrix create_neighborhood(const arma::imat& directions){
     if (directions.n_elem == 1){
         int x = directions(0);
         IntegerVector x_id(x);

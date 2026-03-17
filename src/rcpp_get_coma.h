@@ -10,9 +10,9 @@ using namespace Rcpp;
 // [[Rcpp::plugins(cpp11)]]
 
 IntegerMatrix rcpp_get_coma(const IntegerMatrix& x,
-                            const arma::imat directions);
+                            const arma::imat& directions);
 
 IntegerMatrix rcpp_get_coma_internal(const IntegerMatrix& x,
-                            const arma::imat directions,
-                            std::vector<int> classes = std::vector<int>(0));
+                            const arma::imat& directions,
+                            const std::vector<int>& classes = std::vector<int>(0));
 #endif // GET_COMA_H

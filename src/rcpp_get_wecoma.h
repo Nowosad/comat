@@ -14,7 +14,7 @@ Rcpp::NumericMatrix rcpp_get_wecoma(const Rcpp::IntegerMatrix& x,
 Rcpp::NumericMatrix rcpp_get_wecoma_internal(const Rcpp::IntegerMatrix& x,
                               const Rcpp::NumericMatrix& w,
                               const arma::imat& directions,
-                              std::vector<int> classes,
+                              const std::vector<int>& classes,
                               const std::string fun = "mean",
                               const std::string na_action = "replace") ;
 

@@ -33,35 +33,31 @@ IntegerMatrix rcpp_get_cocoma_internal(const IntegerMatrix x,
     IntegerMatrix result(n_classes_x, n_classes_y);
 
     // create neighbors coordinates
-    IntegerMatrix tmp = create_neighborhood(directions);
-    int neigh_len = tmp.nrow();
-    std::vector<std::vector<int> > neig_coords;
-    for (int row = 0; row < neigh_len; row++) {
-        IntegerVector a = tmp.row(row);
-        std::vector<int> b(a.begin(), a.end());
-        neig_coords.push_back(b);
-    }
+    IntegerMatrix neigh_coords = create_neighborhood(directions);
+    int neigh_len = neigh_coords.nrow();
 
     for (unsigned col = 0; col < ncols; col++) {
         for (unsigned row = 0; row < nrows; row++) {
             const int focal_x = x[col * nrows + row];
-            if (class_index_x.count(focal_x) == 0)
+            const auto focal_it = class_index_x.find(focal_x);
+            if (focal_it == class_index_x.end())
                 continue;
-            unsigned focal_class = class_index_x.at(focal_x);
+            unsigned focal_class = focal_it->second;
             //const int focal_y = y[col * nrows + row];
             //if (focal_y == na)
             //    continue;
             for (int h = 0; h < neigh_len; h++) {
-                unsigned int neig_col = neig_coords[h][0] + col;
-                unsigned int neig_row = neig_coords[h][1] + row;
+                int neig_col = neigh_coords(h, 0) + static_cast<int>(col);
+                int neig_row = neigh_coords(h, 1) + static_cast<int>(row);
                 if (neig_col >= 0 &&
                     neig_row >= 0 &&
-                    neig_col < ncols &&
-                    neig_row < nrows) {
+                    neig_col < static_cast<int>(ncols) &&
+                    neig_row < static_cast<int>(nrows)) {
                     const int neig_y = y[neig_col * nrows + neig_row];
-                    if (class_index_y.count(neig_y) == 0)
+                    const auto neigh_it = class_index_y.find(neig_y);
+                    if (neigh_it == class_index_y.end())
                         continue;
-                    unsigned neig_class = class_index_y.at(neig_y);
+                    unsigned neig_class = neigh_it->second;
 
                     result(focal_class,neig_class)++;
                 }

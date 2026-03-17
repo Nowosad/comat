@@ -22,7 +22,7 @@ NumericMatrix rcpp_get_wecoma(const IntegerMatrix& x,
 NumericMatrix rcpp_get_wecoma_internal(const IntegerMatrix& x,
                                        const NumericMatrix& w,
                               const arma::imat& directions,
-                              std::vector<int> classes,
+                              const std::vector<int>& classes,
                               const std::string fun,
                               const std::string na_action) {
 
@@ -36,58 +36,66 @@ NumericMatrix rcpp_get_wecoma_internal(const IntegerMatrix& x,
     NumericMatrix result(n_classes, n_classes);
 
     // create neighbors coordinates
-    IntegerMatrix tmp = create_neighborhood(directions);
-    int neigh_len = tmp.nrow();
-    std::vector<std::vector<int> > neig_coords;
-    for (int row = 0; row < neigh_len; row++) {
-        IntegerVector a = tmp.row(row);
-        std::vector<int> b(a.begin(), a.end());
-        neig_coords.push_back(b);
+    IntegerMatrix neigh_coords = create_neighborhood(directions);
+    int neigh_len = neigh_coords.nrow();
+
+    const int fun_mode =
+        fun == "mean" ? 0 :
+        fun == "geometric_mean" ? 1 :
+        fun == "focal" ? 2 : -1;
+
+    const int na_mode =
+        na_action == "keep" ? 0 :
+        na_action == "replace" ? 1 :
+        na_action == "omit" ? 2 : -1;
+
+    if (fun_mode < 0) {
+        stop("`fun` must be one of: 'mean', 'geometric_mean', or 'focal'.");
     }
 
     for (unsigned col = 0; col < ncols; col++) {
         for (unsigned row = 0; row < nrows; row++) {
             const int focal_x = x[col * nrows + row];
-            if (class_index.count(focal_x) == 0)
+            const auto focal_it = class_index.find(focal_x);
+            if (focal_it == class_index.end())
                 continue;
-            unsigned focal_class = class_index.at(focal_x);
+            unsigned focal_class = focal_it->second;
             double focal_w = w[col * nrows + row];
-            if (na_action != "keep" && !std::isfinite(focal_w)){
-                if (na_action == "replace"){
+            if (na_mode != 0 && !std::isfinite(focal_w)){
+                if (na_mode == 1){
                     focal_w = 0.0;
-                } else if (na_action == "omit"){
+                } else if (na_mode == 2){
                     continue;
                 }
             }
             for (int h = 0; h < neigh_len; h++) {
-                unsigned int neig_col = neig_coords[h][0] + col;
-                unsigned int neig_row = neig_coords[h][1] + row;
+                int neig_col = neigh_coords(h, 0) + static_cast<int>(col);
+                int neig_row = neigh_coords(h, 1) + static_cast<int>(row);
                 if (neig_col >= 0 &&
                         neig_row >= 0 &&
-                        neig_col < ncols &&
-                        neig_row < nrows) {
+                        neig_col < static_cast<int>(ncols) &&
+                        neig_row < static_cast<int>(nrows)) {
                     const int neig_x = x[neig_col * nrows + neig_row];
-                    if (class_index.count(neig_x) == 0)
+                    const auto neigh_it = class_index.find(neig_x);
+                    if (neigh_it == class_index.end())
                         continue;
-                    unsigned neig_class = class_index.at(neig_x);
+                    unsigned neig_class = neigh_it->second;
                     double neig_w = w[neig_col * nrows + neig_row];
 
-                    if (na_action != "keep" && !std::isfinite(neig_w)){
-                        if (na_action == "replace"){
+                    if (na_mode != 0 && !std::isfinite(neig_w)){
+                        if (na_mode == 1){
                             neig_w = 0.0;
-                        } else if (na_action == "omit"){
+                        } else if (na_mode == 2){
                             continue;
                         }
                     }
                     double value = 0.0;
-                    if (fun == "mean"){
+                    if (fun_mode == 0){
                         value = ((focal_w + neig_w) / 2.0);
-                    } else if (fun == "geometric_mean"){
+                    } else if (fun_mode == 1){
                         value = sqrt(focal_w * neig_w);
-                    } else if (fun == "focal"){
-                        value = focal_w;
                     } else {
-                        stop("`fun` must be one of: 'mean', 'geometric_mean', or 'focal'.");
+                        value = focal_w;
                     }
                     // Rcout << "The value of value : " << value << "\n";
                     result(focal_class,neig_class) += value;

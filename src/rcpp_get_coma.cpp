@@ -3,7 +3,7 @@
 
 // [[Rcpp::export]]
 IntegerMatrix rcpp_get_coma(const IntegerMatrix& x,
-                            const arma::imat directions){
+                            const arma::imat& directions){
     std::vector<int> classes = get_unique_values(x);
     IntegerMatrix result = rcpp_get_coma_internal(x, directions, classes);
     return result;
@@ -11,8 +11,8 @@ IntegerMatrix rcpp_get_coma(const IntegerMatrix& x,
 
 // [[Rcpp::export]]
 IntegerMatrix rcpp_get_coma_internal(const IntegerMatrix& x,
-                            const arma::imat directions,
-                            std::vector<int> classes) {
+                            const arma::imat& directions,
+                            const std::vector<int>& classes) {
 
     const unsigned ncols = x.ncol();
     const unsigned nrows = x.nrow();
@@ -24,19 +24,14 @@ IntegerMatrix rcpp_get_coma_internal(const IntegerMatrix& x,
                                                  std::vector<unsigned>(n_classes));
 
     // create neighbors coordinates
-    IntegerMatrix tmp = create_neighborhood(directions);
-    int neigh_len = tmp.nrow();
-    std::vector<std::vector<int> > neig_coords;
-    for (int row = 0; row < neigh_len; row++) {
-        IntegerVector a = tmp.row(row);
-        std::vector<int> b(a.begin(), a.end());
-        neig_coords.push_back(b);
-    }
+    IntegerMatrix neigh_coords = create_neighborhood(directions);
+    int neigh_len = neigh_coords.nrow();
 
     for (unsigned col = 0; col < ncols; col++) {
         for (unsigned row = 0; row < nrows; row++) {
-            const int tmp = x[col * nrows + row];
-            if (class_index.count(tmp) == 0)
+            const int value = x[col * nrows + row];
+            const auto focal_it = class_index.find(value);
+            if (focal_it == class_index.end())
                 continue;
 
             // for (auto& t : class_index_const){
@@ -44,19 +39,20 @@ IntegerMatrix rcpp_get_coma_internal(const IntegerMatrix& x,
             //           << t.second << "\n";
             // }
 
-            unsigned focal_class = class_index.at(tmp);
+            unsigned focal_class = focal_it->second;
 
             for (int h = 0; h < neigh_len; h++) {
-                int neig_col = neig_coords[h][0] + col;
-                int neig_row = neig_coords[h][1] + row;
+                int neig_col = neigh_coords(h, 0) + static_cast<int>(col);
+                int neig_row = neigh_coords(h, 1) + static_cast<int>(row);
                 if (neig_col >= 0 &&
                         neig_row >= 0 &&
-                        neig_col < ncols &&
-                        neig_row < nrows) {
-                    const int tmp = x[neig_col * nrows + neig_row];
-                    if (class_index.count(tmp) == 0)
+                        neig_col < static_cast<int>(ncols) &&
+                        neig_row < static_cast<int>(nrows)) {
+                    const int neigh_value = x[neig_col * nrows + neig_row];
+                    const auto neigh_it = class_index.find(neigh_value);
+                    if (neigh_it == class_index.end())
                         continue;
-                    unsigned neig_class = class_index.at(tmp);
+                    unsigned neig_class = neigh_it->second;
                     cooc_mat[focal_class][neig_class]++;
                 }
             }

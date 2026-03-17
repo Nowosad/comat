@@ -1,3 +1,7 @@
+# comat 0.9.8
+
+* Small improvements to cpp code
+
 # comat 0.9.7
 
 * Updates to the current Rcpp behavior 

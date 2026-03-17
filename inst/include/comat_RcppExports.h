@@ -67,11 +67,11 @@ namespace comat {
         return Rcpp::as<IntegerVector >(rcpp_result_gen);
     }
 
-    inline IntegerMatrix create_neighborhood(arma::imat directions) {
+    inline IntegerMatrix create_neighborhood(const arma::imat& directions) {
         typedef SEXP(*Ptr_create_neighborhood)(SEXP);
         static Ptr_create_neighborhood p_create_neighborhood = NULL;
         if (p_create_neighborhood == NULL) {
-            validateSignature("IntegerMatrix(*create_neighborhood)(arma::imat)");
+            validateSignature("IntegerMatrix(*create_neighborhood)(const arma::imat&)");
             p_create_neighborhood = (Ptr_create_neighborhood)R_GetCCallable("comat", "_comat_create_neighborhood");
         }
         RObject rcpp_result_gen;
@@ -277,11 +277,11 @@ namespace comat {
         return Rcpp::as<IntegerMatrix >(rcpp_result_gen);
     }
 
-    inline IntegerMatrix rcpp_get_coma(const IntegerMatrix& x, const arma::imat directions) {
+    inline IntegerMatrix rcpp_get_coma(const IntegerMatrix& x, const arma::imat& directions) {
         typedef SEXP(*Ptr_rcpp_get_coma)(SEXP,SEXP);
         static Ptr_rcpp_get_coma p_rcpp_get_coma = NULL;
         if (p_rcpp_get_coma == NULL) {
-            validateSignature("IntegerMatrix(*rcpp_get_coma)(const IntegerMatrix&,const arma::imat)");
+            validateSignature("IntegerMatrix(*rcpp_get_coma)(const IntegerMatrix&,const arma::imat&)");
             p_rcpp_get_coma = (Ptr_rcpp_get_coma)R_GetCCallable("comat", "_comat_rcpp_get_coma");
         }
         RObject rcpp_result_gen;
@@ -298,11 +298,11 @@ namespace comat {
         return Rcpp::as<IntegerMatrix >(rcpp_result_gen);
     }
 
-    inline IntegerMatrix rcpp_get_coma_internal(const IntegerMatrix& x, const arma::imat directions, std::vector<int> classes) {
+    inline IntegerMatrix rcpp_get_coma_internal(const IntegerMatrix& x, const arma::imat& directions, const std::vector<int>& classes) {
         typedef SEXP(*Ptr_rcpp_get_coma_internal)(SEXP,SEXP,SEXP);
         static Ptr_rcpp_get_coma_internal p_rcpp_get_coma_internal = NULL;
         if (p_rcpp_get_coma_internal == NULL) {
-            validateSignature("IntegerMatrix(*rcpp_get_coma_internal)(const IntegerMatrix&,const arma::imat,std::vector<int>)");
+            validateSignature("IntegerMatrix(*rcpp_get_coma_internal)(const IntegerMatrix&,const arma::imat&,const std::vector<int>&)");
             p_rcpp_get_coma_internal = (Ptr_rcpp_get_coma_internal)R_GetCCallable("comat", "_comat_rcpp_get_coma_internal");
         }
         RObject rcpp_result_gen;
@@ -550,11 +550,11 @@ namespace comat {
         return Rcpp::as<NumericMatrix >(rcpp_result_gen);
     }
 
-    inline NumericMatrix rcpp_get_wecoma_internal(const IntegerMatrix& x, const NumericMatrix& w, const arma::imat& directions, std::vector<int> classes, const std::string fun, const std::string na_action) {
+    inline NumericMatrix rcpp_get_wecoma_internal(const IntegerMatrix& x, const NumericMatrix& w, const arma::imat& directions, const std::vector<int>& classes, const std::string fun, const std::string na_action) {
         typedef SEXP(*Ptr_rcpp_get_wecoma_internal)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_rcpp_get_wecoma_internal p_rcpp_get_wecoma_internal = NULL;
         if (p_rcpp_get_wecoma_internal == NULL) {
-            validateSignature("NumericMatrix(*rcpp_get_wecoma_internal)(const IntegerMatrix&,const NumericMatrix&,const arma::imat&,std::vector<int>,const std::string,const std::string)");
+            validateSignature("NumericMatrix(*rcpp_get_wecoma_internal)(const IntegerMatrix&,const NumericMatrix&,const arma::imat&,const std::vector<int>&,const std::string,const std::string)");
             p_rcpp_get_wecoma_internal = (Ptr_rcpp_get_wecoma_internal)R_GetCCallable("comat", "_comat_rcpp_get_wecoma_internal");
         }
         RObject rcpp_result_gen;
